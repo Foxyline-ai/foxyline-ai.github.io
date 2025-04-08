@@ -1,0 +1,202 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { t, defaultLanguage } from '../../i18n/config';
+
+const lang = defaultLanguage;
+
+const features = {
+  showcase: [
+    'Design unique et personnalisé',
+    'Optimisation pour tous les appareils',
+    'Intégration de vos outils métier',
+    'Performance et SEO optimisés'
+  ],
+  landing: [
+    'Message clair et impactant',
+    'Appels à l\'action stratégiques',
+    'Tests A/B pour optimisation',
+    'Analyse des conversions'
+  ],
+  redesign: [
+    'Audit complet de l\'existant',
+    'Nouvelle architecture optimisée',
+    'Migration sans perte de données',
+    'Formation à vos nouveaux outils'
+  ],
+  seo: [
+    'Audit SEO approfondi',
+    'Optimisation technique',
+    'Stratégie de contenu',
+    'Suivi des performances'
+  ]
+};
+---
+
+<Layout title="Nos Services | Foxyline" lang={lang}>
+  <main class="pt-32">
+    <!-- Hero Section -->
+    <section class="py-20 px-4 md:px-8">
+      <div class="max-w-6xl mx-auto text-center">
+        <h1 
+          class="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-6"
+          data-aos="fade-up"
+        >
+          {t('services.title', lang)}<br/>
+          <span class="text-fox">{t('services.subtitle', lang)}</span>
+        </h1>
+        <p 
+          class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-charcoal/80"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {t('services.description', lang)}
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-20 px-4 md:px-8 bg-ivory">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        <!-- Sites vitrines -->
+        <div 
+          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+          data-aos="fade-up"
+        >
+          <div class="w-16 h-16 bg-charcoal rounded-xl flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-charcoal mb-2">{t('services.showcase.title', lang)}</h2>
+          <p class="text-fox font-poppins mb-4">{t('services.showcase.subtitle', lang)}</p>
+          <p class="text-charcoal/80 mb-6">{t('services.showcase.description', lang)}</p>
+          <ul class="space-y-3">
+            {features.showcase.map((feature) => (
+              <li class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-fox">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Landing Pages -->
+        <div 
+          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div class="w-16 h-16 bg-charcoal rounded-xl flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-charcoal mb-2">{t('services.landing.title', lang)}</h2>
+          <p class="text-fox font-poppins mb-4">{t('services.landing.subtitle', lang)}</p>
+          <p class="text-charcoal/80 mb-6">{t('services.landing.description', lang)}</p>
+          <ul class="space-y-3">
+            {features.landing.map((feature) => (
+              <li class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-fox">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Refonte -->
+        <div 
+          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div class="w-16 h-16 bg-charcoal rounded-xl flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-charcoal mb-2">{t('services.redesign.title', lang)}</h2>
+          <p class="text-fox font-poppins mb-4">{t('services.redesign.subtitle', lang)}</p>
+          <p class="text-charcoal/80 mb-6">{t('services.redesign.description', lang)}</p>
+          <ul class="space-y-3">
+            {features.redesign.map((feature) => (
+              <li class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-fox">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- SEO & Visibilité -->
+        <div 
+          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div class="w-16 h-16 bg-charcoal rounded-xl flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-charcoal mb-2">{t('services.seo.title', lang)}</h2>
+          <p class="text-fox font-poppins mb-4">{t('services.seo.subtitle', lang)}</p>
+          <p class="text-charcoal/80 mb-6">{t('services.seo.description', lang)}</p>
+          <ul class="space-y-3">
+            {features.seo.map((feature) => (
+              <li class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-fox">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 md:px-8 bg-charcoal text-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 
+          class="text-3xl md:text-5xl font-bold mb-6"
+          data-aos="fade-up"
+        >
+          {t('cta.title', lang)}
+        </h2>
+        <p 
+          class="text-xl text-silk/90 mb-12"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {t('cta.description', lang)}
+        </p>
+        <div 
+          class="flex flex-col sm:flex-row gap-4 justify-center"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <a 
+            href={`/${lang}/contact`}
+            class="px-8 py-4 bg-fox text-white font-poppins text-lg rounded-lg hover:bg-arctic transition-all duration-300 shadow-md hover:shadow-xl"
+          >
+            {t('cta.quote', lang)}
+          </a>
+          <a 
+            href={`/${lang}/portfolio`}
+            class="px-8 py-4 border-2 border-silk/20 text-white font-poppins text-lg rounded-lg hover:bg-white/10 transition-all duration-300"
+          >
+            {t('cta.portfolio', lang)}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

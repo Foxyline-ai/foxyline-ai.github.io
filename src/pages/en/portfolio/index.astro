@@ -1,0 +1,148 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { t } from '../../../i18n/config';
+
+const lang = 'en';
+
+const projects = [
+  {
+    title: 'Eco Solutions',
+    category: 'Business Website',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800',
+    description: 'Complete redesign with focus on environmental impact',
+    stats: {
+      speed: '98/100',
+      seo: '96/100',
+      satisfaction: '100%'
+    }
+  },
+  {
+    title: 'Tech Innovate',
+    category: 'Landing Page',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
+    description: 'High-converting landing page for a SaaS product',
+    stats: {
+      speed: '97/100',
+      seo: '98/100',
+      satisfaction: '100%'
+    }
+  },
+  {
+    title: 'Urban Style',
+    category: 'E-commerce',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800',
+    description: 'Modern online store for a fashion brand',
+    stats: {
+      speed: '95/100',
+      seo: '97/100',
+      satisfaction: '98%'
+    }
+  },
+  {
+    title: 'Food Express',
+    category: 'Web Application',
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800',
+    description: 'Food delivery app optimized for conversions',
+    stats: {
+      speed: '96/100',
+      seo: '95/100',
+      satisfaction: '99%'
+    }
+  }
+];
+---
+
+<Layout title="Portfolio | Foxyline" lang={lang}>
+  <main class="pt-32">
+    <!-- Hero Section -->
+    <section class="py-20 px-4 md:px-8">
+      <div class="max-w-6xl mx-auto text-center">
+        <h1 
+          class="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-6"
+          data-aos="fade-up"
+        >
+          {t('portfolio.title', lang)}<br/>
+          <span class="text-fox">{t('portfolio.subtitle', lang)}</span>
+        </h1>
+        <p 
+          class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-charcoal/80"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {t('portfolio.description', lang)}
+        </p>
+      </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="py-20 px-4 md:px-8 bg-ivory">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        {projects.map((project, index) => (
+          <div 
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute bottom-0 left-0 right-0 p-8">
+                <p class="text-fox font-poppins mb-2">{project.category}</p>
+                <h3 class="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                <p class="text-silk/90 mb-4">{project.description}</p>
+                <div class="grid grid-cols-3 gap-4">
+                  <div>
+                    <p class="text-silk/80 text-sm">Performance</p>
+                    <p class="text-white font-poppins">{project.stats.speed}</p>
+                  </div>
+                  <div>
+                    <p class="text-silk/80 text-sm">SEO</p>
+                    <p class="text-white font-poppins">{project.stats.seo}</p>
+                  </div>
+                  <div>
+                    <p class="text-silk/80 text-sm">Satisfaction</p>
+                    <p class="text-white font-poppins">{project.stats.satisfaction}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 md:px-8 bg-charcoal text-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 
+          class="text-3xl md:text-5xl font-bold mb-6"
+          data-aos="fade-up"
+        >
+          {t('cta.title', lang)}
+        </h2>
+        <p 
+          class="text-xl text-silk/90 mb-12"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          {t('cta.description', lang)}
+        </p>
+        <div 
+          class="flex flex-col sm:flex-row gap-4 justify-center"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <a 
+            href={`/${lang}/contact`}
+            class="px-8 py-4 bg-fox text-white font-poppins text-lg rounded-lg hover:bg-arctic transition-all duration-300 shadow-md hover:shadow-xl"
+          >
+            {t('cta.quote', lang)}
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
