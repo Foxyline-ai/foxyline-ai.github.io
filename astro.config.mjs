@@ -4,9 +4,6 @@ import node from '@astrojs/node';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://moosly.design',
-  output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  })
+  site: 'https://foxyline.ai',
+  
 });
