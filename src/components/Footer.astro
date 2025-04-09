@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-charcoal text-white py-16">
-  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
     <div>
       <h3 class="font-poppins text-2xl mb-4 gradient-text">Foxyline</h3>
       <p class="text-silk/80">{t('footer.description', lang)}</p>
@@ -24,15 +24,6 @@ const currentYear = new Date().getFullYear();
         <li><a href={`/${lang}/services#landing`} class="text-silk/80 hover:text-white transition-colors hover-lift inline-block">Landing pages</a></li>
         <li><a href={`/${lang}/services#refonte`} class="text-silk/80 hover:text-white transition-colors hover-lift inline-block">Refonte de site</a></li>
         <li><a href={`/${lang}/services#seo`} class="text-silk/80 hover:text-white transition-colors hover-lift inline-block">SEO & Visibilité</a></li>
-      </ul>
-    </div>
-    
-    <div>
-      <h4 class="font-poppins text-lg mb-4 text-fox">{t('footer.resources', lang)}</h4>
-      <ul class="space-y-2">
-        <li><a href={`/${lang}/portfolio`} class="text-silk/80 hover:text-white transition-colors hover-lift inline-block">{t('nav.portfolio', lang)}</a></li>
-        <li><a href={`/${lang}/blog`} class="text-silk/80 hover:text-white transition-colors hover-lift inline-block">{t('nav.blog', lang)}</a></li>
-        <li><a href={`/${lang}/a-propos`} class="text-silk/80 hover:text-white transition-colors hover-lift inline-block">{t('nav.about', lang)}</a></li>
       </ul>
     </div>
     
