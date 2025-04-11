@@ -3,28 +3,28 @@ import Layout from '../../layouts/Layout.astro';
 import { t } from '../../i18n/config';
 import FoxDecorations from '../../components/FoxDecorations.astro';
 
-const lang = 'en';
+const lang = 'nl';
 
 const contactInfo = [
   {
-    title: 'Email',
+    title: 'E-mail',
     value: 'hi@foxyline.ai',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />`
   },
   {
-    title: 'Location',
-    value: 'Brussels, Belgium',
+    title: 'Locatie',
+    value: 'Brussel, België',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />`
   },
   {
-    title: 'Hours',
-    value: 'Mon-Fri: 9am - 6pm CET',
+    title: 'Openingstijden',
+    value: 'Ma-Vr: 9:00 - 18:00 CET',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />`
   }
 ];
 ---
 
-<Layout title="Contact Us | Foxyline" lang={lang}>
+<Layout title="Contact | Foxyline" lang={lang}>
   <main class="pt-32">
     <!-- Hero Section -->
     <section class="relative py-20 px-4 md:px-8 modern-gradient overflow-hidden">
@@ -37,15 +37,15 @@ const contactInfo = [
             class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
             data-aos="fade-up"
           >
-            Let's Create Something
-            <span class="gradient-text block mt-2">Amazing Together</span>
+            Laten we samen iets
+            <span class="gradient-text block mt-2">Geweldigs Maken</span>
           </h1>
           <p 
             class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-modern-200/90"
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            Ready to elevate your digital presence? We're here to help bring your vision to life.
+            Klaar om je digitale aanwezigheid naar een hoger niveau te tillen? We helpen je graag om je visie tot leven te brengen.
           </p>
         </div>
       </div>
@@ -63,7 +63,7 @@ const contactInfo = [
             class="glass-card p-8 rounded-xl"
             data-aos="fade-right"
           >
-            <h2 class="text-2xl font-bold mb-6 text-modern-50">Send us a message</h2>
+            <h2 class="text-2xl font-bold mb-6 text-modern-50">Stuur ons een bericht</h2>
             <form 
               id="contactForm"
               action="https://api.web3forms.com/submit"
@@ -73,38 +73,38 @@ const contactInfo = [
               <div>
                 <input type="hidden" name="access_key" value="16cd1d2b-c371-4aa8-ab8f-2cc13604ca99">
                 <input type="hidden" name="redirect" value="false">
-                <label for="name" class="block text-modern-200 mb-2">Name</label>
+                <label for="name" class="block text-modern-200 mb-2">Naam</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
                   class="w-full px-4 py-3 rounded-lg bg-matrix-800 border border-modern-100/10 text-modern-50 focus:outline-none focus:border-fox-500 transition-colors"
-                  placeholder="Your name"
+                  placeholder="Je naam"
                 />
               </div>
               
               <div>
-                <label for="email" class="block text-modern-200 mb-2">Email</label>
+                <label for="email" class="block text-modern-200 mb-2">E-mail</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
                   class="w-full px-4 py-3 rounded-lg bg-matrix-800 border border-modern-100/10 text-modern-50 focus:outline-none focus:border-fox-500 transition-colors"
-                  placeholder="your@email.com"
+                  placeholder="jouw@email.com"
                 />
               </div>
               
               <div>
-                <label for="message" class="block text-modern-200 mb-2">Message</label>
+                <label for="message" class="block text-modern-200 mb-2">Bericht</label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows="6"
                   class="w-full px-4 py-3 rounded-lg bg-matrix-800 border border-modern-100/10 text-modern-50 focus:outline-none focus:border-fox-500 transition-colors resize-none"
-                  placeholder="Tell us about your project..."
+                  placeholder="Vertel ons over je project..."
                 ></textarea>
               </div>
 
@@ -113,7 +113,7 @@ const contactInfo = [
                 id="submitButton"
                 class="w-full px-8 py-4 bg-gradient-to-r from-fox-500 to-neon-500 text-modern-50 font-space text-lg rounded-xl hover:shadow-2xl hover:shadow-fox-500/20 transition-all duration-500 relative overflow-hidden group"
               >
-                <span class="relative z-10">Send Message</span>
+                <span class="relative z-10">Verstuur Bericht</span>
                 <div class="absolute inset-0 bg-gradient-to-r from-neon-500 to-fox-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </button>
             </form>
@@ -124,8 +124,8 @@ const contactInfo = [
                 <svg class="w-16 h-16 text-fox-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
-                <h3 class="text-2xl font-bold text-modern-50 mb-2">Message Sent!</h3>
-                <p class="text-modern-200/80">Thank you for reaching out. We'll get back to you soon.</p>
+                <h3 class="text-2xl font-bold text-modern-50 mb-2">Bericht Verzonden!</h3>
+                <p class="text-modern-200/80">Bedankt voor je bericht. We nemen zo snel mogelijk contact met je op.</p>
               </div>
             </div>
 
@@ -146,7 +146,7 @@ const contactInfo = [
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Sending...
+                      Versturen...
                     </span>
                   `;
 
@@ -169,8 +169,8 @@ const contactInfo = [
                   } catch (error) {
                     console.error('Error:', error);
                     submitButton.disabled = false;
-                    submitButton.innerHTML = '<span class="relative z-10">Send Message</span>';
-                    alert('There was an error sending your message. Please try again.');
+                    submitButton.innerHTML = '<span class="relative z-10">Verstuur Bericht</span>';
+                    alert('Er is een fout opgetreden bij het verzenden van je bericht. Probeer het opnieuw.');
                   }
                 });
               }
@@ -183,7 +183,7 @@ const contactInfo = [
             data-aos="fade-left"
           >
             <div class="glass-card p-8 rounded-xl">
-              <h2 class="text-2xl font-bold mb-8 text-modern-50">Get in touch</h2>
+              <h2 class="text-2xl font-bold mb-8 text-modern-50">Neem contact op</h2>
               <div class="space-y-6">
                 {contactInfo.map(info => (
                   <div class="flex items-start gap-4">
@@ -200,7 +200,7 @@ const contactInfo = [
             </div>
 
             <div class="glass-card p-8 rounded-xl">
-              <h2 class="text-2xl font-bold mb-6 text-modern-50">Follow us</h2>
+              <h2 class="text-2xl font-bold mb-6 text-modern-50">Volg ons</h2>
               <div class="flex gap-4">
                 <a href="#" class="w-12 h-12 rounded-lg bg-fox-500/10 flex items-center justify-center hover:bg-fox-500/20 transition-colors">
                   <svg class="w-6 h-6 text-fox-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -229,4 +229,4 @@ const contactInfo = [
       </div>
     </section>
   </main>
-</Layout>
+</Layout> 

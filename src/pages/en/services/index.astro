@@ -5,21 +5,31 @@ import FoxDecorations from '../../../components/FoxDecorations.astro';
 
 const lang = 'en';
 
-// Process features to ensure they're always in a mappable format regardless of language
-const processFeatures = (value: any): any[] => {
-  if (Array.isArray(value)) return value;
-  if (typeof value === 'string') return [value];
-  if (typeof value === 'object' && value !== null) {
-    return Object.values(value);
-  }
-  return [];
-};
-
 const features = {
-  showcase: processFeatures(t('services.showcase.features', lang)),
-  landing: processFeatures(t('services.landing.features', lang)),
-  redesign: processFeatures(t('services.redesign.features', lang)),
-  seo: processFeatures(t('services.seo.features', lang))
+  showcase: [
+    'Unique and Custom Design',
+    'Optimized for All Devices',
+    'Business Tools Integration',
+    'Performance and SEO Optimized'
+  ],
+  landing: [
+    'Clear and Impactful Message',
+    'Strategic Call-to-Actions',
+    'A/B Testing for Optimization',
+    'Conversion Analysis'
+  ],
+  redesign: [
+    'Complete Existing Audit',
+    'New Optimized Architecture',
+    'Data Migration Without Loss',
+    'Training for Your New Tools'
+  ],
+  seo: [
+    'In-Depth SEO Audit',
+    'Technical Optimization',
+    'Content Strategy',
+    'Performance Monitoring'
+  ]
 };
 
 const stats = [
@@ -40,7 +50,7 @@ const technologies = [
     <!-- Hero Section -->
     <section class="relative py-20 px-4 md:px-8 modern-gradient overflow-hidden">
       <div class="mesh-overlay"></div>
-      <FoxDecorations variant="light" />
+      
       
       <!-- Animated Background Elements -->
       <div class="absolute inset-0 overflow-hidden">
@@ -67,7 +77,7 @@ const technologies = [
         </div>
 
         <!-- Stats Grid -->
-        <div 
+        <!-- <div 
           class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
           data-aos="fade-up"
           data-aos-delay="200"
@@ -78,14 +88,14 @@ const technologies = [
               <p class="text-modern-200/80 text-sm">{stat.label}</p>
             </div>
           ))}
-        </div>
+        </div> -->
       </div>
     </section>
 
     <!-- Services Grid -->
     <section class="relative py-32 px-4 md:px-8 bg-matrix-900 overflow-hidden">
       <div class="mesh-overlay opacity-10"></div>
-      <FoxDecorations variant="light" />
+      
       
       <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
         <!-- Business Websites -->
@@ -204,7 +214,7 @@ const technologies = [
     <!-- Technologies Section -->
     <section class="relative py-32 px-4 md:px-8 bg-matrix-950 overflow-hidden">
       <div class="mesh-overlay opacity-10"></div>
-      <FoxDecorations variant="light" />
+      
       
       <div class="max-w-6xl mx-auto relative">
         <h2 
@@ -232,7 +242,7 @@ const technologies = [
     <!-- CTA Section -->
     <section class="relative py-32 px-4 md:px-8 bg-matrix-900 overflow-hidden">
       <div class="mesh-overlay opacity-10"></div>
-      <FoxDecorations variant="light" />
+      
       
       <div class="max-w-4xl mx-auto text-center relative">
         <div 

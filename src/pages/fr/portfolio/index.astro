@@ -3,7 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import { t, defaultLanguage } from '../../../i18n/config';
 import FoxDecorations from '../../../components/FoxDecorations.astro';
 
-const lang = defaultLanguage;
+const lang = 'fr';
 
 const projects = [
   {
@@ -131,15 +131,15 @@ const projects = [
 
     <!-- CTA Section -->
     <section class="relative py-20 px-4 md:px-8 bg-charcoal text-white overflow-hidden">
-      <FoxDecorations variant="light" />
+      
       <div class="max-w-4xl mx-auto text-center relative">
-        <div 
+        <!-- <div 
           class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 text-fox opacity-10"
         >
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L9 7H3L6 12L3 17H9L12 22L15 17H21L18 12L21 7H15L12 2Z" />
           </svg>
-        </div>
+        </div> -->
         <h2 
           class="text-3xl md:text-5xl font-bold mb-6"
           data-aos="fade-up"
