@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/node": "^8.2.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/sitemap": "^3.2.1",
     "@fontsource-variable/space-grotesk": "^5.0.16",
     "@fontsource/geist-sans": "^5.0.1",
     "aos": "^2.3.4",
