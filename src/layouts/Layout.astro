@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '');
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/foxyline-favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Foxyline</title>
     <meta name="description" content={description} />
@@ -77,7 +77,7 @@ const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}/, '');
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-fox-500 via-neon-500 to-accent-500 animate-gradient;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-fox-500 via-neon-500 to-accent-500 animate-gradient py-1;
     background-size: 200% auto;
   }
 
