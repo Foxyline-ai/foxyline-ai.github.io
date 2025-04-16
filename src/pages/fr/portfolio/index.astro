@@ -1,127 +1,156 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import { t, defaultLanguage } from '../../../i18n/config';
+import { t } from '../../../i18n/config';
 import FoxDecorations from '../../../components/FoxDecorations.astro';
+import { Image } from 'astro:assets';
+import radiologielacambre from '../../../assets/radiologielacambre.png';
+import govrn from '../../../assets/govrn.png';
 
 const lang = 'fr';
 
+const categories = [
+  'Tous', 'Sites Web', 'E-commerce', 'Pages d\'atterrissage', 'Applications Web'
+];
+
 const projects = [
   {
-    title: 'Eco Solutions',
-    category: 'Site vitrine',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800',
-    description: 'Refonte complète avec focus sur l\'impact environnemental',
+    title: 'Govrn.com',
+    category: 'Site Web d\'entreprise',
+    image: govrn,
+    description: 'Refonte complète du site web avec une interface moderne et des performances améliorées',
+    technologies: ['Astro', 'React.js', 'TailwindCSS'],
     stats: {
       speed: '98/100',
       seo: '96/100',
       satisfaction: '100%'
-    }
+    },
+    link: 'https://govrn.com'
   },
   {
-    title: 'Tech Innovate',
-    category: 'Landing Page',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
-    description: 'Landing page convertissante pour un produit SaaS',
+    title: 'Radiologie La Cambre',
+    category: 'Site Web d\'entreprise',
+    image: radiologielacambre,
+    description: 'Site web professionnel pour un centre d\'imagerie médicale',
+    technologies: ['Astro', 'React.js', 'TailwindCSS'],
     stats: {
       speed: '97/100',
       seo: '98/100',
       satisfaction: '100%'
-    }
-  },
-  {
-    title: 'Urban Style',
-    category: 'E-commerce',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800',
-    description: 'Boutique en ligne moderne pour une marque de mode',
-    stats: {
-      speed: '95/100',
-      seo: '97/100',
-      satisfaction: '98%'
-    }
-  },
-  {
-    title: 'Food Express',
-    category: 'Application Web',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800',
-    description: 'Application de livraison de repas optimisée pour la conversion',
-    stats: {
-      speed: '96/100',
-      seo: '95/100',
-      satisfaction: '99%'
-    }
+    },
+    link: 'https://radiologielacambre.be'
   }
+];
+
+const stats = [
+  { value: '100+', label: 'Projets Terminés' },
+  { value: '98%', label: 'Satisfaction Client' },
+  { value: '3s', label: 'Temps de Chargement Moyen' },
+  { value: '24h', label: 'Réponse Support' }
 ];
 ---
 
 <Layout title="Portfolio | Foxyline" lang={lang}>
   <main class="pt-32">
     <!-- Hero Section -->
-    <section class="relative py-20 px-4 md:px-8 overflow-hidden">
-      <FoxDecorations />
-      <div class="max-w-6xl mx-auto text-center relative">
-        <div 
-          class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 text-fox opacity-10"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L9 7H3L6 12L3 17H9L12 22L15 17H21L18 12L21 7H15L12 2Z" />
-          </svg>
+    <section class="relative py-20 px-4 md:px-8 modern-gradient overflow-hidden">
+      <div class="mesh-overlay"></div>
+      
+      <!-- Animated Background Elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-fox-500/10 to-transparent rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-radial from-neon-500/10 to-transparent rounded-full blur-3xl animate-float" style="animation-delay: -2s;"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto relative">
+        <div class="text-center">
+          <h1 
+            class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+            data-aos="fade-up"
+          >
+            {t('portfolio.title', lang)}
+            <span class="gradient-text block mt-2">{t('portfolio.subtitle', lang)}</span>
+          </h1>
+          <p 
+            class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-modern-200/90"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            {t('portfolio.description', lang)}
+          </p>
         </div>
-        <h1 
-          class="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal mb-6"
-          data-aos="fade-up"
-        >
-          {t('portfolio.title', lang)}<br/>
-          <span class="text-fox">{t('portfolio.subtitle', lang)}</span>
-        </h1>
-        <p 
-          class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-charcoal/80"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          {t('portfolio.description', lang)}
-        </p>
       </div>
     </section>
 
     <!-- Portfolio Grid -->
-    <section class="relative py-20 px-4 md:px-8 bg-ivory overflow-hidden">
-      <FoxDecorations variant="dark" />
+    <section class="relative py-32 px-4 md:px-8 bg-matrix-900 overflow-hidden">
+      <div class="mesh-overlay opacity-10"></div>
+      
+      <!-- Category Filter -->
+      <div class="max-w-6xl mx-auto mb-16">
+        <div 
+          class="flex flex-wrap justify-center gap-4"
+          data-aos="fade-up"
+        >
+          {categories.map((category) => (
+            <button class="px-6 py-2 rounded-lg bg-matrix-800/50 text-modern-200/90 hover:text-modern-50 hover:bg-matrix-800 transition-all duration-300">
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
       <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <div 
-            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-white"
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500"
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
-            <img 
+            <!-- Project Image -->
+            <Image 
               src={project.image} 
               alt={project.title}
               class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 to-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+
+            <!-- Overlay Content -->
+            <div class="absolute inset-0 bg-gradient-to-t from-matrix-900/95 to-matrix-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div class="absolute bottom-0 left-0 right-0 p-8">
-                <div class="flex items-center gap-2 mb-2">
-                  <svg class="w-4 h-4 text-fox" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L9 7H3L6 12L3 17H9L12 22L15 17H21L18 12L21 7H15L12 2Z" />
+                <!-- Category Badge -->
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-8 h-8 rounded-lg bg-fox-500/10 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-fox-500">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                  </div>
+                  <span class="text-fox-500 font-space">{project.category}</span>
+                </div>
+
+                <!-- Project Title & Description -->
+                <h3 class="text-2xl font-bold text-modern-50 mb-2">{project.title}</h3>
+                <p class="text-modern-200/90 mb-6">{project.description}</p>
+
+                <!-- Technologies -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map(tech => (
+                    <span class="px-3 py-1 rounded-full bg-matrix-800/50 text-modern-200/90 text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- View Project Button -->
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-fox-500 text-modern-50 rounded-lg hover:bg-fox-600 transition-colors group"
+                >
+                  <span>Voir le Projet</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
-                  <p class="text-fox font-poppins">{project.category}</p>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                <p class="text-silk/90 mb-4">{project.description}</p>
-                <div class="grid grid-cols-3 gap-4">
-                  <div>
-                    <p class="text-silk/80 text-sm">Performance</p>
-                    <p class="text-white font-poppins">{project.stats.speed}</p>
-                  </div>
-                  <div>
-                    <p class="text-silk/80 text-sm">SEO</p>
-                    <p class="text-white font-poppins">{project.stats.seo}</p>
-                  </div>
-                  <div>
-                    <p class="text-silk/80 text-sm">Satisfaction</p>
-                    <p class="text-white font-poppins">{project.stats.satisfaction}</p>
-                  </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -130,40 +159,39 @@ const projects = [
     </section>
 
     <!-- CTA Section -->
-    <section class="relative py-20 px-4 md:px-8 bg-charcoal text-white overflow-hidden">
+    <section class="relative py-32 px-4 md:px-8 bg-matrix-950 overflow-hidden">
+      <div class="mesh-overlay opacity-10"></div>
       
       <div class="max-w-4xl mx-auto text-center relative">
-        <!-- <div 
-          class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 text-fox opacity-10"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L9 7H3L6 12L3 17H9L12 22L15 17H21L18 12L21 7H15L12 2Z" />
-          </svg>
-        </div> -->
         <h2 
-          class="text-3xl md:text-5xl font-bold mb-6"
+          class="text-3xl md:text-5xl font-bold mb-6 text-modern-50"
           data-aos="fade-up"
         >
           {t('cta.title', lang)}
         </h2>
         <p 
-          class="text-xl text-silk/90 mb-12"
+          class="text-xl text-modern-200/90 mb-12 leading-relaxed"
           data-aos="fade-up"
           data-aos-delay="100"
         >
           {t('cta.description', lang)}
         </p>
         <div 
-          class="flex flex-col sm:flex-row gap-4 justify-center"
+          class="flex flex-col sm:flex-row gap-6 justify-center items-center"
           data-aos="fade-up"
           data-aos-delay="200"
         >
           <a 
             href={`/${lang}/contact`}
-            class="group px-8 py-4 bg-fox text-white font-poppins text-lg rounded-lg hover:bg-arctic transition-all duration-300 shadow-md hover:shadow-xl relative overflow-hidden"
+            class="group relative px-8 py-4 bg-gradient-to-r from-fox-500 to-neon-500 text-modern-50 font-space text-lg rounded-xl hover:shadow-2xl hover:shadow-fox-500/20 transition-all duration-500 overflow-hidden"
           >
-            <span class="relative z-10">{t('cta.quote', lang)}</span>
-            <div class="absolute inset-0 bg-gradient-to-r from-fox to-arctic opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span class="relative z-10 flex items-center gap-2">
+              {t('cta.quote', lang)}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+            <div class="absolute inset-0 bg-gradient-to-r from-neon-500 to-fox-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </a>
         </div>
       </div>

@@ -2,6 +2,9 @@
 import Layout from '../../../layouts/Layout.astro';
 import { t } from '../../../i18n/config';
 import FoxDecorations from '../../../components/FoxDecorations.astro';
+import { Image } from 'astro:assets';
+import radiologielacambre from '../../../assets/radiologielacambre.png';
+import govrn from '../../../assets/govrn.png';
 
 const lang = 'en';
 
@@ -11,56 +14,30 @@ const categories = [
 
 const projects = [
   {
-    title: 'Eco Solutions',
+    title: 'Govrn.com',
     category: 'Business Website',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800',
-    description: 'Complete redesign with focus on environmental impact',
-    technologies: ['Astro', 'React', 'TailwindCSS'],
+    image: govrn,
+    description: 'Complete website redesign with modern UI/UX and improved performance',
+    technologies: ['Astro', 'React.js', 'TailwindCSS'],
     stats: {
       speed: '98/100',
       seo: '96/100',
       satisfaction: '100%'
     },
-    link: '#'
+    link: 'https://govrn.com'
   },
   {
-    title: 'Tech Innovate',
-    category: 'Landing Page',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
-    description: 'High-converting landing page for a SaaS product',
-    technologies: ['Next.js', 'TypeScript', 'Framer Motion'],
+    title: 'Radiologie La Cambre',
+    category: 'Business Website',
+    image: radiologielacambre,
+    description: 'Professional medical imaging center website',
+    technologies: ['Astro', 'React.js', 'TailwindCSS'],
     stats: {
       speed: '97/100',
       seo: '98/100',
       satisfaction: '100%'
     },
-    link: '#'
-  },
-  {
-    title: 'Urban Style',
-    category: 'E-commerce',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800',
-    description: 'Modern online store for a fashion brand',
-    technologies: ['Vue.js', 'Nuxt', 'Stripe'],
-    stats: {
-      speed: '95/100',
-      seo: '97/100',
-      satisfaction: '98%'
-    },
-    link: '#'
-  },
-  {
-    title: 'Food Express',
-    category: 'Web Application',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800',
-    description: 'Food delivery app optimized for conversions',
-    technologies: ['React Native', 'Node.js', 'MongoDB'],
-    stats: {
-      speed: '96/100',
-      seo: '95/100',
-      satisfaction: '99%'
-    },
-    link: '#'
+    link: 'https://radiologielacambre.be'
   }
 ];
 
@@ -147,7 +124,7 @@ const stats = [
             data-aos-delay={index * 100}
           >
             <!-- Project Image -->
-            <img 
+            <Image 
               src={project.image} 
               alt={project.title}
               class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110"
@@ -198,6 +175,7 @@ const stats = [
                 <!-- View Project Button -->
                 <a 
                   href={project.link}
+                  target="_blank"
                   class="inline-flex items-center gap-2 px-6 py-3 bg-fox-500 text-modern-50 rounded-lg hover:bg-fox-600 transition-colors group"
                 >
                   <span>View Project</span>
