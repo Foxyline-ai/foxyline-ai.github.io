@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Logo from '../components/Logo.astro';
+import Section from '../components/Section.astro';
+import UseCase from '../components/UseCase.astro';
+import drBersouBefore from '../assets/drbersou-before.jpg';
+import drBersouAfter from '../assets/drbersou-after.png';
+import cuigniezRxBefore from '../assets/cuigniezrx-before.png';
+import cuigniezRxAfter from '../assets/cuignezrx-after.png';
+import vanMieghemBefore from '../assets/radiologievanmieghem-before.png';
+import vanMieghemAfter from '../assets/radiologievanmieghem-after.png';
+import lacambreHome from '../assets/radiologielacambre-home.png';
+import lacambreRdv from '../assets/radiologielacambre-rdv.png';
+import bloomBefore from '../assets/bloom-before.png';
+import bloomAfter from '../assets/bloom-after.png';
+import rpeHome from '../assets/rpe-home.png';
+import rpeVision from '../assets/rpe-vision.png';
+import '../styles/global.css';
+---
+
+<BaseLayout>
+  <Navigation currentPage="realisations" />
+
+  <!-- Header -->
+  <div class="pt-24 md:pt-28">
+    <Section maxWidth="4xl">
+      <div class="text-center space-y-6 py-12 md:py-16">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          PORTFOLIO
+        </p>
+        <h1
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 64px); line-height: 1.1; color: var(--color-forest); font-weight: 500; letter-spacing: -0.02em;"
+        >
+          Nos Réalisations
+        </h1>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Découvrez comment nous aidons les cabinets médicaux à moderniser leur présence en ligne, simplifier la prise de rendez-vous et renforcer la confiance de leurs patients.
+        </p>
+      </div>
+    </Section>
+  </div>
+
+  <!-- Vertical: Cabinets Médicaux -->
+  <Section maxWidth="6xl">
+    <div class="space-y-12 mb-16">
+      <div class="text-center space-y-4">
+        <div class="inline-block px-4 py-2 rounded-full" style="background-color: var(--color-natural-beige);">
+          <p
+            class="text-xs uppercase tracking-widest"
+            style="color: var(--color-forest); font-family: Outfit, sans-serif; font-weight: 500;"
+          >
+            VERTICALE
+          </p>
+        </div>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Cabinets Médicaux & Radiologie
+        </h2>
+        <p
+          class="max-w-3xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Expertise reconnue dans les secteurs médicaux et radiologiques. Nous créons des sites optimisés pour la prise de rendez-vous, la consultation sécurisée des images, la clarté des informations et la mise en avant de votre expertise médicale.
+        </p>
+      </div>
+    </div>
+
+    <div class="space-y-16">
+      <!-- Bloom CareGroup -->
+      <UseCase
+        id="bloom"
+        title="Bloom CareGroup"
+        specialty="Plateforme Healthcare"
+        location="Anvers, Belgique"
+        description="Création d'une plateforme digitale complète pour un réseau européen de soins. Développement d'une identité visuelle chaleureuse et professionnelle, architecture multilingue (EN/NL/FR), espace recrutement intégré et mise en avant des valeurs d'autonomie clinique et d'équilibre vie-travail pour les praticiens."
+        beforeImage={bloomBefore}
+        afterImage={bloomAfter}
+        websiteUrl="https://www.bloom-caregroup.com/"
+      />
+
+      <div class="h-16"></div>
+
+      <!-- Dr Bersou -->
+      <UseCase
+        id="drbersou"
+        title="Dr Bersou - Imagerie Médicale"
+        specialty="Radiologie & Imagerie"
+        location="Bruxelles"
+        diagnostic="Besoin de modernisation et de simplification du parcours patient, notamment sur mobile."
+        description="Refonte complète avec structure claire, optimisation du parcours patient, prise de rendez-vous simplifiée, consultation sécurisée des images médicales et mise en valeur de l'expertise multi-générationnelle."
+        beforeImage={drBersouBefore}
+        afterImage={drBersouAfter}
+        websiteUrl="https://www.drbersou.be/"
+        results={[
+          { label: "Visites patients", value: "+185%" },
+          { label: "Demandes de RDV", value: "+240%" },
+          { label: "Satisfaction mobile", value: "98%" },
+          { label: "Erreurs navigation", value: "-45%" }
+        ]}
+        reverse={true}
+      />
+
+      <div class="h-16"></div>
+
+      <!-- Cuigniez RX -->
+      <UseCase
+        id="cuigniezrx"
+        title="Cuigniez Radiologie"
+        specialty="Radiologie & Imagerie"
+        location="Gent, Belgique"
+        diagnostic="Opportunité d'enrichir l'expérience avec un site multilingue et de renforcer la confiance des patients."
+        description="Transformation complète centrée patient. Mise en avant de la sécurité (doses minimales), système multilingue, consultation sécurisée des images et parcours de prise de rendez-vous optimisé."
+        beforeImage={cuigniezRxBefore}
+        afterImage={cuigniezRxAfter}
+        websiteUrl="https://cuigniezrx.be/"
+        ctaText="Voir l'étude de cas"
+        results={[
+          { label: "Visites patients", value: "+254%" },
+          { label: "Visibilité Google", value: "+277%" },
+          { label: "Demandes contact", value: "+180%" },
+          { label: "Satisfaction SEO", value: "A+" }
+        ]}
+      />
+
+      <div class="h-16"></div>
+
+      <!-- Van Mieghem -->
+      <UseCase
+        id="vanmieghem"
+        title="Radiologie Van Mieghem"
+        specialty="Radiologie & Imagerie"
+        location="Hasselt, Belgique"
+        diagnostic="Volonté de moderniser l'identité visuelle et d'améliorer l'expérience utilisateur."
+        description="Modernisation complète avec nouvelle identité visuelle professionnelle, navigation claire et intuitive, prise de rendez-vous optimisée et mise en valeur de l'expertise digitale du cabinet."
+        beforeImage={vanMieghemBefore}
+        afterImage={vanMieghemAfter}
+        websiteUrl="https://www.radiologievanmieghem.be/"
+        reverse={true}
+      />
+
+      <div class="h-16"></div>
+
+      <!-- La Cambre -->
+      <UseCase
+        id="lacambre"
+        title="Radiologie La Cambre"
+        specialty="Radiologie & Imagerie"
+        location="Ixelles, Bruxelles"
+        diagnostic="Objectif de simplifier la prise de rendez-vous et d'améliorer la fluidité du parcours patient."
+        description="Création d'une interface de prise de rendez-vous sur mesure. Du premier contact jusqu'à la confirmation de RDV, l'expérience a été pensée pour simplifier et fluidifier le parcours patient sur Avenue Louise."
+        beforeImage={lacambreHome}
+        afterImage={lacambreRdv}
+        beforeLabel="Home"
+        afterLabel="Prise de RDV"
+        websiteUrl="https://www.radiologielacambre.be/"
+        results={[
+          { label: "Visites patients", value: "+454%" },
+          { label: "Demandes de RDV", value: "+396%" },
+          { label: "Taux conversion", value: "+42%" },
+          { label: "Questions reçues", value: "-33%" }
+        ]}
+      />
+
+      <div class="h-16"></div>
+
+      <!-- RPE -->
+      <UseCase
+        id="rpe"
+        title="Radiology Partners Europe"
+        specialty="Plateforme Healthcare"
+        location="Belgique"
+        description="Création d'une landing page stratégique pour le lancement d'un réseau paneuropéen de radiologie. Design épuré et professionnel mettant en avant la vision unificatrice : combiner excellence locale et échelle pour des services d'imagerie plus rapides. Communication claire de la mission, valeurs et gouvernance unique par les radiologues."
+        beforeImage={rpeHome}
+        afterImage={rpeVision}
+        beforeLabel="Home"
+        afterLabel="Vision"
+        websiteUrl="https://radiologypartnerseurope.com/"
+        reverse={true}
+      />
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section maxWidth="4xl">
+    <div class="text-center space-y-8 py-16">
+      <h2
+        style="font-family: Outfit, sans-serif; font-size: clamp(32px, 4vw, 48px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+      >
+        Prêt à transformer votre cabinet médical?
+      </h2>
+      <p
+        style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+      >
+        Rejoignez les professionnels de santé qui ont déjà simplifié leur gestion des rendez-vous et valorisé leur expertise en ligne.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/contact"
+          class="inline-block px-8 py-4 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+          style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 16px; font-weight: 400; text-decoration: none;"
+        >
+          Discuter de votre projet
+        </a>
+        <a
+          href="/tarifs"
+          class="inline-block px-8 py-4 rounded-lg transition-all hover:shadow-md border-2"
+          style="border-color: var(--color-forest); color: var(--color-forest); font-family: Outfit, sans-serif; font-size: 16px; font-weight: 400; text-decoration: none;"
+        >
+          Obtenir une offre
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Footer -->
+  <Section borderTop={true}>
+    <div class="space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <Logo size={28} wordmarkSize={16} />
+        <div class="flex gap-6">
+          <a
+            href="/brand"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Brand Guidelines
+          </a>
+          <a
+            href="/#services"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Services
+          </a>
+          <a
+            href="/#contact"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+      <div class="text-center">
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          © 2025 Foxyline.ai — Premium web design with purpose
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+</style>

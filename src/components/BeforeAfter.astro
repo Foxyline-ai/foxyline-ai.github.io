@@ -1,0 +1,157 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  beforeImage: string | ImageMetadata;
+  afterImage: string | ImageMetadata;
+  beforeLabel?: string;
+  afterLabel?: string;
+  id: string;
+}
+
+const { beforeImage, afterImage, beforeLabel = "Before", afterLabel = "After", id } = Astro.props;
+---
+
+<div class="before-after-container relative w-full aspect-video rounded-lg overflow-hidden shadow-lg group" data-id={id}>
+  <!-- After Image (background) -->
+  <div class="absolute inset-0">
+    {typeof afterImage === 'string' ? (
+      <img
+        src={afterImage}
+        alt={afterLabel}
+        class="w-full h-full object-cover object-top"
+      />
+    ) : (
+      <Image
+        src={afterImage}
+        alt={afterLabel}
+        class="w-full h-full object-cover object-top"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 768px) 100vw, 800px"
+      />
+    )}
+    <div class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm"
+         style="background-color: rgba(184, 122, 92, 0.9); color: white; font-family: Outfit, sans-serif;">
+      {afterLabel}
+    </div>
+  </div>
+
+  <!-- Before Image (overlay with clip) -->
+  <div class="before-overlay absolute inset-0" style="clip-path: inset(0 50% 0 0);">
+    {typeof beforeImage === 'string' ? (
+      <img
+        src={beforeImage}
+        alt={beforeLabel}
+        class="w-full h-full object-cover object-top"
+      />
+    ) : (
+      <Image
+        src={beforeImage}
+        alt={beforeLabel}
+        class="w-full h-full object-cover object-top"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 768px) 100vw, 800px"
+      />
+    )}
+    <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm"
+         style="background-color: rgba(74, 97, 87, 0.9); color: white; font-family: Outfit, sans-serif;">
+      {beforeLabel}
+    </div>
+  </div>
+
+  <!-- Slider Handle -->
+  <div class="slider-handle absolute top-0 bottom-0 w-1 cursor-ew-resize z-10 transition-shadow"
+       style="left: 50%; background: linear-gradient(to bottom, rgba(249, 247, 244, 0.3), rgba(249, 247, 244, 0.8), rgba(249, 247, 244, 0.3));">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-110"
+         style="background-color: var(--color-warm-white); box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M7 10L4 7M4 7L7 4M4 7L16 7M13 10L16 13M16 13L13 16M16 13L4 13"
+              stroke="var(--color-forest)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Hint text on first load -->
+  <div class="hint-text absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full text-xs backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+       style="background-color: rgba(27, 58, 47, 0.8); color: white; font-family: Outfit, sans-serif;">
+    Drag to compare
+  </div>
+</div>
+
+<style>
+  .before-after-container {
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y;
+  }
+
+  .slider-handle:hover {
+    box-shadow: 0 0 20px rgba(184, 122, 92, 0.5);
+  }
+</style>
+
+<script define:vars={{ id }}>
+  (function() {
+    const container = document.querySelector(`[data-id="${id}"]`);
+    if (!container) return;
+
+    const beforeOverlay = container.querySelector('.before-overlay');
+    const sliderHandle = container.querySelector('.slider-handle');
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = container.getBoundingClientRect();
+      let position = ((x - rect.left) / rect.width) * 100;
+      position = Math.max(0, Math.min(100, position));
+
+      beforeOverlay.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+      sliderHandle.style.left = `${position}%`;
+    }
+
+    // Mouse events
+    container.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    // Touch events
+    container.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      updateSlider(e.touches[0].clientX);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      updateSlider(e.touches[0].clientX);
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    // Hover effect - slight movement
+    container.addEventListener('mouseenter', () => {
+      if (!isDragging) {
+        sliderHandle.style.transition = 'transform 0.3s ease';
+      }
+    });
+
+    container.addEventListener('mouseleave', () => {
+      sliderHandle.style.transition = '';
+    });
+  })();
+</script>

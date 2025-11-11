@@ -1,0 +1,65 @@
+---
+interface Props {
+  id?: string;
+  title?: string;
+  number?: string;
+  maxWidth?: '3xl' | '4xl' | '6xl';
+  background?: string;
+  className?: string;
+  borderTop?: boolean;
+  borderBottom?: boolean;
+}
+
+const {
+  id,
+  title,
+  number,
+  maxWidth = '6xl',
+  background = 'transparent',
+  className = '',
+  borderTop = false,
+  borderBottom = false,
+} = Astro.props;
+
+const maxWidthClass = {
+  '3xl': 'max-w-3xl',
+  '4xl': 'max-w-4xl',
+  '6xl': 'max-w-6xl',
+}[maxWidth];
+
+const classes = [
+  'px-8 py-20 md:py-32',
+  borderTop && 'border-t',
+  borderBottom && 'border-b',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<section id={id} class={classes} style={`background-color: ${background};`}>
+  <div class={`mx-auto ${maxWidthClass}`}>
+    {
+      (number || title) && (
+        <div class="mb-16">
+          {number && (
+            <p
+              class="text-xs uppercase tracking-widest mb-4"
+              style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+            >
+              {number}
+            </p>
+          )}
+          {title && (
+            <h2
+              style="font-family: Outfit, sans-serif; font-size: 40px; line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+            >
+              {title}
+            </h2>
+          )}
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</section>

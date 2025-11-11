@@ -1,0 +1,507 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Logo from '../components/Logo.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import ColorSwatch from '../components/ColorSwatch.astro';
+import TypeSpecimen from '../components/TypeSpecimen.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout>
+  <!-- Header Section -->
+  <Section maxWidth="3xl" borderBottom={true}>
+    <div class="space-y-12">
+      <Logo size={80} />
+      <div class="space-y-6">
+        <h1
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 5vw, 64px); line-height: 1.1; color: var(--color-forest); font-weight: 500; letter-spacing: -0.02em;"
+        >
+          Brand Identity System
+        </h1>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300; max-width: 600px;"
+        >
+          A minimalist geometric identity for a premium web design agency.
+          Sophisticated, human-first, and timeless.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Design Philosophy Section -->
+  <Section maxWidth="6xl">
+    <div class="grid md:grid-cols-2 gap-16">
+      <div class="space-y-4">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          DESIGN PHILOSOPHY
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: 40px; line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Intentional & Clear
+        </h2>
+      </div>
+      <div class="space-y-6">
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Foxyline's design philosophy centers on creating digital experiences
+          that feel both sophisticated and approachable. We believe in the power
+          of restraint—using natural materials, warm tones, and geometric
+          precision to craft interfaces that breathe.
+        </p>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Every element serves a purpose. Our visual language draws inspiration
+          from nature's patterns and architectural minimalism, creating a
+          foundation that's both timeless and distinctly modern.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Logo System Section -->
+  <Section number="01 — LOGO SYSTEM" maxWidth="6xl">
+    <div class="space-y-12">
+      <!-- Logo Variations Grid -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Primary Lockup -->
+        <div class="space-y-4">
+          <Card
+            background="rgb(249, 247, 244)"
+            bordered={true}
+            aspectSquare={true}
+            className="flex items-center justify-center"
+          >
+            <Logo size={40} wordmarkSize={22} />
+          </Card>
+          <div>
+            <p
+              class="text-xs uppercase tracking-wider mb-1"
+              style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+            >
+              PRIMARY LOCKUP
+            </p>
+            <p
+              style="font-size: 13px; color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 300;"
+            >
+              Default usage across all applications
+            </p>
+          </div>
+        </div>
+
+        <!-- Icon Mark -->
+        <div class="space-y-4">
+          <Card
+            background="rgb(184, 122, 92)"
+            aspectSquare={true}
+            className="flex items-center justify-center"
+          >
+            <Logo size={40} showWordmark={false} color="#E8DCC4" />
+          </Card>
+          <div>
+            <p
+              class="text-xs uppercase tracking-wider mb-1"
+              style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+            >
+              ICON MARK
+            </p>
+            <p
+              style="font-size: 13px; color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 300;"
+            >
+              Avatars, favicons, small formats
+            </p>
+          </div>
+        </div>
+
+        <!-- Wordmark Only -->
+        <div class="space-y-4">
+          <Card
+            background="rgb(232, 220, 196)"
+            aspectSquare={true}
+            className="flex items-center justify-center"
+          >
+            <div
+              style="font-size: 20px; color: rgb(27, 58, 47); font-family: Outfit, sans-serif; letter-spacing: 0.02em; line-height: 1; font-weight: 400;"
+            >
+              <span>FOXYLINE</span><span
+                style="font-weight: 300; opacity: 0.6; font-size: 0.85em;"
+                >.ai</span
+              >
+            </div>
+          </Card>
+          <div>
+            <p
+              class="text-xs uppercase tracking-wider mb-1"
+              style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+            >
+              WORDMARK
+            </p>
+            <p
+              style="font-size: 13px; color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 300;"
+            >
+              Text-focused contexts
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logo Guidelines -->
+      <Card background="rgb(249, 247, 244)" padding={8}>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-3">
+            <h3
+              style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;"
+            >
+              Clear Space
+            </h3>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.6;"
+            >
+              Maintain minimum spacing equal to the icon mark height around the
+              logo to ensure visual clarity.
+            </p>
+          </div>
+          <div class="space-y-3">
+            <h3
+              style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;"
+            >
+              Minimum Size
+            </h3>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.6;"
+            >
+              Digital: 28px / Print: 15mm to maintain legibility and visual
+              impact.
+            </p>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </Section>
+
+  <!-- Color System Section -->
+  <Section number="02 — COLOR SYSTEM" maxWidth="6xl">
+    <div class="space-y-12">
+      <!-- Color Swatches Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <ColorSwatch
+          name="Forest"
+          hex="#1B3A2F"
+          rgb="27, 58, 47"
+          usage="Primary brand color, logo, headings"
+        />
+        <ColorSwatch
+          name="Deep Sage"
+          hex="#4A6157"
+          rgb="74, 97, 87"
+          usage="Secondary elements, supporting text"
+        />
+        <ColorSwatch
+          name="Copper"
+          hex="#B87A5C"
+          rgb="184, 122, 92"
+          usage="CTAs, highlights, accent color"
+        />
+        <ColorSwatch
+          name="Warm Stone"
+          hex="#D4C4AC"
+          rgb="212, 196, 172"
+          usage="Soft accents, borders"
+        />
+        <ColorSwatch
+          name="Natural Beige"
+          hex="#E8DCC4"
+          rgb="232, 220, 196"
+          usage="Backgrounds, cards, light surfaces"
+        />
+        <ColorSwatch
+          name="Warm White"
+          hex="#F9F7F4"
+          rgb="249, 247, 244"
+          usage="Canvas, primary background"
+        />
+      </div>
+
+      <!-- Color Philosophy -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <Card background="rgb(249, 247, 244)" padding={6}>
+          <div class="space-y-3">
+            <h3
+              style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;"
+            >
+              Primary
+            </h3>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.6;"
+            >
+              Forest green anchors our palette, bringing natural depth and
+              sophisticated presence to every touchpoint.
+            </p>
+          </div>
+        </Card>
+        <Card background="rgb(249, 247, 244)" padding={6}>
+          <div class="space-y-3">
+            <h3
+              style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;"
+            >
+              Neutral
+            </h3>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.6;"
+            >
+              Natural beige creates warmth and breathing room, allowing content
+              to shine while maintaining visual comfort.
+            </p>
+          </div>
+        </Card>
+        <Card background="rgb(249, 247, 244)" padding={6}>
+          <div class="space-y-3">
+            <h3
+              style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;"
+            >
+              Accent
+            </h3>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.6;"
+            >
+              Copper adds considered warmth, drawing attention without demanding
+              it—perfect for calls-to-action and key moments.
+            </p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Typography Section -->
+  <Section number="03 — TYPOGRAPHY" maxWidth="6xl">
+    <div class="space-y-12">
+      <!-- Primary Typeface -->
+      <div class="space-y-6">
+        <div>
+          <p
+            class="text-xs uppercase tracking-widest mb-2"
+            style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+          >
+            PRIMARY TYPEFACE
+          </p>
+          <h3
+            style="font-family: Outfit, sans-serif; font-size: 32px; color: var(--color-forest); font-weight: 400;"
+          >
+            Outfit
+          </h3>
+        </div>
+        <div class="space-y-8">
+          <div class="space-y-2">
+            <p
+              style="font-family: JetBrains Mono, monospace; font-size: 11px; color: var(--color-deep-sage); opacity: 0.6;"
+            >
+              Display / 52px / Weight 500
+            </p>
+            <TypeSpecimen
+              level="display"
+              text="Foxyline creates digital experiences"
+            />
+          </div>
+          <div class="space-y-2">
+            <p
+              style="font-family: JetBrains Mono, monospace; font-size: 11px; color: var(--color-deep-sage); opacity: 0.6;"
+            >
+              Heading 1 / 40px / Weight 500
+            </p>
+            <TypeSpecimen level="h1" text="Thoughtful web design" />
+          </div>
+          <div class="space-y-2">
+            <p
+              style="font-family: JetBrains Mono, monospace; font-size: 11px; color: var(--color-deep-sage); opacity: 0.6;"
+            >
+              Heading 2 / 32px / Weight 400
+            </p>
+            <TypeSpecimen level="h2" text="Sophisticated & Approachable" />
+          </div>
+          <div class="space-y-2">
+            <p
+              style="font-family: JetBrains Mono, monospace; font-size: 11px; color: var(--color-deep-sage); opacity: 0.6;"
+            >
+              Body Large / 18px / Weight 300
+            </p>
+            <TypeSpecimen
+              level="body-large"
+              text="Foxyline's design philosophy centers on creating digital experiences that feel both sophisticated and approachable."
+            />
+          </div>
+          <div class="space-y-2">
+            <p
+              style="font-family: JetBrains Mono, monospace; font-size: 11px; color: var(--color-deep-sage); opacity: 0.6;"
+            >
+              Body Regular / 16px / Weight 300
+            </p>
+            <TypeSpecimen
+              level="body-regular"
+              text="We believe in the power of restraint—using natural materials, warm tones, and geometric precision."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Typeface -->
+      <Card background="rgb(249, 247, 244)" padding={8}>
+        <div class="space-y-4">
+          <div>
+            <p
+              class="text-xs uppercase tracking-widest mb-2"
+              style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 500;"
+            >
+              TECHNICAL TYPEFACE
+            </p>
+            <h3
+              style="font-family: JetBrains Mono, monospace; font-size: 24px; color: var(--color-forest); font-weight: 400;"
+            >
+              JetBrains Mono
+            </h3>
+          </div>
+          <p
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.6;"
+          >
+            Used for code snippets, technical data, and color codes throughout
+            the brand system.
+          </p>
+        </div>
+      </Card>
+    </div>
+  </Section>
+
+  <!-- Core Principles Section -->
+  <Section
+    maxWidth="4xl"
+    background="var(--color-forest)"
+    className="text-white"
+  >
+    <div class="space-y-12 text-center">
+      <h2
+        style="font-family: Outfit, sans-serif; font-size: 40px; line-height: 1.2; color: rgb(232, 220, 196); font-weight: 500;"
+      >
+        Core Principles
+      </h2>
+      <div class="grid md:grid-cols-3 gap-12">
+        <!-- Minimal -->
+        <div class="space-y-4">
+          <div class="flex justify-center mb-4">
+            <div
+              class="w-12 h-12 border-2 border-[rgb(232,220,196)]"
+              style="border-color: rgb(232, 220, 196);"
+            >
+            </div>
+          </div>
+          <h3
+            style="font-family: Outfit, sans-serif; font-size: 24px; color: rgb(232, 220, 196); font-weight: 400;"
+          >
+            Minimal
+          </h3>
+          <p
+            style="font-family: Outfit, sans-serif; font-size: 16px; color: rgb(212, 196, 172); font-weight: 300; line-height: 1.6;"
+          >
+            Every element earns its place. We remove until only the essential
+            remains, creating clarity through intentional restraint.
+          </p>
+        </div>
+
+        <!-- Considered -->
+        <div class="space-y-4">
+          <div class="flex justify-center mb-4">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="8"
+                y1="16"
+                x2="40"
+                y2="16"
+                stroke="rgb(232, 220, 196)"
+                stroke-width="2"></line>
+              <line
+                x1="8"
+                y1="24"
+                x2="40"
+                y2="24"
+                stroke="rgb(232, 220, 196)"
+                stroke-width="2"></line>
+              <line
+                x1="8"
+                y1="32"
+                x2="40"
+                y2="32"
+                stroke="rgb(232, 220, 196)"
+                stroke-width="2"></line>
+            </svg>
+          </div>
+          <h3
+            style="font-family: Outfit, sans-serif; font-size: 24px; color: rgb(232, 220, 196); font-weight: 400;"
+          >
+            Considered
+          </h3>
+          <p
+            style="font-family: Outfit, sans-serif; font-size: 16px; color: rgb(212, 196, 172); font-weight: 300; line-height: 1.6;"
+          >
+            Design decisions are thoughtful, never arbitrary. Each choice
+            supports both user needs and brand expression.
+          </p>
+        </div>
+
+        <!-- Human -->
+        <div class="space-y-4">
+          <div class="flex justify-center mb-4">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="24"
+                cy="24"
+                r="14"
+                stroke="rgb(232, 220, 196)"
+                stroke-width="2"></circle>
+              <circle cx="24" cy="24" r="4" fill="rgb(232, 220, 196)"></circle>
+            </svg>
+          </div>
+          <h3
+            style="font-family: Outfit, sans-serif; font-size: 24px; color: rgb(232, 220, 196); font-weight: 400;"
+          >
+            Human
+          </h3>
+          <p
+            style="font-family: Outfit, sans-serif; font-size: 16px; color: rgb(212, 196, 172); font-weight: 300; line-height: 1.6;"
+          >
+            Technology should feel warm, not cold. Our designs prioritize
+            connection and understanding over pure efficiency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Footer -->
+  <Section borderTop={true}>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <Logo size={28} wordmarkSize={16} />
+      <p
+        style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;"
+      >
+        © 2025 Foxyline.ai — Premium web design with purpose
+      </p>
+    </div>
+  </Section>
+</BaseLayout>

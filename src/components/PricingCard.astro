@@ -1,0 +1,106 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  period?: string;
+  description: string;
+  features: string[];
+  highlighted?: boolean;
+  buttonText?: string;
+  buttonLink?: string;
+}
+
+const {
+  name,
+  price,
+  period = "par projet",
+  description,
+  features,
+  highlighted = false,
+  buttonText = "Réserver un appel",
+  buttonLink = "/#contact"
+} = Astro.props;
+---
+
+<div
+  class="h-full p-8 md:p-10 rounded-lg transition-all hover:shadow-xl"
+  style={highlighted
+    ? "background-color: var(--color-forest); color: white; transform: scale(1.05);"
+    : "background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);"}
+>
+  <div class="space-y-6">
+    {highlighted && (
+      <div class="inline-block px-3 py-1 rounded-full text-xs uppercase tracking-wider" style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-weight: 500;">
+        Recommandé
+      </div>
+    )}
+
+    <div class="space-y-2">
+      <h3
+        style={`font-family: Outfit, sans-serif; font-size: 24px; font-weight: 500; color: ${highlighted ? 'white' : 'var(--color-forest)'};`}
+      >
+        {name}
+      </h3>
+      <p
+        style={`font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: ${highlighted ? 'rgba(255,255,255,0.8)' : 'var(--color-deep-sage)'}; font-weight: 300;`}
+      >
+        {description}
+      </p>
+    </div>
+
+    <div class="py-4 border-y" style={`border-color: ${highlighted ? 'rgba(255,255,255,0.2)' : 'var(--color-natural-beige)'};`}>
+      <div class="flex items-baseline gap-2">
+        <span
+          style={`font-family: Outfit, sans-serif; font-size: 48px; line-height: 1; font-weight: 500; color: ${highlighted ? 'white' : 'var(--color-copper)'};`}
+        >
+          {price}
+        </span>
+        <span
+          style={`font-family: Outfit, sans-serif; font-size: 14px; color: ${highlighted ? 'rgba(255,255,255,0.7)' : 'var(--color-deep-sage)'}; font-weight: 300;`}
+        >
+          {period}
+        </span>
+      </div>
+    </div>
+
+    <ul class="space-y-3">
+      {features.map(feature => (
+        <li class="flex items-start gap-3">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            class="flex-shrink-0 mt-0.5"
+          >
+            <circle cx="10" cy="10" r="10" fill={highlighted ? 'var(--color-copper)' : 'var(--color-natural-beige)'} />
+            <path
+              d="M6 10l3 3 5-6"
+              stroke={highlighted ? 'white' : 'var(--color-forest)'}
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span
+            style={`font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: ${highlighted ? 'rgba(255,255,255,0.9)' : 'var(--color-deep-sage)'}; font-weight: 300;`}
+          >
+            {feature}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="pt-4">
+      <a
+        href={buttonLink}
+        class="block text-center px-6 py-3 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+        style={highlighted
+          ? "background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 16px; font-weight: 400; text-decoration: none;"
+          : "background-color: var(--color-forest); color: white; font-family: Outfit, sans-serif; font-size: 16px; font-weight: 400; text-decoration: none;"}
+      >
+        {buttonText}
+      </a>
+    </div>
+  </div>
+</div>

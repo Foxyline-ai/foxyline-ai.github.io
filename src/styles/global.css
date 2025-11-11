@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Colors */
+    --color-forest: #1B3A2F;
+    --color-deep-sage: #4A6157;
+    --color-copper: #B87A5C;
+    --color-warm-stone: #D4C4AC;
+    --color-natural-beige: #E8DCC4;
+    --color-warm-white: #F9F7F4;
+
+    /* Spacing */
+    --spacing: 0.25rem;
+
+    /* Border radius */
+    --radius: 0.625rem;
+
+    /* Typography */
+    --font-family-primary: 'Outfit', sans-serif;
+    --font-family-mono: 'JetBrains Mono', monospace;
+  }
+
+  * {
+    @apply border-[var(--color-natural-beige)];
+  }
+
+  body {
+    font-family: var(--font-family-primary);
+    background-color: var(--color-warm-white);
+    color: var(--color-forest);
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-forest {
+    color: var(--color-forest);
+  }
+
+  .text-deep-sage {
+    color: var(--color-deep-sage);
+  }
+
+  .text-copper {
+    color: var(--color-copper);
+  }
+
+  .text-warm-stone {
+    color: var(--color-warm-stone);
+  }
+
+  .bg-forest {
+    background-color: var(--color-forest);
+  }
+
+  .bg-deep-sage {
+    background-color: var(--color-deep-sage);
+  }
+
+  .bg-copper {
+    background-color: var(--color-copper);
+  }
+
+  .bg-warm-stone {
+    background-color: var(--color-warm-stone);
+  }
+
+  .bg-natural-beige {
+    background-color: var(--color-natural-beige);
+  }
+
+  .bg-warm-white {
+    background-color: var(--color-warm-white);
+  }
+}

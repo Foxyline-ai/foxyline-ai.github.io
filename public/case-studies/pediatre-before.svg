@@ -1,0 +1,51 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Old cluttered design -->
+  <rect width="800" height="600" fill="#FFF8E7"/>
+
+  <!-- Busy header with too many elements -->
+  <rect width="800" height="100" fill="#FF9999"/>
+  <rect x="20" y="20" width="150" height="60" rx="8" fill="#FFFFFF"/>
+  <rect x="600" y="30" width="50" height="40" rx="4" fill="#FFFFFF" opacity="0.9"/>
+  <rect x="660" y="30" width="50" height="40" rx="4" fill="#FFFFFF" opacity="0.9"/>
+  <rect x="720" y="30" width="60" height="40" rx="4" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- Sidebar (old pattern) -->
+  <rect x="20" y="120" width="180" height="450" fill="#FFEAA7"/>
+  <rect x="35" y="140" width="150" height="30" rx="4" fill="#FFFFFF"/>
+  <rect x="35" y="185" width="150" height="30" rx="4" fill="#FFFFFF"/>
+  <rect x="35" y="230" width="150" height="30" rx="4" fill="#FFFFFF"/>
+  <rect x="35" y="275" width="150" height="30" rx="4" fill="#FFFFFF"/>
+
+  <!-- Main content area - cluttered -->
+  <rect x="220" y="120" width="560" height="200" fill="#FFFFFF"/>
+  <rect x="240" y="140" width="200" height="30" rx="4" fill="#DDD"/>
+  <rect x="240" y="185" width="520" height="10" rx="2" fill="#EEE"/>
+  <rect x="240" y="205" width="480" height="10" rx="2" fill="#EEE"/>
+  <rect x="240" y="225" width="500" height="10" rx="2" fill="#EEE"/>
+  <rect x="240" y="260" width="150" height="40" rx="6" fill="#FF9999"/>
+
+  <!-- Multiple news boxes (overwhelming) -->
+  <rect x="220" y="340" width="180" height="150" rx="8" fill="#FFFFFF"/>
+  <rect x="235" y="355" width="40" height="40" fill="#DDD"/>
+  <rect x="235" y="405" width="150" height="10" rx="2" fill="#EEE"/>
+  <rect x="235" y="425" width="140" height="10" rx="2" fill="#EEE"/>
+  <rect x="235" y="445" width="130" height="10" rx="2" fill="#EEE"/>
+
+  <rect x="420" y="340" width="180" height="150" rx="8" fill="#FFFFFF"/>
+  <rect x="435" y="355" width="40" height="40" fill="#DDD"/>
+  <rect x="435" y="405" width="150" height="10" rx="2" fill="#EEE"/>
+  <rect x="435" y="425" width="140" height="10" rx="2" fill="#EEE"/>
+  <rect x="435" y="445" width="130" height="10" rx="2" fill="#EEE"/>
+
+  <rect x="620" y="340" width="160" height="150" rx="8" fill="#FFFFFF"/>
+  <rect x="635" y="355" width="40" height="40" fill="#DDD"/>
+  <rect x="635" y="405" width="130" height="10" rx="2" fill="#EEE"/>
+  <rect x="635" y="425" width="120" height="10" rx="2" fill="#EEE"/>
+
+  <!-- Bottom footer with too much info -->
+  <rect y="510" width="800" height="90" fill="#FF6B6B"/>
+
+  <text x="400" y="50" text-anchor="middle" font-family="Arial" font-size="13" fill="#FFFFFF">
+    Site surchargé - Informations difficiles à trouver
+  </text>
+</svg>

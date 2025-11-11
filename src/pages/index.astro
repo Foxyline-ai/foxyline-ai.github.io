@@ -1,8 +1,1062 @@
 ---
-import { defaultLanguage } from '../i18n/config';
-
-// Redirect to default language
-const redirectTo = `/${defaultLanguage}`;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Logo from '../components/Logo.astro';
+import CTA from '../components/CTA.astro';
+import Section from '../components/Section.astro';
+import { Image } from 'astro:assets';
+import bloomAfter from '../assets/bloom-after.png';
+import drBersouAfter from '../assets/drbersou-after.png';
+import cuignezRxAfter from '../assets/cuignezrx-after.png';
+import '../styles/global.css';
 ---
 
-<meta http-equiv="refresh" content={`0;url=${redirectTo}`}>
+<BaseLayout>
+  <Navigation currentPage="home" />
+
+  <!-- Hero Section -->
+  <div class="pt-24 md:pt-32">
+    <Section maxWidth="6xl">
+      <div class="text-center space-y-8 py-16 md:py-24">
+        <div class="inline-block px-4 py-2 rounded-full mb-4 animate-fade-in" style="background-color: var(--color-natural-beige); animation-delay: 0.1s;">
+          <p class="text-xs uppercase tracking-widest" style="color: var(--color-forest); font-family: Outfit, sans-serif; font-weight: 500;">
+            ⚡ Livraison en 5-10 jours
+          </p>
+        </div>
+        <h1
+          class="animate-fade-in"
+          style="font-family: Outfit, sans-serif; font-size: clamp(48px, 8vw, 80px); line-height: 1.1; color: var(--color-forest); font-weight: 500; letter-spacing: -0.02em; animation-delay: 0.2s;"
+        >
+          Votre site premium,<br/>livré en quelques jours.
+        </h1>
+        <p
+          class="max-w-2xl mx-auto animate-fade-in"
+          style="font-family: Outfit, sans-serif; font-size: 22px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300; animation-delay: 0.3s;"
+        >
+          Un site clair, moderne et professionnel pour inspirer confiance et attirer plus de clients. Sans stress, sans technique.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in" style="animation-delay: 0.4s;">
+          <a
+            href="/contact"
+            class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+            style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400; text-decoration: none;"
+          >
+            Créer mon site
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="transition-transform group-hover:translate-x-1">
+              <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href="/realisations"
+            class="inline-block px-8 py-4 rounded-lg transition-all hover:shadow-md hover:border-copper border-2"
+            style="border-color: var(--color-natural-beige); color: var(--color-forest); font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400; text-decoration: none;"
+          >
+            Voir les réalisations
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="pt-12 animate-fade-in" style="animation-delay: 0.5s;">
+          <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            <div class="text-center">
+              <p style="font-family: Outfit, sans-serif; font-size: 32px; line-height: 1; color: var(--color-copper); font-weight: 500;">
+                100%
+              </p>
+              <p style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;">
+                satisfaction
+              </p>
+            </div>
+            <div class="text-center">
+              <p style="font-family: Outfit, sans-serif; font-size: 32px; line-height: 1; color: var(--color-copper); font-weight: 500;">
+                +200%
+              </p>
+              <p style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;">
+                conversions moyennes
+              </p>
+            </div>
+            <div class="text-center">
+              <p style="font-family: Outfit, sans-serif; font-size: 32px; line-height: 1; color: var(--color-copper); font-weight: 500;">
+                5-10j
+              </p>
+              <p style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;">
+                livraison
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
+  </div>
+
+  <!-- Pourquoi Foxyline -->
+  <Section maxWidth="6xl">
+    <div class="space-y-16">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          POURQUOI FOXYLINE
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Rapide. Premium. Sans maintenance.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group text-center space-y-4 p-6 rounded-lg transition-all hover:shadow-lg hover:-translate-y-1" style="background-color: transparent;">
+          <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-natural-beige);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="transition-transform group-hover:rotate-12">
+              <circle cx="16" cy="16" r="12" stroke="var(--color-copper)" stroke-width="2"/>
+              <path d="M12 16l3 3 6-6" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+            Rapide
+          </h3>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            5-10 jours de livraison. Pas de mois d'attente. Workflow optimisé, résultats rapides.
+          </p>
+        </div>
+
+        <div class="group text-center space-y-4 p-6 rounded-lg transition-all hover:shadow-lg hover:-translate-y-1" style="background-color: transparent;">
+          <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-natural-beige);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="transition-transform group-hover:rotate-12">
+              <path d="M8 12l8-8 8 8M16 4v16M8 20l8 8 8-8" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+            Design premium
+          </h3>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Pas de templates. Uniquement du design sur mesure, pensé pour votre audience et vos objectifs.
+          </p>
+        </div>
+
+        <div class="group text-center space-y-4 p-6 rounded-lg transition-all hover:shadow-lg hover:-translate-y-1" style="background-color: transparent;">
+          <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-natural-beige);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="transition-transform group-hover:rotate-12">
+              <rect x="4" y="4" width="24" height="24" rx="3" stroke="var(--color-copper)" stroke-width="2"/>
+              <path d="M12 16l3 3 6-6" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+            Sans maintenance
+          </h3>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Surveillance 24/7, sauvegardes automatiques, mises à jour sécurisées. Vous restez focus sur votre métier.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Réalisations / Études de cas -->
+  <Section maxWidth="6xl" background="var(--color-natural-beige)">
+    <div class="space-y-12">
+      <div class="text-center space-y-4">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          RÉALISATIONS
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Ils nous ont fait confiance
+        </h2>
+        <p
+          class="max-w-3xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Découvrez quelques sites créés récemment pour des professionnels qui voulaient un site clair, moderne et professionnel.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/realisations#bloom" class="group block p-6 rounded-lg transition-all hover:shadow-xl hover:-translate-y-2" style="background-color: var(--color-warm-white);">
+          <div class="space-y-4">
+            <div class="aspect-video rounded-lg overflow-hidden relative" style="background-color: var(--color-natural-beige);">
+              <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity" style="background: linear-gradient(135deg, var(--color-copper) 0%, var(--color-forest) 100%);"></div>
+              <Image src={bloomAfter} alt="Bloom CareGroup" class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+            </div>
+            <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
+              Bloom CareGroup
+            </h3>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;">
+              Plateforme Healthcare • Multilingue • Recrutement
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm group-hover:gap-3 transition-all" style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 400;">
+              Voir le cas
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform">
+                <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/realisations#drbersou" class="group block p-6 rounded-lg transition-all hover:shadow-xl hover:-translate-y-2" style="background-color: var(--color-warm-white);">
+          <div class="space-y-4">
+            <div class="aspect-video rounded-lg overflow-hidden relative" style="background-color: var(--color-natural-beige);">
+              <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity" style="background: linear-gradient(135deg, var(--color-copper) 0%, var(--color-forest) 100%);"></div>
+              <Image src={drBersouAfter} alt="Dr Bersou" class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+            </div>
+            <div class="flex items-start justify-between">
+              <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
+                Dr Bersou
+              </h3>
+              <span class="px-2 py-1 rounded text-xs font-medium" style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif;">
+                +185%
+              </span>
+            </div>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;">
+              RDV en ligne • PACS • Imagerie médicale
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm group-hover:gap-3 transition-all" style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 400;">
+              Voir le cas
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform">
+                <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="/realisations#cuigniezrx" class="group block p-6 rounded-lg transition-all hover:shadow-xl hover:-translate-y-2" style="background-color: var(--color-warm-white);">
+          <div class="space-y-4">
+            <div class="aspect-video rounded-lg overflow-hidden relative" style="background-color: var(--color-natural-beige);">
+              <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity" style="background: linear-gradient(135deg, var(--color-copper) 0%, var(--color-forest) 100%);"></div>
+              <Image src={cuignezRxAfter} alt="Cuigniez RX" class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+            </div>
+            <div class="flex items-start justify-between">
+              <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
+                Cuigniez Radiologie
+              </h3>
+              <span class="px-2 py-1 rounded text-xs font-medium" style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif;">
+                +254%
+              </span>
+            </div>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;">
+              SEO • Multilingue (FR/NL/EN) • Radiologie
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm group-hover:gap-3 transition-all" style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 400;">
+              Voir le cas
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform">
+                <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center pt-4">
+        <a
+          href="/realisations"
+          class="group inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:shadow-md border-2"
+          style="border-color: var(--color-forest); color: var(--color-forest); font-family: Outfit, sans-serif; font-size: 15px; font-weight: 400; text-decoration: none;"
+        >
+          Voir toutes les réalisations
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform group-hover:translate-x-1">
+            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Ce que vous obtenez -->
+  <Section maxWidth="6xl">
+    <div class="space-y-16">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          CE QUE VOUS OBTENEZ
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Tout ce dont votre site a besoin pour être professionnel
+        </h2>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Un site complet, performant et maintenu. Sans compromis.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="group p-6 rounded-lg transition-all hover:shadow-md hover:-translate-y-1" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-warm-white);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 3h14v14H3z" stroke="var(--color-copper)" stroke-width="2"/>
+              </svg>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;">
+              Design premium
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Interface moderne et élégante, jamais de template générique
+            </p>
+          </div>
+        </div>
+
+        <div class="group p-6 rounded-lg transition-all hover:shadow-md hover:-translate-y-1" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-warm-white);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2L2 6v8c0 4.418 2.982 8.544 7 10 4.018-1.456 7-5.582 7-10V6l-8-4z" stroke="var(--color-copper)" stroke-width="2"/>
+              </svg>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;">
+              Site ultra-rapide
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Un site qui donne confiance et améliore votre SEO sur Google
+            </p>
+          </div>
+        </div>
+
+        <div class="group p-6 rounded-lg transition-all hover:shadow-md hover:-translate-y-1" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-warm-white);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <rect x="2" y="4" width="16" height="12" rx="2" stroke="var(--color-copper)" stroke-width="2"/>
+                <path d="M2 8h16" stroke="var(--color-copper)" stroke-width="2"/>
+              </svg>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;">
+              Optimisé mobile
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Parfait sur mobile, tablette et desktop. Plus de 60% de vos visiteurs sont sur mobile
+            </p>
+          </div>
+        </div>
+
+        <div class="group p-6 rounded-lg transition-all hover:shadow-md hover:-translate-y-1" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-warm-white);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="8" stroke="var(--color-copper)" stroke-width="2"/>
+                <path d="M10 2v16M2 10h16" stroke="var(--color-copper)" stroke-width="2"/>
+              </svg>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;">
+              Hébergement sécurisé
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Infrastructure Cloudflare mondiale, SSL gratuit, sécurité maximale
+            </p>
+          </div>
+        </div>
+
+        <div class="group p-6 rounded-lg transition-all hover:shadow-md hover:-translate-y-1" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-warm-white);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 18c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z" stroke="var(--color-copper)" stroke-width="2"/>
+                <path d="M10 6v4l3 2" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;">
+              Support réactif
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Surveillance 24/7, réponse rapide si besoin. Vous n'êtes jamais seul
+            </p>
+          </div>
+        </div>
+
+        <div class="group p-6 rounded-lg transition-all hover:shadow-md hover:-translate-y-1" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-warm-white);">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 10l4 4 10-10" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;">
+              Livraison rapide
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              5-10 jours ouvrés pour la plupart des projets. Pas de mois d'attente
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Comment ça marche -->
+  <Section maxWidth="6xl" background="var(--color-natural-beige)">
+    <div class="space-y-12">
+      <div class="text-center space-y-4">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          COMMENT ÇA MARCHE
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Simple, rapide, efficace
+        </h2>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Un process éprouvé pour des résultats garantis
+        </p>
+      </div>
+
+      <div class="relative">
+        <!-- Connection line (desktop only) -->
+        <div class="hidden md:block absolute top-6 left-0 right-0 h-0.5" style="background: linear-gradient(90deg, transparent, var(--color-natural-beige) 10%, var(--color-copper) 50%, var(--color-natural-beige) 90%, transparent);"></div>
+
+        <div class="grid md:grid-cols-5 gap-6 relative">
+          <div class="group text-center space-y-3">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-lg relative z-10" style="background-color: var(--color-copper);">
+              <span style="font-family: Outfit, sans-serif; font-size: 18px; color: white; font-weight: 500;">1</span>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500;">
+              Appel de découverte
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 13px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+              20 min pour comprendre vos besoins
+            </p>
+          </div>
+
+          <div class="group text-center space-y-3">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-lg relative z-10" style="background-color: var(--color-copper);">
+              <span style="font-family: Outfit, sans-serif; font-size: 18px; color: white; font-weight: 500;">2</span>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500;">
+              Envoi de votre contenu
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 13px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+              Textes, photos, logo, infos
+            </p>
+          </div>
+
+          <div class="group text-center space-y-3">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-lg relative z-10" style="background-color: var(--color-copper);">
+              <span style="font-family: Outfit, sans-serif; font-size: 18px; color: white; font-weight: 500;">3</span>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500;">
+              Design & développement
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 13px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+              Nous créons votre site
+            </p>
+          </div>
+
+          <div class="group text-center space-y-3">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-lg relative z-10" style="background-color: var(--color-copper);">
+              <span style="font-family: Outfit, sans-serif; font-size: 18px; color: white; font-weight: 500;">4</span>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500;">
+              Retour & finalisation
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 13px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+              Vos ajustements, puis validation
+            </p>
+          </div>
+
+          <div class="group text-center space-y-3">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-lg relative z-10" style="background-color: var(--color-copper);">
+              <span style="font-family: Outfit, sans-serif; font-size: 18px; color: white; font-weight: 500;">5</span>
+            </div>
+            <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500;">
+              Mise en ligne
+            </h4>
+            <p style="font-family: Outfit, sans-serif; font-size: 13px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+              Votre site est live en 5-10 jours
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center pt-4">
+        <a
+          href="/process"
+          class="group inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all hover:shadow-md border-2"
+          style="border-color: var(--color-forest); color: var(--color-forest); font-family: Outfit, sans-serif; font-size: 15px; font-weight: 400; text-decoration: none;"
+        >
+          Voir le process détaillé
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform group-hover:translate-x-1">
+            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Tarifs -->
+  <Section maxWidth="6xl">
+    <div class="space-y-12">
+      <div class="text-center space-y-4">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          TARIFS
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Des tarifs simples et transparents
+        </h2>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Choisissez la formule qui correspond à vos besoins
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Starter - 1 900 € -->
+        <div class="p-8 rounded-lg transition-all hover:shadow-lg border-2" style="background-color: var(--color-warm-white); border-color: var(--color-natural-beige);">
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <h3 style="font-family: Outfit, sans-serif; font-size: 22px; color: var(--color-forest); font-weight: 500;">
+                Starter
+              </h3>
+              <div class="flex items-baseline gap-2">
+                <span style="font-family: Outfit, sans-serif; font-size: 42px; line-height: 1; color: var(--color-copper); font-weight: 500;">
+                  1 900 €
+                </span>
+              </div>
+              <p style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;">
+                Pour démarrer en ligne
+              </p>
+            </div>
+
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Site 1-3 pages
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Design moderne
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Optimisé mobile
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Livraison 5 jours
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Premium - 3 500 € - LE PLUS POPULAIRE -->
+        <div class="relative p-8 rounded-lg transition-all hover:shadow-xl border-2" style="background-color: var(--color-natural-beige); border-color: var(--color-copper);">
+          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <div class="px-4 py-1 rounded-full text-xs uppercase tracking-wider whitespace-nowrap" style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-weight: 500;">
+              Le plus populaire
+            </div>
+          </div>
+
+          <div class="space-y-6 pt-2">
+            <div class="space-y-2">
+              <h3 style="font-family: Outfit, sans-serif; font-size: 22px; color: var(--color-forest); font-weight: 500;">
+                Premium
+              </h3>
+              <div class="flex items-baseline gap-2">
+                <span style="font-family: Outfit, sans-serif; font-size: 42px; line-height: 1; color: var(--color-copper); font-weight: 500;">
+                  3 500 €
+                </span>
+              </div>
+              <p style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;">
+                La formule recommandée
+              </p>
+            </div>
+
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Site 4-7 pages
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Design premium sur-mesure
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Performance A+ garantie
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  SEO avancé
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Livraison 7-10 jours
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Support 30j offert
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Enterprise - 5 000+ € -->
+        <div class="p-8 rounded-lg transition-all hover:shadow-lg border-2" style="background-color: var(--color-warm-white); border-color: var(--color-natural-beige);">
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <h3 style="font-family: Outfit, sans-serif; font-size: 22px; color: var(--color-forest); font-weight: 500;">
+                Enterprise
+              </h3>
+              <div class="flex items-baseline gap-2">
+                <span style="font-family: Outfit, sans-serif; font-size: 42px; line-height: 1; color: var(--color-copper); font-weight: 500;">
+                  5 000+ €
+                </span>
+              </div>
+              <p style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;">
+                Pour les projets complexes
+              </p>
+            </div>
+
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Site 8+ pages
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Fonctionnalités avancées
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Multilingue
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Intégrations sur-mesure
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="9" cy="9" r="9" fill="var(--color-copper)"/>
+                  <path d="M5 9l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                  Support premium inclus
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center pt-4">
+        <a
+          href="/tarifs"
+          class="group inline-flex items-center gap-2 px-8 py-4 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+          style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 16px; font-weight: 400; text-decoration: none;"
+        >
+          Voir les détails des tarifs
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform group-hover:translate-x-1">
+            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Support Section -->
+  <Section maxWidth="6xl">
+    <div class="space-y-12">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          SUPPORT
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Un site qui reste impeccable
+        </h2>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Aucune maintenance technique à votre charge. On s'occupe de tout.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 1. Ce que NOUS faisons pour vous -->
+        <div class="p-8 rounded-lg space-y-4" style="background-color: var(--color-natural-beige);">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-copper);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12l5 5L20 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
+            Ce que nous faisons
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-copper); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Petites modifications (textes, images, horaires)
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-copper); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Surveillance performance
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-copper); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Corrections mineures
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-copper); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Sécurité totale
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-copper); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Mise à jour du site sans effort
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 2. Ce que vous N'AVEZ JAMAIS à gérer -->
+        <div class="p-8 rounded-lg space-y-4" style="background-color: var(--color-natural-beige);">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-forest);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
+            Vous n'avez jamais à gérer
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-forest); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Pas de bugs à corriger
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-forest); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Pas de mises à jour techniques
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-forest); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Pas de failles de sécurité
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-forest); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Pas de WordPress à administrer
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span style="color: var(--color-forest); font-size: 16px; line-height: 1.4;">•</span>
+              <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
+                Pas de stress technique
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 3. Le PRIX -->
+        <div class="p-8 rounded-lg space-y-4" style="background-color: var(--color-copper);">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: rgba(255,255,255,0.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: white; font-weight: 500;">
+            Le prix
+          </h3>
+          <div class="py-4">
+            <div class="flex items-baseline gap-2">
+              <span style="font-family: Outfit, sans-serif; font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 300;">
+                À partir de
+              </span>
+            </div>
+            <div class="flex items-baseline gap-2 mb-2">
+              <span style="font-family: Outfit, sans-serif; font-size: 52px; line-height: 1; color: white; font-weight: 500;">
+                25 €
+              </span>
+              <span style="font-family: Outfit, sans-serif; font-size: 20px; color: rgba(255,255,255,0.9); font-weight: 300;">
+                /mois
+              </span>
+            </div>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.85); font-weight: 300;">
+              Selon vos besoins. Tarif fixe mensuel, aucune surprise.
+            </p>
+          </div>
+          <div class="pt-4 border-t" style="border-color: rgba(255,255,255,0.2);">
+            <p style="font-family: Outfit, sans-serif; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.9); font-weight: 300;">
+              Simple : un message → nous le faisons → c'est fait.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom explanation -->
+      <div class="max-w-4xl mx-auto text-center">
+        <p style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+          Contrairement aux agences traditionnelles : <strong style="color: var(--color-forest);">pas de frais cachés</strong>, pas de bugs WordPress, pas de maintenance technique obligatoire. Vous restez focus sur votre métier, on s'occupe du reste.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Core Principles -->
+  <Section maxWidth="4xl">
+    <div class="relative p-12 md:p-16 rounded-lg overflow-hidden" style="background-color: var(--color-forest);">
+      <!-- Subtle pattern overlay -->
+      <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+
+      <div class="relative space-y-12">
+        <div class="text-center space-y-4">
+          <h2
+            style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 44px); line-height: 1.2; color: white; font-weight: 500;"
+          >
+            Notre approche
+          </h2>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.7); font-weight: 300; max-width: 600px; margin: 0 auto;">
+            Trois principes qui guident chaque décision
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+          <div class="group text-center space-y-4">
+            <div class="w-12 h-12 mx-auto rounded-lg flex items-center justify-center transition-all group-hover:scale-110 group-hover:bg-opacity-20" style="background-color: rgba(255,255,255,0.1);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: white; font-weight: 500;">
+              Transparence
+            </h3>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); font-weight: 300;">
+              Prix clairs, pas de frais cachés. Vous savez toujours où vous allez.
+            </p>
+          </div>
+
+          <div class="group text-center space-y-4">
+            <div class="w-12 h-12 mx-auto rounded-lg flex items-center justify-center transition-all group-hover:scale-110 group-hover:bg-opacity-20" style="background-color: rgba(255,255,255,0.1);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: white; font-weight: 500;">
+              Créativité
+            </h3>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); font-weight: 300;">
+              Design premium qui vous démarque. Jamais de templates génériques.
+            </p>
+          </div>
+
+          <div class="group text-center space-y-4">
+            <div class="w-12 h-12 mx-auto rounded-lg flex items-center justify-center transition-all group-hover:scale-110 group-hover:bg-opacity-20" style="background-color: rgba(255,255,255,0.1);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: white; font-weight: 500;">
+              Sérénité
+            </h3>
+            <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); font-weight: 300;">
+              Aucun stress technique. Vous restez focus sur votre métier.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CTA Final -->
+  <CTA
+    title="Prêt à avoir un site dont vous êtes fier ?"
+    description="Réservez un appel de 20 minutes. Sans engagement, juste pour voir si on est alignés."
+    buttonText="Créer mon site"
+    buttonLink="/contact"
+  />
+
+  <!-- Footer -->
+  <Section borderTop={true}>
+    <div class="space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <Logo size={28} wordmarkSize={16} />
+        <div class="flex gap-6">
+          <a
+            href="/brand"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Brand
+          </a>
+          <a
+            href="/services"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Services
+          </a>
+          <a
+            href="/process"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Process
+          </a>
+          <a
+            href="/tarifs"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Tarifs
+          </a>
+          <a
+            href="/contact"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+      <div class="text-center">
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          © 2025 Foxyline.ai — Premium web design with purpose
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+
+  /* Hover effect for border */
+  .hover\:border-copper:hover {
+    border-color: var(--color-copper);
+  }
+</style>

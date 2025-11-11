@@ -1,0 +1,35 @@
+---
+interface Props {
+  name: string;
+  hex: string;
+  rgb: string;
+  usage: string;
+}
+
+const { name, hex, rgb, usage } = Astro.props;
+---
+
+<div class="space-y-3">
+  <div
+    class="h-40 rounded-sm transition-all hover:shadow-md"
+    style={`background-color: ${hex};`}
+  >
+  </div>
+  <div class="space-y-1">
+    <h3
+      style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500;"
+    >
+      {name}
+    </h3>
+    <p
+      style="font-family: JetBrains Mono, monospace; font-size: 11px; color: var(--color-deep-sage); opacity: 0.5;"
+    >
+      {hex} / {rgb}
+    </p>
+    <p
+      style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.5;"
+    >
+      {usage}
+    </p>
+  </div>
+</div>

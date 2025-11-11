@@ -1,0 +1,40 @@
+---
+interface Props {
+  size?: number;
+  color?: string;
+  showWordmark?: boolean;
+  wordmarkSize?: number;
+  className?: string;
+}
+
+const {
+  size = 80,
+  color = '#1B3A2F',
+  showWordmark = true,
+  wordmarkSize = 42,
+  className = '',
+} = Astro.props;
+---
+
+<div class={`flex items-center gap-3 ${className}`}>
+  <img
+    src="/logo.svg"
+    alt="Foxyline Logo"
+    width={size}
+    height={size}
+    style="object-fit: contain;"
+  />
+
+  {
+    showWordmark && (
+      <div
+        style={`font-size: ${wordmarkSize}px; color: ${color}; font-family: Outfit, sans-serif; letter-spacing: 0.02em; line-height: 1; font-weight: 400;`}
+      >
+        <span>FOXYLINE</span>
+        <span style="font-weight: 300; opacity: 0.6; font-size: 0.85em;">
+          .ai
+        </span>
+      </div>
+    )
+  }
+</div>

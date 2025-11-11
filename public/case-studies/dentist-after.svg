@@ -1,0 +1,62 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Modern clean design -->
+  <rect width="800" height="600" fill="#F9F7F4"/>
+
+  <!-- Clean minimal header -->
+  <rect width="800" height="70" fill="#FFFFFF" opacity="0.95"/>
+  <line x1="0" y1="70" x2="800" y2="70" stroke="#E8DCC4" stroke-width="1"/>
+
+  <!-- Logo -->
+  <circle cx="60" cy="35" r="18" fill="#1B3A2F"/>
+  <rect x="90" y="28" width="80" height="14" rx="2" fill="#1B3A2F"/>
+
+  <!-- Modern navigation -->
+  <rect x="600" y="28" width="50" height="14" rx="2" fill="#4A6157" opacity="0.3"/>
+  <rect x="665" y="28" width="50" height="14" rx="2" fill="#4A6157" opacity="0.3"/>
+  <rect x="730" y="23" width="50" height="24" rx="6" fill="#B87A5C"/>
+
+  <!-- Hero section with CTA -->
+  <rect y="70" width="800" height="240" fill="url(#modern-gradient)"/>
+  <defs>
+    <linearGradient id="modern-gradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F9F7F4"/>
+      <stop offset="100%" stop-color="#E8DCC4" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hero content -->
+  <rect x="200" y="130" width="400" height="30" rx="4" fill="#1B3A2F"/>
+  <rect x="250" y="175" width="300" height="12" rx="2" fill="#4A6157" opacity="0.6"/>
+  <rect x="250" y="195" width="280" height="12" rx="2" fill="#4A6157" opacity="0.6"/>
+  <rect x="320" y="230" width="160" height="40" rx="8" fill="#B87A5C"/>
+
+  <!-- Services cards -->
+  <rect x="40" y="340" width="220" height="220" rx="12" fill="#FFFFFF"/>
+  <rect x="60" y="360" width="40" height="40" rx="8" fill="#E8DCC4"/>
+  <rect x="60" y="420" width="120" height="16" rx="2" fill="#1B3A2F"/>
+  <rect x="60" y="450" width="180" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="60" y="465" width="170" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="60" y="480" width="160" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="60" y="510" width="100" height="32" rx="6" fill="#B87A5C" opacity="0.2"/>
+
+  <rect x="290" y="340" width="220" height="220" rx="12" fill="#FFFFFF"/>
+  <rect x="310" y="360" width="40" height="40" rx="8" fill="#E8DCC4"/>
+  <rect x="310" y="420" width="120" height="16" rx="2" fill="#1B3A2F"/>
+  <rect x="310" y="450" width="180" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="310" y="465" width="170" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="310" y="480" width="160" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="310" y="510" width="100" height="32" rx="6" fill="#B87A5C" opacity="0.2"/>
+
+  <rect x="540" y="340" width="220" height="220" rx="12" fill="#FFFFFF"/>
+  <rect x="560" y="360" width="40" height="40" rx="8" fill="#E8DCC4"/>
+  <rect x="560" y="420" width="120" height="16" rx="2" fill="#1B3A2F"/>
+  <rect x="560" y="450" width="180" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="560" y="465" width="170" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="560" y="480" width="160" height="8" rx="2" fill="#4A6157" opacity="0.4"/>
+  <rect x="560" y="510" width="100" height="32" rx="6" fill="#B87A5C" opacity="0.2"/>
+
+  <!-- "MODERN DESIGN" watermark -->
+  <text x="400" y="105" text-anchor="middle" font-family="Arial" font-size="12" fill="#1B3A2F" opacity="0.4">
+    Design moderne - RDV en ligne intégré
+  </text>
+</svg>

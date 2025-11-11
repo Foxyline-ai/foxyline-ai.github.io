@@ -1,0 +1,400 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Section from '../components/Section.astro';
+import CTA from '../components/CTA.astro';
+import Logo from '../components/Logo.astro';
+import { Image } from 'astro:assets';
+import ludovicPhoto from '../assets/ludovic_laffineur.png';
+import '../styles/global.css';
+---
+
+<BaseLayout>
+  <Navigation currentPage="a-propos" />
+
+  <!-- Header -->
+  <div class="pt-24 md:pt-28">
+    <Section maxWidth="4xl">
+      <div class="text-center space-y-6 py-12 md:py-16">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          À PROPOS DE FOXYLINE
+        </p>
+        <h1
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 64px); line-height: 1.1; color: var(--color-forest); font-weight: 500; letter-spacing: -0.02em;"
+        >
+          Design avec intention,<br/>développement avec précision
+        </h1>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Foxyline n'est pas une agence classique. Nous sommes une équipe resserrée, obsédée par la qualité, la simplicité et la fiabilité.
+        </p>
+      </div>
+    </Section>
+  </div>
+
+  <!-- Notre mission -->
+  <Section maxWidth="6xl">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="space-y-6">
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Notre mission
+        </h2>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.7; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Des sites web premium conçus pour inspirer confiance et offrir une expérience moderne, rapide et professionnelle.
+        </p>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.7; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Nous combinons rapidité de livraison, clarté du design et fiabilité technique pour créer des sites qui vous démarquent. Sans panne, sans maintenance lourde, sans mauvaise surprise.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div class="p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-2">
+            <p
+              style="font-family: Outfit, sans-serif; font-size: clamp(36px, 8vw, 48px); line-height: 1; color: var(--color-copper); font-weight: 500;"
+            >
+              100%
+            </p>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.4;"
+            >
+              satisfaction client
+            </p>
+          </div>
+        </div>
+        <div class="p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-2">
+            <p
+              style="font-family: Outfit, sans-serif; font-size: clamp(36px, 8vw, 48px); line-height: 1; color: var(--color-copper); font-weight: 500;"
+            >
+              5-10j
+            </p>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.4;"
+            >
+              délai de livraison
+            </p>
+          </div>
+        </div>
+        <div class="p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-2">
+            <p
+              style="font-family: Outfit, sans-serif; font-size: clamp(36px, 8vw, 48px); line-height: 1; color: var(--color-copper); font-weight: 500;"
+            >
+              A+
+            </p>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.4;"
+            >
+              score de performance
+            </p>
+          </div>
+        </div>
+        <div class="p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-2">
+            <p
+              style="font-family: Outfit, sans-serif; font-size: clamp(36px, 8vw, 48px); line-height: 1; color: var(--color-copper); font-weight: 500;"
+            >
+              24/7
+            </p>
+            <p
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; line-height: 1.4;"
+            >
+              support disponible
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Notre vision -->
+  <Section maxWidth="6xl" background="var(--color-natural-beige)">
+    <div class="space-y-12">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Notre vision du web moderne
+        </h2>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.7; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Le web est saturé de sites lourds, lents, complexes. Nous croyons qu'il est temps de revenir à l'essentiel.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-warm-white);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="6" y="6" width="12" height="12" stroke="var(--color-copper)" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+            Minimal
+          </h3>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Chaque élément doit avoir une raison d'être. Nous supprimons le superflu pour créer des sites plus rapides, plus clairs, plus élégants.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-warm-white);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M2 12h20M2 6h20M2 18h20" stroke="var(--color-copper)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+            Considéré
+          </h3>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Rien n'est laissé au hasard. Chaque détail sert la clarté, la confiance et l'expérience utilisateur.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-warm-white);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="var(--color-copper)" stroke-width="2"/>
+              <circle cx="12" cy="12" r="3" fill="var(--color-copper)"/>
+            </svg>
+          </div>
+          <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+            Humain
+          </h3>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            La technologie doit être chaleureuse, pas froide. Nos designs privilégient la connexion et la compréhension plutôt que l'efficacité pure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Pourquoi Foxyline -->
+  <Section maxWidth="6xl">
+    <div class="relative grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <!-- Portrait détouré sur le côté - plus grand -->
+      <div class="md:col-span-5 order-1 relative z-10">
+        <Image
+          src={ludovicPhoto}
+          alt="Ludovic Laffineur - Fondateur de Foxyline"
+          class="w-full h-auto object-contain drop-shadow-2xl scale-110 md:scale-125"
+          style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
+        />
+      </div>
+
+      <!-- Contenu principal - se superpose légèrement -->
+      <div class="md:col-span-7 md:-ml-12 order-2 space-y-8 relative z-20">
+        <div class="space-y-6">
+          <h2
+            style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+          >
+            Pourquoi Foxyline
+          </h2>
+          <p
+            style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.7; color: var(--color-deep-sage); font-weight: 300;"
+          >
+            Fondé par Ludovic Laffineur (CTO/CPO), Foxyline combine vision produit, excellence technique et sensibilité design. Nous ne sommes pas une usine à sites : nous créons avec vous quelque chose d'unique et exceptionnel.
+          </p>
+        </div>
+
+        <div class="p-8 md:p-10 rounded-lg" style="background-color: var(--color-natural-beige);">
+          <div class="space-y-6">
+            <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+              Une approche qui fait la différence
+            </h3>
+            <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Nous créons des sites qui combinent stratégie, design et technique. Pas des "belles pages", mais des outils fiables qui inspirent confiance et facilitent la vie de vos clients.
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="10" cy="10" r="10" fill="var(--color-copper)"/>
+                  <path d="M6 10l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                  Vision produit & UX (CTO/CPO)
+                </span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="10" cy="10" r="10" fill="var(--color-copper)"/>
+                  <path d="M6 10l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                  Design sur mesure (jamais de templates)
+                </span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="10" cy="10" r="10" fill="var(--color-copper)"/>
+                  <path d="M6 10l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                  Site rapide, stable, sécurisé
+                </span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 mt-0.5">
+                  <circle cx="10" cy="10" r="10" fill="var(--color-copper)"/>
+                  <path d="M6 10l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                  Support léger et proactif
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Notre approche verticale -->
+  <Section maxWidth="6xl" background="var(--color-natural-beige)">
+    <div class="space-y-12">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Spécialisés par secteur
+        </h2>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.7; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Plutôt que d'être généralistes médiocres, nous choisissons de devenir experts dans des secteurs précis. Cela nous permet de comprendre profondément vos défis, vos contraintes réglementaires et les attentes de vos clients.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="p-8 rounded-lg" style="background-color: var(--color-warm-white);">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-natural-beige);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2v20M2 12h20" stroke="var(--color-forest)" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="12" cy="12" r="9" stroke="var(--color-copper)" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+                Santé & Radiologie
+              </h3>
+            </div>
+            <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Notre verticale phare. Nous comprenons PACS, RGPD santé, parcours patient, prise de RDV médicale. Nous parlons votre langage.
+            </p>
+            <div class="pt-2">
+              <a
+                href="/realisations"
+                class="inline-flex items-center gap-2 text-sm transition-colors hover:opacity-70"
+                style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 400; text-decoration: none;"
+              >
+                Voir nos réalisations
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-lg" style="background-color: var(--color-warm-white); opacity: 0.7;">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--color-natural-beige);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 7v10M7 12h10" stroke="var(--color-deep-sage)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+              </div>
+              <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+                Autres verticales
+              </h3>
+            </div>
+            <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Finance, immobilier, services B2B… Nous apportons la même rigueur partout : clarté, performance, rapidité, confidentialité.
+            </p>
+            <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+              Nous ne visons pas tous les secteurs. Nous choisissons ceux où la confiance, la précision et la qualité sont essentielles.
+            </p>
+            <div class="pt-2">
+              <span class="inline-block px-4 py-2 rounded-full text-sm" style="background-color: var(--color-natural-beige); color: var(--color-deep-sage); font-family: Outfit, sans-serif;">
+                Bientôt disponible
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <CTA
+    title="Envie de travailler ensemble?"
+    description="Parlons de votre projet et voyons comment créer un site clair, rapide et exceptionnel pour votre activité."
+    buttonText="Prendre contact"
+    buttonLink="/contact"
+  />
+
+  <!-- Footer -->
+  <Section borderTop={true}>
+    <div class="space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <Logo size={28} wordmarkSize={16} />
+        <div class="flex gap-6">
+          <a
+            href="/brand"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Brand Guidelines
+          </a>
+          <a
+            href="/services"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Services
+          </a>
+          <a
+            href="/contact"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+      <div class="text-center">
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          © 2025 Foxyline.ai — Premium web design with purpose
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+</style>

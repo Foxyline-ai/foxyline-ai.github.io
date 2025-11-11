@@ -1,0 +1,39 @@
+---
+interface Props {
+  background?: string;
+  bordered?: boolean;
+  padding?: number;
+  rounded?: boolean;
+  shadow?: boolean;
+  hoverShadow?: boolean;
+  className?: string;
+  aspectSquare?: boolean;
+}
+
+const {
+  background = 'transparent',
+  bordered = false,
+  padding = 6,
+  rounded = true,
+  shadow = false,
+  hoverShadow = false,
+  className = '',
+  aspectSquare = false,
+} = Astro.props;
+
+const classes = [
+  rounded && 'rounded-sm',
+  shadow && 'shadow-md',
+  hoverShadow && 'transition-all hover:shadow-md',
+  bordered && 'border',
+  aspectSquare && 'aspect-square',
+  `p-${padding}`,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class={classes} style={`background-color: ${background};`}>
+  <slot />
+</div>

@@ -1,0 +1,68 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  features: string[];
+}
+
+const { number, title, description, features } = Astro.props;
+---
+
+<div class="group h-full">
+  <div
+    class="h-full p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+    style="background-color: var(--color-warm-white); border: 1px solid var(--color-natural-beige);"
+  >
+    <div class="space-y-4 md:space-y-6">
+      <div class="space-y-3">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          {number}
+        </p>
+        <h3
+          style="font-family: Outfit, sans-serif; font-size: 28px; line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          {title}
+        </h3>
+      </div>
+
+      <p
+        style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+      >
+        {description}
+      </p>
+
+      <ul class="space-y-3">
+        {
+          features.map((feature) => (
+            <li
+              class="flex items-start gap-3"
+              style="font-family: Outfit, sans-serif; font-size: 15px; color: var(--color-deep-sage); font-weight: 300;"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                class="mt-0.5 flex-shrink-0"
+              >
+                <circle
+                  cx="10"
+                  cy="10"
+                  r="3"
+                  fill="var(--color-copper)"
+                  opacity="0.3"
+                />
+                <circle cx="10" cy="10" r="1.5" fill="var(--color-copper)" />
+              </svg>
+              <span>{feature}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>
