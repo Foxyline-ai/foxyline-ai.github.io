@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Section from '../components/Section.astro';
+import Logo from '../components/Logo.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout>
+  <Navigation currentPage="" />
+
+  <!-- Hero Section -->
+  <div style="padding-top: max(80px, 8vh); min-height: 80vh; display: flex; align-items: center;">
+    <Section maxWidth="4xl">
+      <div class="text-center space-y-8 py-12 md:py-16">
+        <!-- Success Icon -->
+        <div class="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full animate-fade-in" style="background-color: var(--color-natural-beige); animation-delay: 0.1s;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" class="animate-scale-in" style="animation-delay: 0.2s;">
+            <circle cx="24" cy="24" r="20" stroke="var(--color-copper)" stroke-width="3"/>
+            <path d="M14 24l8 8 12-12" stroke="var(--color-copper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Title -->
+        <div class="space-y-4 animate-fade-in" style="animation-delay: 0.3s;">
+          <h1
+            style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 64px); line-height: 1.1; color: var(--color-forest); font-weight: 500; letter-spacing: -0.02em;"
+          >
+            Message bien reçu !
+          </h1>
+          <p
+            class="max-w-2xl mx-auto"
+            style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+          >
+            Merci pour votre demande. Nous reviendrons vers vous sous 24h avec une première analyse de votre projet.
+          </p>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="max-w-2xl mx-auto pt-8 animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="p-8 md:p-10 rounded-lg space-y-6" style="background-color: var(--color-natural-beige);">
+            <h2 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
+              Et maintenant ?
+            </h2>
+
+            <div class="space-y-4 text-left">
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">1</span>
+                </div>
+                <div>
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    Nous analysons votre demande et préparons une première recommandation
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">2</span>
+                </div>
+                <div>
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    Vous recevez un email avec nos premières réflexions sous 24h
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">3</span>
+                </div>
+                <div>
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    On planifie un appel de 30 min pour discuter de votre projet en détail
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-fade-in" style="animation-delay: 0.5s;">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg transition-all hover:shadow-md border-2"
+            style="border-color: var(--color-natural-beige); color: var(--color-forest); font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400; text-decoration: none;"
+          >
+            Retour à l'accueil
+          </a>
+          <a
+            href="/realisations"
+            class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+            style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400; text-decoration: none;"
+          >
+            Voir nos réalisations
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="transition-transform group-hover:translate-x-1">
+              <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="pt-8 animate-fade-in" style="animation-delay: 0.6s;">
+          <p style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;">
+            Une question urgente ? Contactez-nous directement à
+            <a href="mailto:hi@foxyline.ai" style="color: var(--color-copper); text-decoration: underline;">hi@foxyline.ai</a>
+          </p>
+        </div>
+      </div>
+    </Section>
+  </div>
+
+  <!-- Footer -->
+  <Section borderTop={true}>
+    <div class="space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <Logo size={28} wordmarkSize={16} />
+        <div class="flex gap-6">
+          <a
+            href="/brand"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Brand Guidelines
+          </a>
+          <a
+            href="/services"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Services
+          </a>
+          <a
+            href="/contact"
+            class="transition-colors"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+      <div class="text-center">
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          © 2025 Foxyline.ai — Premium web design with purpose
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+</style>

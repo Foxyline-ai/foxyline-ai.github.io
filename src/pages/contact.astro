@@ -28,284 +28,347 @@ import '../styles/global.css';
           class="max-w-2xl mx-auto"
           style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
         >
-          Remplissez le formulaire ci-dessous et nous reviendrons vers vous sous 24h avec une proposition personnalisée.
+          Réservez un appel découverte ou envoyez-nous un message.<br/>
+          Nous revenons vers vous sous 24h, sans engagement.
         </p>
       </div>
     </Section>
   </div>
 
-  <!-- Contact Form -->
-  <Section maxWidth="5xl">
-    <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
-      <!-- Left: Form -->
-      <div class="order-2 md:order-1">
-        <form class="space-y-6">
-          <div>
-            <label
-              for="name"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Nom *
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            />
-          </div>
-
-          <div>
-            <label
-              for="email"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Email *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            />
-          </div>
-
-          <div>
-            <label
-              for="phone"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Téléphone
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            />
-          </div>
-
-          <div>
-            <label
-              for="activity"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Activité / Secteur *
-            </label>
-            <input
-              type="text"
-              id="activity"
-              name="activity"
-              required
-              placeholder="Ex: Cabinet de radiologie, Avocat, etc."
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            />
-          </div>
-
-          <div>
-            <label
-              for="website"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Site web actuel (si applicable)
-            </label>
-            <input
-              type="url"
-              id="website"
-              name="website"
-              placeholder="https://votre-site.com"
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            />
-          </div>
-
-          <div>
-            <label
-              for="objective"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Objectif du nouveau site *
-            </label>
-            <textarea
-              id="objective"
-              name="objective"
-              rows="5"
-              required
-              placeholder="Décrivez brièvement votre projet, vos objectifs et vos attentes..."
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none resize-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            ></textarea>
-          </div>
-
-          <div>
-            <label
-              for="budget"
-              class="block mb-2"
-              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-forest); font-weight: 400;"
-            >
-              Budget estimé
-            </label>
-            <select
-              id="budget"
-              name="budget"
-              class="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none"
-              style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest);"
-            >
-              <option value="">Sélectionnez une fourchette</option>
-              <option value="2500">2 500 € (Essentiel)</option>
-              <option value="3500">3 500 € (Premium)</option>
-              <option value="5000+">5 000 € + (Excellence)</option>
-              <option value="custom">Budget sur mesure</option>
-            </select>
-          </div>
-
-          <div class="pt-4">
-            <button
-              type="submit"
-              class="w-full px-8 py-4 rounded-lg transition-all hover:shadow-lg hover:scale-105 focus:shadow-lg focus:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
-              style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 16px; font-weight: 400; --tw-ring-color: var(--color-copper);"
-            >
-              Envoyer ma demande
-            </button>
-          </div>
-
-          <p class="text-center text-sm" style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-weight: 300;">
-            Réponse sous 24h • Sans engagement
-          </p>
-        </form>
+  <!-- SECTION 1 — Call-to-Action principal (RDV) -->
+  <Section maxWidth="6xl">
+    <div class="space-y-16" id="calendrier">
+      <!-- Header de section -->
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          RÉSERVER UN APPEL
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          30 minutes pour tout clarifier
+        </h2>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Un échange simple et concret pour comprendre vos besoins et voir comment Foxyline peut y répondre, rapidement et efficacement.
+        </p>
       </div>
 
-      <!-- Right: Info -->
-      <div class="order-1 md:order-2 space-y-8">
-        <div class="p-8 rounded-lg" style="background-color: var(--color-natural-beige);">
-          <div class="space-y-6">
-            <h3 style="font-family: Outfit, sans-serif; font-size: 24px; color: var(--color-forest); font-weight: 500;">
-              Ce qui va se passer ensuite
-            </h3>
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Left: Calendrier -->
+        <div class="order-1 md:order-1">
+          <div class="rounded-lg overflow-hidden transition-all hover:shadow-lg" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2_bpA8BrPJisRUneWkbe3GbPBXSW4CNeiupI5iDeR61Sa2WCVmkD_VdzinkNYfxZYZwN6GzUpC?gv=true"
+              style="border: 0; width: 100%; height: 600px;"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
 
-            <div class="space-y-4">
-              <div class="flex gap-4">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
-                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">1</span>
+        <!-- Right: Process -->
+        <div class="order-2 md:order-2 space-y-6">
+          <h3 style="font-family: Outfit, sans-serif; font-size: 28px; color: var(--color-forest); font-weight: 500; margin-bottom: 24px;">
+            Ce qui va se passer ensuite
+          </h3>
+
+          <div class="space-y-4 md:space-y-6">
+            <div class="group p-5 md:p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+              <div class="flex gap-3 md:gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 16px; color: white; font-weight: 500;">1</span>
                 </div>
                 <div>
-                  <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
-                    Réponse rapide
-                  </h4>
-                  <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
-                    Nous revenons vers vous sous 24h avec une première analyse de votre projet.
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex gap-4">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
-                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">2</span>
-                </div>
-                <div>
-                  <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
+                  <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500; margin-bottom: 6px;">
                     Appel découverte
                   </h4>
-                  <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
-                    20 minutes pour discuter de vos objectifs, vos contraintes et vos attentes.
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    On discute de votre projet et de vos attentes.
                   </p>
                 </div>
               </div>
+            </div>
 
-              <div class="flex gap-4">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
-                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">3</span>
+            <div class="group p-5 md:p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+              <div class="flex gap-3 md:gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 16px; color: white; font-weight: 500;">2</span>
                 </div>
                 <div>
-                  <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
+                  <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500; margin-bottom: 6px;">
+                    Analyse & recommandations
+                  </h4>
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    Nous confirmons la faisabilité et identifions les priorités.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="group p-5 md:p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+              <div class="flex gap-3 md:gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 16px; color: white; font-weight: 500;">3</span>
+                </div>
+                <div>
+                  <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500; margin-bottom: 6px;">
                     Proposition personnalisée
                   </h4>
-                  <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
-                    Vous recevez une proposition détaillée avec timeline et tarif exact.
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    Vous recevez un document clair avec un tarif exact, une timeline et les options potentielles.
                   </p>
                 </div>
               </div>
+            </div>
 
-              <div class="flex gap-4">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background-color: var(--color-copper);">
-                  <span style="font-family: Outfit, sans-serif; font-size: 14px; color: white; font-weight: 500;">4</span>
+            <div class="group p-5 md:p-6 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+              <div class="flex gap-3 md:gap-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all group-hover:scale-110" style="background-color: var(--color-copper);">
+                  <span style="font-family: Outfit, sans-serif; font-size: 16px; color: white; font-weight: 500;">4</span>
                 </div>
                 <div>
-                  <h4 style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
+                  <h4 style="font-family: Outfit, sans-serif; font-size: 18px; color: var(--color-forest); font-weight: 500; margin-bottom: 6px;">
                     Démarrage rapide
                   </h4>
-                  <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
-                    Si vous êtes ok, on démarre dès la semaine suivante.
+                  <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+                    Si tout vous convient, on démarre dès la semaine suivante.
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </Section>
 
-        <div class="p-8 rounded-lg" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
-          <div class="space-y-4">
-            <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
-              Préférez l'email direct?
-            </h3>
-            <p style="font-family: Outfit, sans-serif; font-size: 15px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
-              Pas de problème. Envoyez-nous un email à:
-            </p>
-            <a
-              href="mailto:contact@foxyline.ai"
-              class="inline-block text-lg font-medium transition-colors hover:opacity-70"
-              style="color: var(--color-copper); font-family: Outfit, sans-serif; text-decoration: none;"
-            >
-              contact@foxyline.ai
-            </a>
-          </div>
-        </div>
+  <!-- SECTION 2 — Formulaire simplifié -->
+  <Section maxWidth="6xl">
+    <div class="space-y-16">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          OU ÉCRIVEZ-NOUS
+        </p>
+        <h2
+          style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;"
+        >
+          Vous préférez nous écrire ?
+        </h2>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 20px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Aucun souci — décrivez votre besoin en quelques lignes et nous reviendrons vers vous sous 24h.
+        </p>
+      </div>
 
-        <div class="p-8 rounded-lg" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
-          <div class="space-y-4">
-            <h3 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500;">
-              Questions fréquentes
-            </h3>
-            <div class="space-y-3">
-              <div>
-                <h4 style="font-family: Outfit, sans-serif; font-size: 15px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
-                  Quel est le délai de livraison?
-                </h4>
-                <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
-                  Entre 5 et 10 jours selon le forfait choisi.
-                </p>
-              </div>
-              <div>
-                <h4 style="font-family: Outfit, sans-serif; font-size: 15px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
-                  Puis-je voir des exemples?
-                </h4>
-                <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
-                  Oui, consultez notre <a href="/realisations" style="color: var(--color-copper); text-decoration: underline;">page réalisations</a>.
-                </p>
-              </div>
-              <div>
-                <h4 style="font-family: Outfit, sans-serif; font-size: 15px; color: var(--color-forest); font-weight: 500; margin-bottom: 4px;">
-                  Y a-t-il un engagement?
-                </h4>
-                <p style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.5; color: var(--color-deep-sage); font-weight: 300;">
-                  Aucun engagement. Vous payez par projet, pas d'abonnement forcé.
-                </p>
-              </div>
+      <div class="max-w-3xl mx-auto">
+        <div class="p-8 md:p-12 rounded-lg" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+          <form class="space-y-6" action="https://api.web3forms.com/submit" method="POST">
+
+            <!-- Web3Forms Configuration -->
+            <input type="hidden" name="access_key" value="16cd1d2b-c371-4aa8-ab8f-2cc13604ca99" />
+            <input type="hidden" name="subject" value="Nouvelle demande de contact - Foxyline.ai" />
+            <input type="hidden" name="from_name" value="Foxyline.ai Contact Form" />
+            <input type="hidden" name="redirect" value="https://foxyline.ai/merci" />
+
+            <div>
+              <label
+                for="name"
+                class="block mb-3"
+                style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 400;"
+              >
+                Nom *
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-5 py-4 rounded-lg border-2 transition-all focus:outline-none"
+                style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); background-color: white;"
+              />
             </div>
-          </div>
+
+            <div>
+              <label
+                for="email"
+                class="block mb-3"
+                style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 400;"
+              >
+                Email *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-5 py-4 rounded-lg border-2 transition-all focus:outline-none"
+                style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); background-color: white;"
+              />
+            </div>
+
+            <div>
+              <label
+                for="project"
+                class="block mb-3"
+                style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 400;"
+              >
+                Votre projet *
+              </label>
+              <textarea
+                id="project"
+                name="message"
+                rows="4"
+                required
+                placeholder="Ex : refonte d'un site médical, création d'un site pour votre cabinet, optimisation SEO…"
+                class="w-full px-5 py-4 rounded-lg border-2 transition-all focus:outline-none resize-none"
+                style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); background-color: white;"
+              ></textarea>
+            </div>
+
+            <div>
+              <label
+                for="activity"
+                class="block mb-3"
+                style="font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); font-weight: 400;"
+              >
+                Activité / Secteur
+              </label>
+              <input
+                type="text"
+                id="activity"
+                name="activity"
+                class="w-full px-5 py-4 rounded-lg border-2 transition-all focus:outline-none"
+                style="border-color: var(--color-natural-beige); font-family: Outfit, sans-serif; font-size: 16px; color: var(--color-forest); background-color: white;"
+              />
+            </div>
+
+            <div class="pt-6">
+              <button
+                type="submit"
+                class="group w-full inline-flex items-center justify-center gap-2 px-8 py-5 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+                style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400;"
+              >
+                Envoyer ma demande
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="transition-transform group-hover:translate-x-1">
+                  <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <p class="text-center" style="color: var(--color-deep-sage); font-family: Outfit, sans-serif; font-size: 15px; font-weight: 300;">
+              Réponse sous 24h – Sans engagement
+            </p>
+          </form>
         </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- SECTION 3 — Contact direct -->
+  <Section maxWidth="6xl">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center p-10 md:p-12 rounded-lg transition-all hover:shadow-md" style="background-color: var(--color-natural-beige);">
+        <h3 style="font-family: Outfit, sans-serif; font-size: 28px; color: var(--color-forest); font-weight: 500; margin-bottom: 16px;">
+          Vous préférez passer par email ?
+        </h3>
+        <p style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.7; color: var(--color-deep-sage); font-weight: 300; margin-bottom: 16px;">
+          Écrivez-nous simplement à
+        </p>
+        <a
+          href="mailto:hi@foxyline.ai"
+          class="inline-block text-2xl font-medium transition-all hover:opacity-70"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; text-decoration: none; margin-bottom: 16px;"
+        >
+          hi@foxyline.ai
+        </a>
+        <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300; margin-top: 16px;">
+          — nous répondons toujours sous 24h.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- SECTION 4 — FAQ courte -->
+  <Section maxWidth="6xl">
+    <div class="space-y-16">
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          FAQ
+        </p>
+        <h2 style="font-family: Outfit, sans-serif; font-size: clamp(36px, 6vw, 52px); line-height: 1.2; color: var(--color-forest); font-weight: 500;">
+          Questions fréquentes
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="group p-8 rounded-lg transition-all hover:shadow-lg hover:-translate-y-1" style="background-color: var(--color-natural-beige); border: 2px solid var(--color-natural-beige);">
+          <h4 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500; margin-bottom: 12px;">
+            Quel est le délai de livraison ?
+          </h4>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Entre 5 et 10 jours selon le forfait choisi.
+          </p>
+        </div>
+
+        <div class="group p-8 rounded-lg transition-all hover:shadow-lg hover:-translate-y-1" style="background-color: var(--color-warm-white); border: 2px solid var(--color-natural-beige);">
+          <h4 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500; margin-bottom: 12px;">
+            Puis-je voir des exemples ?
+          </h4>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Oui, consultez nos <a href="/realisations" style="color: var(--color-copper); text-decoration: underline;">réalisations</a>.
+          </p>
+        </div>
+
+        <div class="group p-8 rounded-lg transition-all hover:shadow-lg hover:-translate-y-1" style="background-color: var(--color-natural-beige); border: 2px solid var(--color-natural-beige);">
+          <h4 style="font-family: Outfit, sans-serif; font-size: 20px; color: var(--color-forest); font-weight: 500; margin-bottom: 12px;">
+            Y a-t-il un engagement ?
+          </h4>
+          <p style="font-family: Outfit, sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;">
+            Aucun. Vous payez par projet, sans abonnement forcé.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CTA Final -->
+  <Section maxWidth="4xl">
+    <div class="text-center p-10 md:p-12 rounded-lg" style="background-color: var(--color-forest);">
+      <h2 style="font-family: Outfit, sans-serif; font-size: clamp(28px, 5vw, 42px); line-height: 1.2; color: white; font-weight: 500; margin-bottom: 16px;">
+        Prêt à lancer votre projet ?
+      </h2>
+      <p style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: rgba(255, 255, 255, 0.85); font-weight: 300; margin-bottom: 32px;">
+        Réservez un appel ou écrivez-nous — réponse garantie sous 24h.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#calendrier"
+          class="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg transition-all hover:shadow-lg hover:scale-105"
+          style="background-color: var(--color-copper); color: white; font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400; text-decoration: none;"
+        >
+          Réserver un appel
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="transition-transform group-hover:translate-x-1">
+            <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a
+          href="mailto:hi@foxyline.ai"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg transition-all hover:bg-white/10 border-2"
+          style="border-color: rgba(255, 255, 255, 0.3); color: white; font-family: Outfit, sans-serif; font-size: 17px; font-weight: 400; text-decoration: none;"
+        >
+          Écrire un email
+        </a>
       </div>
     </div>
   </Section>
@@ -355,8 +418,8 @@ import '../styles/global.css';
   textarea:focus,
   select:focus {
     outline: none;
-    border-color: var(--color-copper);
-    box-shadow: 0 0 0 3px rgba(184, 122, 92, 0.1);
+    border-color: var(--color-copper) !important;
+    box-shadow: 0 0 0 4px rgba(184, 122, 92, 0.1);
   }
 
   html {
@@ -367,5 +430,10 @@ import '../styles/global.css';
   *:focus-visible {
     outline: 2px solid var(--color-copper);
     outline-offset: 2px;
+  }
+
+  /* Animations de hover pour les cards */
+  .group:hover {
+    transform: translateY(-2px);
   }
 </style>
