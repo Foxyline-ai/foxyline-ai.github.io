@@ -1,0 +1,155 @@
+---
+import Logo from './Logo.astro';
+import Section from './Section.astro';
+
+interface Props {
+  variant?: 'default' | 'minimal';
+}
+
+const { variant = 'default' } = Astro.props;
+---
+
+<Section borderTop={true}>
+  <div class="space-y-8">
+    {variant === 'default' && (
+      <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+        <!-- Logo & Description -->
+        <div class="space-y-4">
+          <Logo size={32} wordmarkSize={18} />
+          <p
+            style="font-family: Outfit, sans-serif; font-size: 14px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300; max-width: 280px;"
+          >
+            Agence web qui crée des sites élégants, rapides et bien pensés, avec l'IA comme outil intelligent.
+          </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="space-y-4">
+          <h4
+            style="font-family: Outfit, sans-serif; font-size: 12px; color: var(--color-copper); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;"
+          >
+            Navigation
+          </h4>
+          <nav class="flex flex-col gap-2">
+            <a
+              href="/services"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              Services
+            </a>
+            <a
+              href="/tarifs"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              Tarifs
+            </a>
+            <a
+              href="/process"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              Process
+            </a>
+            <a
+              href="/realisations"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              Réalisations
+            </a>
+            <a
+              href="/a-propos"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              À propos
+            </a>
+          </nav>
+        </div>
+
+        <!-- Contact -->
+        <div class="space-y-4">
+          <h4
+            style="font-family: Outfit, sans-serif; font-size: 12px; color: var(--color-copper); font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;"
+          >
+            Contact
+          </h4>
+          <div class="flex flex-col gap-2">
+            <a
+              href="/contact"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              Nous contacter
+            </a>
+            <a
+              href="mailto:hi@foxyline.ai"
+              class="transition-colors hover:opacity-70"
+              style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+            >
+              hi@foxyline.ai
+            </a>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {variant === 'minimal' && (
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <Logo size={28} wordmarkSize={16} />
+        <div class="flex gap-6">
+          <a
+            href="/services"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Services
+          </a>
+          <a
+            href="/tarifs"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Tarifs
+          </a>
+          <a
+            href="/contact"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+    )}
+
+    <!-- Copyright -->
+    <div class="pt-6 border-t" style="border-color: var(--color-natural-beige);">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 13px; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          © 2025 Foxyline.ai — Sites web premium, créés avec soin
+        </p>
+        <div class="flex gap-4">
+          <a
+            href="/mentions-legales"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 12px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Mentions légales
+          </a>
+          <a
+            href="/politique-confidentialite"
+            class="transition-colors hover:opacity-70"
+            style="font-family: Outfit, sans-serif; font-size: 12px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
+          >
+            Confidentialité
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>
