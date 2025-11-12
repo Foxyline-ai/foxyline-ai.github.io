@@ -2,12 +2,24 @@
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Foxyline.ai - Brand Identity',
-  description = 'Foxyline is a web design agency that creates digital experiences with intention and clarity.',
+  title = 'Foxyline.ai - Création de sites web premium en 5-10 jours',
+  description = 'Agence web premium spécialisée en création de sites professionnels. Design moderne, livraison rapide (5-10 jours), sans maintenance. Tarifs transparents dès 2500€.',
+  ogImage = '/og-image.jpg',
+  ogType = 'website',
+  canonical,
+  noindex = false,
 } = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
+const siteUrl = 'https://foxyline.ai';
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
 
 <!doctype html>
@@ -15,10 +27,43 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <title>{title}</title>
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:site_name" content="Foxyline.ai" />
+    <meta property="og:locale" content="fr_BE" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullOgImage} />
+
+    <!-- Additional SEO -->
+    <meta name="author" content="Foxyline.ai" />
+    <meta name="keywords" content="création site web, agence web belgique, site web professionnel, design web premium, création site vitrine, refonte site web, site web rapide, développement web" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1B3A2F" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,6 +75,40 @@ const {
 
     <!-- Global Styles -->
     <link rel="stylesheet" href="/src/styles/global.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Foxyline.ai",
+        "description": "Agence web premium spécialisée en création de sites professionnels. Design moderne, livraison rapide.",
+        "url": "https://foxyline.ai",
+        "logo": "https://foxyline.ai/logo.png",
+        "image": "https://foxyline.ai/og-image.jpg",
+        "telephone": "",
+        "email": "hi@foxyline.ai",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "BE"
+        },
+        "priceRange": "€€€",
+        "sameAs": [
+          "https://www.linkedin.com/company/foxyline-ai"
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "Belgium"
+        },
+        "serviceType": [
+          "Création de sites web",
+          "Design web",
+          "Développement web",
+          "Refonte de sites",
+          "Landing pages"
+        ]
+      }
+    </script>
   </head>
   <body class="min-h-screen antialiased">
     <slot />
