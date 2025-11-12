@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Section from '../components/Section.astro';
-import Logo from '../components/Logo.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 ---
 
@@ -117,43 +117,7 @@ import '../styles/global.css';
   </div>
 
   <!-- Footer -->
-  <Section borderTop={true}>
-    <div class="space-y-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <Logo size={28} wordmarkSize={16} />
-        <div class="flex gap-6">
-          <a
-            href="/brand"
-            class="transition-colors"
-            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
-          >
-            Brand Guidelines
-          </a>
-          <a
-            href="/services"
-            class="transition-colors"
-            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
-          >
-            Services
-          </a>
-          <a
-            href="/contact"
-            class="transition-colors"
-            style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; text-decoration: none;"
-          >
-            Contact
-          </a>
-        </div>
-      </div>
-      <div class="text-center">
-        <p
-          style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300;"
-        >
-          © 2025 Foxyline.ai — Premium web design with purpose
-        </p>
-      </div>
-    </div>
-  </Section>
+  <Footer variant="minimal" />
 </BaseLayout>
 
 <style>
