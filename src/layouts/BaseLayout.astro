@@ -17,7 +17,10 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).href;
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  "https://foxyline.ai",
+);
 const siteUrl = 'https://foxyline.ai';
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---
