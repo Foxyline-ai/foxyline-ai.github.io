@@ -10,8 +10,8 @@ import cuigniezRxBefore from '../assets/cuigniezrx-before.png';
 import cuigniezRxAfter from '../assets/cuignezrx-after.png';
 import vanMieghemBefore from '../assets/radiologievanmieghem-before.png';
 import vanMieghemAfter from '../assets/radiologievanmieghem-after.png';
-import lacambreHome from '../assets/radiologielacambre-home.png';
-import lacambreRdv from '../assets/radiologielacambre-rdv.png';
+import lacambreHome from '../assets/radiologielacambre/lacambre-home.png';
+import lacambreBooking from '../assets/radiologielacambre/lacambre-booking.png';
 import bloomBefore from '../assets/bloom-before.png';
 import bloomAfter from '../assets/bloom-after.png';
 import rpeHome from '../assets/rpe-home.png';
@@ -228,13 +228,54 @@ import '../styles/global.css';
     </div>
 
     <div class="space-y-16">
+      <!-- La Cambre - Featured -->
+      <UseCase
+        id="lacambre"
+        title="Radiologie La Cambre"
+        specialty="SEO/GEO Case Study"
+        location="Ixelles, Brussels"
+        diagnostic="New domain launched in April 2025 with zero SEO history. Goal: build a clean technical foundation and achieve fast local SEO traction."
+        description="GEO-targeted SEO strategy for a brand-new domain. Technical foundation built for speed and indexability. Result: #1 on ChatGPT for 'best radiology centers in Ixelles'."
+        beforeImage={lacambreHome}
+        afterImage={lacambreBooking}
+        beforeLabel="Home"
+        afterLabel="Booking"
+        websiteUrl="/case-studies/radiologie-la-cambre"
+        ctaText="View case study"
+        results={[
+          { label: "Impressions", value: "+82%" },
+          { label: "Clicks", value: "+29%" }
+        ]}
+      />
+
+      <div class="h-16"></div>
+
+      <!-- RPE -->
+      <UseCase
+        id="rpe"
+        title="Radiology Partners Europe"
+        specialty="Corporate Website"
+        location="Pan-European"
+        diagnostic="New pan-European radiology network needed a professional web presence to communicate their vision and attract partner centers."
+        description="Strategic landing page for network launch. Clean design highlighting the unifying vision: local excellence at European scale. Clear communication of mission, governance model and partnership opportunities."
+        beforeImage={rpeHome}
+        afterImage={rpeVision}
+        beforeLabel="Home"
+        afterLabel="Vision"
+        websiteUrl="https://radiologypartnerseurope.com/"
+        reverse={true}
+      />
+
+      <div class="h-16"></div>
+
       <!-- Bloom CareGroup -->
       <UseCase
         id="bloom"
         title="Bloom CareGroup"
         specialty="Healthcare Platform"
         location="Antwerp, Belgium"
-        description="Creation of a complete digital platform for a European care network. Development of a warm and professional visual identity, multilingual architecture (EN/NL/FR), integrated recruitment area and highlighting of clinical autonomy and work-life balance values for practitioners."
+        diagnostic="European care network needed a digital platform to attract practitioners and communicate their values."
+        description="Complete digital platform with warm professional identity, multilingual architecture (EN/NL/FR), integrated recruitment area. Focus on clinical autonomy and work-life balance values."
         beforeImage={bloomBefore}
         afterImage={bloomAfter}
         websiteUrl="https://www.bloom-caregroup.com/"
@@ -269,7 +310,6 @@ import '../styles/global.css';
         beforeImage={cuigniezRxBefore}
         afterImage={cuigniezRxAfter}
         websiteUrl="https://cuigniezrx.be/"
-        ctaText="View case study"
       />
 
       <div class="h-16"></div>
@@ -285,40 +325,6 @@ import '../styles/global.css';
         beforeImage={vanMieghemBefore}
         afterImage={vanMieghemAfter}
         websiteUrl="https://www.radiologievanmieghem.be/"
-        reverse={true}
-      />
-
-      <div class="h-16"></div>
-
-      <!-- La Cambre -->
-      <UseCase
-        id="lacambre"
-        title="Radiologie La Cambre"
-        specialty="Radiology & Imaging"
-        location="Ixelles, Brussels"
-        diagnostic="Goal to simplify appointment booking and improve patient journey fluidity."
-        description="Creation of a custom appointment booking interface. From first contact to appointment confirmation, the experience was designed to simplify and streamline the patient journey on Avenue Louise."
-        beforeImage={lacambreHome}
-        afterImage={lacambreRdv}
-        beforeLabel="Home"
-        afterLabel="Booking"
-        websiteUrl="https://www.radiologielacambre.be/"
-      />
-
-      <div class="h-16"></div>
-
-      <!-- RPE -->
-      <UseCase
-        id="rpe"
-        title="Radiology Partners Europe"
-        specialty="Healthcare Platform"
-        location="Belgium"
-        description="Creation of a strategic landing page for the launch of a pan-European radiology network. Clean and professional design highlighting the unifying vision: combining local excellence and scale for faster imaging services. Clear communication of mission, values and unique governance by radiologists."
-        beforeImage={rpeHome}
-        afterImage={rpeVision}
-        beforeLabel="Home"
-        afterLabel="Vision"
-        websiteUrl="https://radiologypartnerseurope.com/"
         reverse={true}
       />
     </div>
