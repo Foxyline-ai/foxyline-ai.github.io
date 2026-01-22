@@ -1,0 +1,313 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Section from '../components/Section.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout
+  title="General Terms and Conditions | Foxyline.ai"
+  description="General Terms and Conditions of Foxyline by Moosly. Read our terms of service for web development and design services."
+  noindex={true}
+>
+  <Navigation currentPage="" />
+
+  <!-- Header -->
+  <div class="pt-24 md:pt-28">
+    <Section maxWidth="4xl">
+      <div class="text-center space-y-6 py-12 md:py-16">
+        <p
+          class="text-xs uppercase tracking-widest"
+          style="color: var(--color-copper); font-family: Outfit, sans-serif; font-weight: 500;"
+        >
+          LEGAL
+        </p>
+        <h1
+          style="font-family: Outfit, sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.1; color: var(--color-forest); font-weight: 500; letter-spacing: -0.02em;"
+        >
+          General Terms and Conditions
+        </h1>
+        <p
+          class="max-w-2xl mx-auto"
+          style="font-family: Outfit, sans-serif; font-size: 18px; line-height: 1.6; color: var(--color-deep-sage); font-weight: 300;"
+        >
+          Foxyline by Moosly
+        </p>
+        <p
+          style="font-family: Outfit, sans-serif; font-size: 14px; color: var(--color-deep-sage); font-weight: 300; opacity: 0.7;"
+        >
+          Last update: January 3, 2026
+        </p>
+      </div>
+    </Section>
+  </div>
+
+  <!-- Content -->
+  <Section maxWidth="4xl">
+    <div class="terms-content space-y-12 pb-16">
+
+      <!-- 1. Service Provider Identification -->
+      <section class="space-y-4">
+        <h2>1. Service Provider Identification</h2>
+        <p>These General Terms and Conditions (the "Terms") govern the contractual relationship between:</p>
+        <div class="info-box">
+          <p><strong>Moosly</strong></p>
+          <p>SRL (Societe a Responsabilite Limitee)</p>
+          <p>Hoevestraat 17, 1640 Sint-Genesius-Rode, Belgium</p>
+          <p>Company number: BE 0795.712.081</p>
+          <p>VAT number: BE0795.712.081</p>
+        </div>
+        <p>(hereinafter referred to as "Moosly" or the "Service Provider")</p>
+        <p>The services are marketed under the brand name <strong>Foxyline by Moosly</strong>.</p>
+      </section>
+
+      <!-- 2. Scope of Application -->
+      <section class="space-y-4">
+        <h2>2. Scope of Application</h2>
+        <p>These Terms apply to all services provided by Foxyline by Moosly, including but not limited to:</p>
+        <ul>
+          <li>website creation and redesign</li>
+          <li>UX/UI design</li>
+          <li>web development</li>
+          <li>SEO / GEO structuring</li>
+          <li>digital strategy and consulting</li>
+          <li>maintenance and support services</li>
+        </ul>
+        <p>Any order placed implies full and unconditional acceptance of these Terms.</p>
+        <p>These Terms prevail over any conflicting client documentation unless expressly agreed otherwise in writing.</p>
+      </section>
+
+      <!-- 3. Quotes and Orders -->
+      <section class="space-y-4">
+        <h2>3. Quotes and Orders</h2>
+
+        <h3>3.1 Quotes</h3>
+        <p>All services are subject to a written quotation, valid for 30 days, unless stated otherwise.</p>
+
+        <h3>3.2 Order Confirmation</h3>
+        <p>An order is deemed final upon:</p>
+        <ul>
+          <li>written approval of the quotation (signature or explicit email confirmation), and</li>
+          <li>payment of any required advance payment.</li>
+        </ul>
+        <p>Any request for changes after approval may result in a revised quotation or additional invoicing.</p>
+      </section>
+
+      <!-- 4. Pricing and Financial Conditions -->
+      <section class="space-y-4">
+        <h2>4. Pricing and Financial Conditions</h2>
+
+        <h3>4.1 Prices</h3>
+        <p>All prices are expressed in euros and are exclusive of VAT, unless stated otherwise.</p>
+
+        <h3>4.2 Advance Payments</h3>
+        <p>Unless otherwise agreed:</p>
+        <ul>
+          <li>an advance payment of 30% to 50% is required upon order for project-based work,</li>
+          <li>the balance is payable upon delivery or according to the agreed payment schedule.</li>
+        </ul>
+
+        <h3>4.3 Recurring Services</h3>
+        <p>Recurring services (maintenance, support, hosting, ongoing consulting) are invoiced on a monthly or annual basis, as defined in the applicable agreement.</p>
+      </section>
+
+      <!-- 5. Payment Terms -->
+      <section class="space-y-4">
+        <h2>5. Payment Terms</h2>
+        <p>Payment term: 14 calendar days from invoice date, unless stated otherwise.</p>
+        <p>Payments are made by bank transfer.</p>
+
+        <h3>5.1 Late Payments</h3>
+        <p>In the event of late payment:</p>
+        <ul>
+          <li>statutory late payment interest under Belgian law shall apply automatically,</li>
+          <li>a fixed compensation of 10% of the outstanding amount, with a minimum of 75 EUR, may be charged,</li>
+          <li>Moosly reserves the right to suspend services without prior notice.</li>
+        </ul>
+      </section>
+
+      <!-- 6. Client Obligations -->
+      <section class="space-y-4">
+        <h2>6. Client Obligations</h2>
+        <p>The Client undertakes to:</p>
+        <ul>
+          <li>provide all necessary content, access credentials, and approvals in a timely manner,</li>
+          <li>appoint a single decision-making contact person,</li>
+          <li>respect agreed feedback and validation timelines.</li>
+        </ul>
+        <p>Any delay attributable to the Client may result in:</p>
+        <ul>
+          <li>project timeline extensions, and</li>
+          <li>additional charges if the workload is materially impacted.</li>
+        </ul>
+      </section>
+
+      <!-- 7. Delivery and Acceptance -->
+      <section class="space-y-4">
+        <h2>7. Delivery and Acceptance</h2>
+        <p>Deliverables shall be deemed accepted:</p>
+        <ul>
+          <li>after 10 calendar days without written objections, or</li>
+          <li>upon publication, deployment, or use in production.</li>
+        </ul>
+        <p>Included revisions are strictly limited to what is explicitly defined in the quotation.</p>
+      </section>
+
+      <!-- 8. Intellectual Property -->
+      <section class="space-y-4">
+        <h2>8. Intellectual Property</h2>
+
+        <h3>8.1 Ownership Transfer</h3>
+        <p>Intellectual property rights related to the deliverables are transferred to the Client only after full payment of all amounts due.</p>
+
+        <h3>8.2 Exclusions</h3>
+        <p>The following remain the exclusive property of Moosly:</p>
+        <ul>
+          <li>methodologies, frameworks, templates, and reusable components,</li>
+          <li>internal tools, scripts, and technical know-how.</li>
+        </ul>
+
+        <h3>8.3 References</h3>
+        <p>Moosly may mention the Client as a commercial reference unless expressly refused in writing.</p>
+      </section>
+
+      <!-- 9. Third-Party Tools and Hosting -->
+      <section class="space-y-4">
+        <h2>9. Third-Party Tools and Hosting</h2>
+        <p>When Moosly intervenes on or integrates with third-party platforms, CMSs, hosting providers, or external tools, Moosly cannot be held liable for:</p>
+        <ul>
+          <li>service interruptions,</li>
+          <li>mandatory updates,</li>
+          <li>failures beyond its reasonable control.</li>
+        </ul>
+      </section>
+
+      <!-- 10. Liability -->
+      <section class="space-y-4">
+        <h2>10. Liability</h2>
+        <p>Moosly is bound by an obligation of means, not an obligation of results.</p>
+        <p>Moosly's total liability, for all damages combined, is limited to the total amount invoiced to the Client over the preceding twelve (12) months.</p>
+        <p>Moosly shall not be liable for:</p>
+        <ul>
+          <li>indirect or consequential damages (including loss of revenue, loss of data, or reputational damage),</li>
+          <li>decisions made by the Client based on the deliverables.</li>
+        </ul>
+      </section>
+
+      <!-- 11. Termination -->
+      <section class="space-y-4">
+        <h2>11. Termination</h2>
+
+        <h3>11.1 Termination by the Client</h3>
+        <p>Any early termination:</p>
+        <ul>
+          <li>must be notified in writing,</li>
+          <li>services already performed remain payable in full,</li>
+          <li>advance payments are non-refundable.</li>
+        </ul>
+
+        <h3>11.2 Termination by Moosly</h3>
+        <p>Moosly may terminate the agreement with immediate effect in case of:</p>
+        <ul>
+          <li>non-payment,</li>
+          <li>serious breach of contractual obligations,</li>
+          <li>behavior preventing proper execution of the services.</li>
+        </ul>
+      </section>
+
+      <!-- 12. Confidentiality -->
+      <section class="space-y-4">
+        <h2>12. Confidentiality</h2>
+        <p>Each party undertakes to keep confidential all information exchanged in the context of the services, unless disclosure is required by law or expressly authorized in writing.</p>
+      </section>
+
+      <!-- 13. Force Majeure -->
+      <section class="space-y-4">
+        <h2>13. Force Majeure</h2>
+        <p>Neither party shall be held liable for failure or delay in performance due to a force majeure event as defined under Belgian law.</p>
+      </section>
+
+      <!-- 14. Governing Law and Jurisdiction -->
+      <section class="space-y-4">
+        <h2>14. Governing Law and Jurisdiction</h2>
+        <p>These Terms are governed by Belgian law.</p>
+        <p>Any dispute shall fall under the exclusive jurisdiction of the courts of the district of Moosly's registered office, unless mandatory legal provisions provide otherwise.</p>
+      </section>
+
+    </div>
+  </Section>
+
+  <!-- Footer -->
+  <Footer variant="minimal" />
+</BaseLayout>
+
+<style>
+  .terms-content h2 {
+    font-family: Outfit, sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-forest);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-natural-beige);
+  }
+
+  .terms-content h3 {
+    font-family: Outfit, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-forest);
+    margin-top: 16px;
+  }
+
+  .terms-content p {
+    font-family: Outfit, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-deep-sage);
+    font-weight: 300;
+  }
+
+  .terms-content ul {
+    list-style-type: disc;
+    padding-left: 24px;
+    font-family: Outfit, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-deep-sage);
+    font-weight: 300;
+  }
+
+  .terms-content ul li {
+    margin-bottom: 8px;
+  }
+
+  .terms-content strong {
+    font-weight: 500;
+    color: var(--color-forest);
+  }
+
+  .info-box {
+    background-color: var(--color-natural-beige);
+    padding: 24px;
+    border-radius: 10px;
+    margin: 16px 0;
+  }
+
+  .info-box p {
+    margin-bottom: 4px;
+  }
+
+  .info-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+</style>
