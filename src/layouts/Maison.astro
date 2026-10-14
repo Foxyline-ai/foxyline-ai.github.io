@@ -103,7 +103,7 @@ const org = {
 
     <slot name="fx" />
 
-    <header class:list={['top on-dark', { 'fx-section': fx }]} {...fxAttrs}>
+    <header class:list={['top on-dark', { 'fx-section tient': fx }]} {...fxAttrs}>
       {fond !== 'none' && <div class="fond" aria-hidden="true">
         <img src="/video/hero-motif.png" alt="" width="1920" height="1014" fetchpriority={fond === 'video' ? 'high' : undefined} />
         {fond === 'video' && (

@@ -31,12 +31,15 @@ const place = (p: string) => (fr ? PLACES_FR[p] ?? p : p);
 const siteHref = (href: string, external: boolean) => (external ? href : `${b}${href}`);
 
 /** Attributs d'une section pilotée : son segment vidéo, son poster de repli, sa hauteur de scroll. */
-const seg = (id: string) => {
+const seg = (id: string, o: { tenue?: boolean; pret?: number } = {}) => {
   const s = timeline.sections.find((x) => x.id === id)!;
+  // Une section « tenue » reste à l'écran le temps d'une tenue (60 vh) avant de partir.
+  const hauteur = o.tenue ? 'calc(100svh + 60vh)' : `${'scrollVh' in s ? s.scrollVh : 100}vh`;
   return {
     'data-video-in': s.in,
     'data-video-out': s.out,
-    style: `--poster-l: url(/fx/poster-16x9-${s.poster}.jpg); --poster-p: url(/fx/poster-9x16-${s.poster}.jpg); min-height: ${'scrollVh' in s ? s.scrollVh : 100}vh;`,
+    'data-pret': o.pret,
+    style: `--poster-l: url(/fx/poster-16x9-${s.poster}.jpg); --poster-p: url(/fx/poster-9x16-${s.poster}.jpg); min-height: ${hauteur};`,
   };
 };
 const hero = timeline.sections.find((x) => x.id === 'hero')!;
@@ -93,8 +96,9 @@ const mots = (s: string) => s.split(' ');
   </div>
 
   <!-- 2 · Chiffres + Approche — papier -->
-  <section class="fx-section etire" aria-labelledby="approche-titre" {...seg('chiffres-approche')}>
-    <div class="wrap cotes" style="border-bottom: 1px solid var(--lin);">
+  <section class="fx-section tient" aria-labelledby="approche-titre" {...seg('chiffres-approche', { tenue: true })}>
+    <div class="tient-in">
+      <div class="wrap cotes" style="border-bottom: 1px solid var(--lin);">
       {d.figures.map((f, i) => (
         <div class="cote-bloc">
           <span class="cote-val" data-count>{f.value}</span>
@@ -102,17 +106,18 @@ const mots = (s: string) => s.split(' ');
           <span class="cote-txt rv" style={`--d:${i}`}>{f.label}</span>
         </div>
       ))}
-    </div>
-    <div class="wrap deux band">
+      </div>
+      <div class="wrap deux band">
       <h2 id="approche-titre" class="h2 titre">{mots(d.approach.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <div class="texte">
         {d.approach.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}
+      </div>
       </div>
     </div>
   </section>
 
   <!-- 3 · Travaux + réseau — sable -->
-  <section id="travaux" class="fx-section sable band" aria-labelledby="travaux-titre" {...seg('travaux')}>
+  <section id="travaux" class="fx-section sable band" aria-labelledby="travaux-titre" {...seg('travaux', { pret: 0 })}>
     <div class="wrap">
       <div class="tete">
         <h2 id="travaux-titre" class="h2 titre">{mots(d.work.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
@@ -191,8 +196,9 @@ const mots = (s: string) => s.split(' ');
   </section>
 
   <!-- 4 · Méthode — papier : une seule cote, quatre repères -->
-  <section id="methode" class="fx-section etire band" aria-labelledby="methode-titre" {...seg('methode')}>
-    <div class="wrap">
+  <section id="methode" class="fx-section tient" aria-labelledby="methode-titre" {...seg('methode', { tenue: true, pret: 0 })}>
+    <div class="tient-in band">
+      <div class="wrap">
       <h2 id="methode-titre" class="h2 titre" style="max-width: 46rem; margin-bottom: 3.5rem;">{mots(d.method.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <ol class="etapes">
         {d.method.steps.map((s, i) => (
@@ -205,12 +211,14 @@ const mots = (s: string) => s.split(' ');
         ))}
       </ol>
       <p class="texte rv" style="margin-top: 3rem;">{d.method.after}</p>
+      </div>
     </div>
   </section>
 
   <!-- 5 · Studio — forêt, renard en filigrane derrière le portrait -->
-  <section id="studio" class="fx-section on-dark etire" aria-labelledby="studio-titre" {...seg('studio')}>
-    <div class="wrap studio">
+  <section id="studio" class="fx-section on-dark tient" aria-labelledby="studio-titre" {...seg('studio', { tenue: true, pret: 0.85 })}>
+    <div class="tient-in">
+      <div class="wrap studio">
       <div class="studio-portrait rv">
         <Image src={portrait} alt={d.studio.alt} widths={[400, 800]} sizes="(min-width: 768px) 26rem, 80vw" loading="lazy" />
       </div>
@@ -221,12 +229,14 @@ const mots = (s: string) => s.split(' ');
         </div>
         <p class="signature rv" style="--d:3"><Mark size={22} color="#E07A45" snout="#E07A45" />Ludovic Laffineur</p>
       </div>
+      </div>
     </div>
   </section>
 
   <!-- 6 · Paroles — papier -->
-  <section class="fx-section etire band" aria-labelledby="paroles-titre" {...seg('paroles')}>
-    <div class="wrap">
+  <section class="fx-section tient" aria-labelledby="paroles-titre" {...seg('paroles', { tenue: true })}>
+    <div class="tient-in band">
+      <div class="wrap">
       <h2 id="paroles-titre" class="h2 titre" style="margin-bottom: 3rem;">{mots(d.voices.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <div class="paroles">
         {voices.map((v, i) => (
@@ -239,12 +249,14 @@ const mots = (s: string) => s.split(' ');
           </figure>
         ))}
       </div>
+      </div>
     </div>
   </section>
 
   <!-- 7 · Contact — forêt ; la ligne de la vidéo se trace et finit sur le museau -->
-  <section id="contact" class="fx-section fin on-dark etire band" aria-labelledby="contact-titre" {...seg('contact')}>
-    <div class="wrap">
+  <section id="contact" class="fx-section fin on-dark tient" aria-labelledby="contact-titre" {...seg('contact', { tenue: true, pret: 0.85 })}>
+    <div class="tient-in band">
+      <div class="wrap">
       <h2 id="contact-titre" class="titre">{mots(d.contact.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <p class="chapo rv">{d.contact.body}</p>
       <div class="actions rv" style="--d:1">
@@ -253,6 +265,7 @@ const mots = (s: string) => s.split(' ');
         </a>
         <a class="ul mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
         <a class="ul" href={`${b}/contact`} style="font-size: 0.9375rem; padding: 0.75rem 0;">{d.contact.brief}</a>
+      </div>
       </div>
     </div>
   </section>
@@ -274,10 +287,25 @@ const mots = (s: string) => s.split(' ');
   // Une section prend la main quand son haut atteint 15 % de la hauteur de l'écran :
   // le texte de la section précédente est alors sorti, son rideau peut balayer l'écran.
   const BASCULE = 0.15;
-  // Le texte d'une section ne se révèle qu'une fois son rideau joué (part du segment).
+  // Quand le fond bascule entre clair et sombre, le texte de la section ne se révèle
+  // qu'une fois son rideau joué (part du segment). Entre deux fonds clairs (papier, sable),
+  // data-pret="0" : le texte se révèle dès qu'il entre à l'écran.
   const PRET = 0.6;
   const LISSAGE = 0.15;
   const FRAME = 1 / 30;
+
+  // Sections tenues : le contenu colle à l'écran pendant la tenue. S'il est plus haut que
+  // l'écran (mobile), il colle par le bas pour qu'on puisse quand même tout lire.
+  // La tenue vaut 60 vh de plus que le contenu, même quand il dépasse l'écran.
+  function colle() {
+    for (const el of document.querySelectorAll<HTMLElement>('.tient-in')) {
+      el.style.setProperty('--colle', `${Math.min(0, innerHeight - el.offsetHeight)}px`);
+      const section = el.parentElement;
+      if (section) section.style.minHeight = `${Math.max(el.offsetHeight, innerHeight) + 0.6 * innerHeight}px`;
+    }
+  }
+  colle();
+  new ResizeObserver(colle).observe(document.body);
 
   if (video && !reduit) demarre(video);
 
@@ -286,7 +314,7 @@ const mots = (s: string) => s.split(' ');
     const portrait = matchMedia('(orientation: portrait)');
     const source = () => (portrait.matches ? video.dataset.portrait : video.dataset.landscape) ?? '';
 
-    type Plage = { el: HTMLElement; start: number; end: number; tin: number; tout: number };
+    type Plage = { el: HTMLElement; start: number; end: number; tin: number; tout: number; pret: number };
     let plages: Plage[] = [];
 
     function mesure() {
@@ -298,15 +326,23 @@ const mots = (s: string) => s.split(' ');
       plages = els.map((el, i) => {
         const start = starts[i];
         const suivante = i < els.length - 1 ? starts[i + 1] : max;
-        // Le segment s'achève (image stable) quand le contenu de la section est centré à l'écran :
-        // les gestes centraux (logo, rideau) se jouent pendant que le texte monte encore,
-        // puis le fond reste posé jusqu'à la section suivante. Le hero garde toute sa plage.
-        const centre = tops[i] + el.offsetHeight / 2 - vh / 2;
-        const end = i === 0 ? Math.max(start + 1, suivante) : Math.min(Math.max(suivante, start + 1), Math.max(start + 0.5 * vh, centre));
+        // Le segment s'achève (image stable) tôt : à l'arrivée pour une section tenue (un peu
+        // après le début de la tenue), au centrage du contenu sinon. Les gestes (rideau, logo)
+        // se jouent pendant que le texte attend, puis le fond reste posé pendant la tenue.
+        // Le hero garde toute sa plage, pour la vague du motif.
+        const tenue = el.classList.contains('tient');
+        const pose = tenue ? tops[i] + 0.45 * vh : tops[i] + el.offsetHeight / 2 - vh / 2;
+        const end = i === 0 ? Math.max(start + 1, suivante) : Math.min(Math.max(suivante, start + 1), Math.max(start + 0.3 * vh, pose));
         const tin = Number(el.dataset.videoIn);
-        return { el, start, end, tin: i === 0 ? Math.max(tin, INTRO_FIN) : tin, tout: Number(el.dataset.videoOut) };
+        return {
+          el, start, end,
+          tin: i === 0 ? Math.max(tin, INTRO_FIN) : tin,
+          tout: Number(el.dataset.videoOut),
+          pret: Number(el.dataset.pret ?? PRET),
+        };
       });
       plages[0]?.el.classList.add('fx-pret');
+      for (const p of plages) if (p.pret === 0) p.el.classList.add('fx-pret');
     }
 
     function cible(y: number) {
@@ -317,7 +353,7 @@ const mots = (s: string) => s.split(' ');
         p = x;
       }
       const k = Math.min(1, Math.max(0, (y - p.start) / (p.end - p.start)));
-      if (k >= PRET) p.el.classList.add('fx-pret');
+      if (k >= p.pret) p.el.classList.add('fx-pret');
       // On s'arrête une image avant la sortie : la dernière image stable du segment.
       return p.tin + k * (p.tout - FRAME - p.tin);
     }

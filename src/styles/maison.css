@@ -354,6 +354,15 @@ html.fx-on .fx-section:not(.fx-pret) .cote-val { opacity: 0; }
 .fx-page .top > .wrap { flex: 1; display: flex; flex-direction: column; width: 100%; }
 .fx-page .hero { flex: 1; justify-content: center; }
 .etire { display: flex; flex-direction: column; justify-content: center; }
+/* Section tenue : son contenu reste à l'écran pendant la tenue, puis part avec le scroll. */
+.tient { position: relative; }
+.tient-in {
+  position: sticky; top: var(--colle, 0px); min-height: 100svh; box-sizing: border-box;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.tient-in > .wrap { width: 100%; }
+.fx-page .top.tient { min-height: calc(100svh + 40vh); overflow: clip; }
+.fx-page .top.tient > .wrap { position: sticky; top: 0; min-height: 100svh; flex: none; }
 .etire > .wrap { width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
