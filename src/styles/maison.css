@@ -140,7 +140,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
 
 /* ---------- En-tête ---------- */
-.top { position: relative; overflow: hidden; }
+.top { position: relative; overflow: clip; }
 /* Fond : le motif de têtes, en vidéo sur l'accueil, en image fixe ailleurs.
    Calé à droite pour que le texte reste toujours sur la forêt nue. */
 .fond { position: absolute; inset: 0; pointer-events: none; }
@@ -237,7 +237,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .parole figcaption strong { font-weight: 500; color: var(--encre); }
 
 /* Contact */
-.fin { position: relative; overflow: hidden; }
+/* clip et non hidden : hidden casserait la tenue (position: sticky) du contenu. */
+.fin { position: relative; overflow: clip; }
 .fin > .wrap { position: relative; display: flex; flex-direction: column; gap: 2rem; align-items: flex-start; }
 .fin h2 { font-size: clamp(2.75rem, 6vw, 5.5rem); line-height: 1; letter-spacing: -0.02em; max-width: 16ch; }
 .mail { font-family: var(--mono); font-size: 0.875rem; padding: 0.75rem 0; }
