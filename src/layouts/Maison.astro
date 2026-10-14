@@ -1,0 +1,122 @@
+---
+import '../styles/maison.css';
+import Mark from '../components/Mark.astro';
+import { UI, EMAIL, base, type Lang } from '../i18n/site';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Chemin de cette page dans l'autre langue, pour le sélecteur. */
+  altPath: string;
+  ogAlt?: string;
+  noindex?: boolean;
+  /** Joue la séquence d'arrivée du symbole (accueil uniquement). */
+  intro?: boolean;
+}
+
+const { lang, title, description, altPath, ogAlt = title, noindex = false, intro = false } = Astro.props;
+
+const t = UI[lang];
+const fr = lang === 'fr';
+const home = `${base(lang)}/`;
+const siteUrl = 'https://foxyline.ai';
+const canonical = new URL(Astro.url.pathname, siteUrl);
+const altURL = new URL(altPath, siteUrl).href;
+const ogImage = fr ? '/og-image-fr.png' : '/og-image.png';
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Foxyline',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  email: EMAIL,
+  founder: { '@type': 'Person', name: 'Ludovic Laffineur' },
+  parentOrganization: { '@type': 'Organization', name: 'Moosly SRL' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Bruxelles', addressCountry: 'BE' },
+  areaServed: ['BE', 'FR'],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical.href} />
+    <link rel="alternate" hreflang={fr ? 'en' : 'fr'} href={altURL} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:site_name" content="Foxyline" />
+    <meta property="og:locale" content={fr ? 'fr_BE' : 'en_BE'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#142B24" />
+
+    <link rel="preload" href="/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <slot name="head" />
+  </head>
+
+  <body>
+    <a class="skip" href="#contenu">{t.skip}</a>
+
+    <header class="top on-dark">
+      <slot name="ligne" />
+      <div class="wrap">
+        <nav class="nav" aria-label={fr ? 'Navigation principale' : 'Main navigation'}>
+          <a href={home} class="marque" aria-label={t.home}>
+            <Mark size={24} color="#F5F2EC" snout="#E07A45" animate={intro} />
+            <span class={intro ? 'nav-in' : undefined}>Foxyline</span>
+          </a>
+          <div class:list={['nav-liens', { 'nav-in': intro }]}>
+            <a class="ul hors-mobile" href={`${home}#travaux`}>{t.nav.work}</a>
+            <a class="ul hors-mobile" href={`${home}#methode`}>{t.nav.method}</a>
+            <a class="ul hors-mobile" href={`${home}#studio`}>{t.nav.studio}</a>
+            <a class="ul" href={`${base(lang)}/contact`}>{t.nav.contact}</a>
+            <a class="ul langue" href={altPath} lang={fr ? 'en' : 'fr'} hreflang={fr ? 'en' : 'fr'} aria-label={t.nav.altLabel}>{t.nav.alt}</a>
+          </div>
+        </nav>
+        <slot name="hero" />
+      </div>
+    </header>
+
+    <main id="contenu" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="pied">
+      <div class="wrap">
+        <span><Mark size={20} color="#B9C2BC" snout="#E07A45" />{t.footer.legal}</span>
+        <span>
+          <a class="ul" href={`${base(lang)}/terms`}>{t.footer.terms}</a>
+          <span aria-hidden="true">·</span>
+          <a class="ul" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          <span aria-hidden="true">·</span>
+          {t.footer.place}
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

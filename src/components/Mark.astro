@@ -1,0 +1,53 @@
+---
+// Le renard écrit à la plume : montants épais comme les fûts de Boska,
+// barre du front en délié. Trois coupes selon la taille d'affichage.
+interface Props {
+  size?: number;
+  color?: string;
+  snout?: string;
+  /** texte : jusqu'à 64 px · display : au-delà · plein : sous 24 px */
+  variant?: 'texte' | 'display' | 'plein';
+  /** Joue la séquence d'arrivée (contour tracé, puis plume, puis museau). */
+  animate?: boolean;
+  label?: string;
+}
+
+const {
+  size = 24,
+  color = 'currentColor',
+  snout = 'var(--renard)',
+  variant = size < 24 ? 'plein' : size > 64 ? 'display' : 'texte',
+  animate = false,
+  label,
+} = Astro.props;
+
+const OUTER = 'M6 6 L22 20 L42 20 L58 6 L58 34 L32 60 L6 34 Z';
+const INNER = {
+  texte: 'M11.06 14.92 L18.35 21.30 L42.33 21.30 L52.94 12.02 L52.94 37.24 L33.66 56.52 L11.06 33.92 Z',
+  display: 'M11.06 14.92 L17.55 20.60 L42.22 20.60 L52.94 11.22 L52.94 38.15 L34.11 56.98 L11.06 33.92 Z',
+};
+const body = variant === 'plein' ? OUTER : `${OUTER} ${INNER[variant]}`;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 64 64"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  {animate && (
+    <path
+      class="lg-draw"
+      pathLength="1"
+      d="M32 60 L6 34 L6 6 L22 20 H42 L58 6 V34 Z"
+      fill="none"
+      stroke={color}
+      stroke-width="1.5"
+      stroke-linejoin="miter"
+    />
+  )}
+  <path class={animate ? 'lg-fill' : undefined} d={body} fill={color} fill-rule="evenodd" />
+  <path class={animate ? 'lg-snout' : undefined} d="M26 36 H38 L32 44 Z" fill={snout} />
+</svg>

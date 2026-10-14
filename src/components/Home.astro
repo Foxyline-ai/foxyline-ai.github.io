@@ -1,0 +1,246 @@
+---
+import { Image } from 'astro:assets';
+import Maison from '../layouts/Maison.astro';
+import Mark from './Mark.astro';
+import { HOME, VOICES, UI, CALENDAR_URL, EMAIL, base, type Lang } from '../i18n/site';
+import { NETWORK_SITES } from '../i18n/network';
+
+import rpe from '../assets/portfolio/rpe.webp';
+import tapio from '../assets/portfolio/tapio.webp';
+import portrait from '../assets/ludovic_laffineur.png';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = HOME[lang];
+const t = UI[lang];
+const voices = VOICES[lang];
+const fr = lang === 'fr';
+const b = base(lang);
+
+// Les lieux du réseau sont saisis en anglais dans network.ts.
+const PLACES_FR: Record<string, string> = {
+  Brussels: 'Bruxelles', Ghent: 'Gand', Antwerp: 'Anvers', Belgium: 'Belgique',
+  'Ixelles · Case study': 'Ixelles · Étude de cas',
+};
+const place = (p: string) => (fr ? PLACES_FR[p] ?? p : p);
+const siteHref = (href: string, external: boolean) => (external ? href : `${b}${href}`);
+---
+
+<Maison
+  lang={lang}
+  title={d.meta.title}
+  description={d.meta.description}
+  ogAlt={d.meta.ogAlt}
+  altPath={fr ? '/' : '/fr/'}
+  intro
+>
+  <!-- La ligne : le contour du renard qui continue, casse à l'angle du menton, s'arrête sur le museau. -->
+  <svg slot="ligne" class="ligne" aria-hidden="true" viewBox="0 0 1440 150" preserveAspectRatio="xMidYMax slice">
+    <path class="ligne-trace" pathLength="1" d="M-20 135 H 900 L 980 55 H 1470" fill="none" stroke="#E07A45" stroke-width="1.5" stroke-linejoin="miter" />
+    <path class="museau-pose" d="M1172 40 H1188 L1180 51 Z" fill="#E07A45" />
+  </svg>
+
+  <div slot="hero" class="hero">
+    <p class="kicker k-in">
+      <svg aria-hidden="true" width="10" height="8" viewBox="0 0 12 8"><path d="M0 0 H12 L6 8 Z" fill="currentColor" /></svg>
+      {d.kicker}
+    </p>
+    <h1 class="display" aria-label={[...d.title, ...d.titleAccent].join(' ')}>
+      <span aria-hidden="true">
+        {d.title.map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}
+        <span class="accent">
+          {d.titleAccent.map((w, i) => <><span class="mot" style={`--i:${i + d.title.length + 2}`}><span>{w}</span></span>{' '}</>)}
+        </span>
+      </span>
+    </h1>
+    <div class="hero-pied">
+      <p class="chapo l-in">{d.sub}</p>
+      <div class="actions b-in">
+        <a class="btn btn-renard" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+          {t.book}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+        </a>
+        <a class="btn btn-trait" href="#travaux">{d.seeWork}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chiffres : chacun est coté -->
+  <section aria-label={fr ? 'En chiffres' : 'In figures'} style="border-bottom: 1px solid var(--lin);">
+    <div class="wrap cotes">
+      {d.figures.map((f) => (
+        <div class="cote-bloc rv">
+          <span class="cote-val">{f.value}</span>
+          <span class="cote" aria-hidden="true"><i /><b />{'end' in f && <i />}</span>
+          <span class="cote-txt">{f.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Approche -->
+  <section class="band" aria-labelledby="approche-titre">
+    <div class="wrap deux">
+      <h2 id="approche-titre" class="h2 rv">{d.approach.title}</h2>
+      <div class="texte rv">
+        {d.approach.body.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Travaux -->
+  <section id="travaux" class="band sable" aria-labelledby="travaux-titre">
+    <div class="wrap">
+      <div class="tete rv">
+        <h2 id="travaux-titre" class="h2">{d.work.title}</h2>
+        <p class="note">{d.work.note}</p>
+      </div>
+
+      <article class="travail">
+        <figure class="capture chev">
+          <Image src={rpe} alt={d.work.rpe.alt} widths={[640, 1040, 1600]} sizes="(min-width: 1280px) 720px, 100vw" loading="lazy" />
+        </figure>
+        <div class="fiche rv">
+          <p class="repere">{d.work.rpe.meta}</p>
+          <h3 class="h3">{d.work.rpe.title}</h3>
+          <p class="texte">{d.work.rpe.body}</p>
+          <div class="chiffres">
+            {d.work.rpe.figures.map((f) => <div><strong>{f.value}</strong><span>{f.label}</span></div>)}
+          </div>
+          <a class="lien" href="https://radiologypartnerseurope.com/" target="_blank" rel="noopener noreferrer">{d.work.rpe.link}</a>
+        </div>
+      </article>
+
+      <div class="travaux-duo">
+        <article>
+          <figure class="capture chev">
+            <Image src={tapio} alt={d.work.tapio.alt} widths={[560, 880, 1200]} sizes="(min-width: 1280px) 600px, 100vw" loading="lazy" />
+          </figure>
+          <div class="fiche rv">
+            <p class="repere">{d.work.tapio.meta}</p>
+            <h3 class="h3">{d.work.tapio.title}</h3>
+            <p class="texte">{d.work.tapio.body}</p>
+            <a class="lien" href="https://www.tapio.eco/" target="_blank" rel="noopener noreferrer">{d.work.tapio.link}</a>
+          </div>
+        </article>
+        <article>
+          <div class="panneau chev" aria-hidden="true">
+            <span class="repere">{d.work.fintech.panelNote}</span>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <span class="cote-val">79</span>
+              <span class="cote"><i /><b /><i /></span>
+              <span class="cote-txt">{d.work.fintech.panel}</span>
+            </div>
+          </div>
+          <div class="fiche rv">
+            <p class="repere">{d.work.fintech.meta}</p>
+            <h3 class="h3">{d.work.fintech.title}</h3>
+            <p class="texte">{d.work.fintech.body}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Réseau -->
+  <section id="reseau" class="band" aria-labelledby="reseau-titre">
+    <div class="wrap">
+      <div class="deux" style="margin-bottom: 3.5rem;">
+        <h2 id="reseau-titre" class="h2 rv">{d.network.title}</h2>
+        <p class="texte rv">{d.network.body}</p>
+      </div>
+      <ul class="planches">
+        {NETWORK_SITES.map((s) => (
+          <li>
+            <a
+              class="planche"
+              href={siteHref(s.href, s.external)}
+              target={s.external ? '_blank' : undefined}
+              rel={s.external ? 'noopener noreferrer' : undefined}
+            >
+              <span class="capture chev">
+                <Image src={s.image} alt={fr ? `Page d’accueil de ${s.name}` : `${s.name} homepage`} widths={[360, 560]} sizes="(min-width: 768px) 25vw, 100vw" loading="lazy" />
+              </span>
+              <span class="planche-nom">
+                <span>{s.name}</span>
+                <span class="repere">{place(s.place)}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Méthode : une seule cote, quatre repères -->
+  <section id="methode" class="band" aria-labelledby="methode-titre" style="padding-top: 0;">
+    <div class="wrap">
+      <h2 id="methode-titre" class="h2 rv" style="max-width: 46rem; margin-bottom: 3.5rem;">{d.method.title}</h2>
+      <ol class="etapes">
+        {d.method.steps.map((s, i) => (
+          <li class="etape">
+            <span class="cote" aria-hidden="true"><i /><b />{i === d.method.steps.length - 1 && <i />}</span>
+            <span class="repere rv">{s.when}</span>
+            <h3 class="rv">{s.name}</h3>
+            <p class="rv">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="texte rv" style="margin-top: 3rem;">{d.method.after}</p>
+    </div>
+  </section>
+
+  <!-- Le studio -->
+  <section id="studio" class="on-dark" aria-labelledby="studio-titre">
+    <div class="wrap studio">
+      <div class="studio-portrait rv">
+        <Image src={portrait} alt={d.studio.alt} widths={[400, 800]} sizes="(min-width: 768px) 26rem, 80vw" loading="lazy" />
+      </div>
+      <div class="studio-texte">
+        <h2 id="studio-titre" class="h2 rv">{d.studio.title}</h2>
+        <div class="texte rv" style="font-size: 1.125rem;">
+          {d.studio.body.map((p) => <p>{p}</p>)}
+        </div>
+        <p class="signature rv"><Mark size={22} color="#E07A45" snout="#E07A45" />Ludovic Laffineur</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paroles -->
+  <section class="band" aria-labelledby="paroles-titre">
+    <div class="wrap">
+      <h2 id="paroles-titre" class="h2 rv" style="margin-bottom: 3rem;">{d.voices.title}</h2>
+      <div class="paroles">
+        {voices.map((v) => (
+          <figure class="parole rv">
+            <blockquote>{fr ? `« ${v.excerpt} »` : `“${v.excerpt}”`}</blockquote>
+            <figcaption>
+              <Image src={v.portrait} alt="" widths={[112]} loading="lazy" />
+              <span><strong>{v.name}</strong><br />{v.role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact : la ligne revient et descend à l'angle du menton -->
+  <section id="contact" class="fin on-dark band" aria-labelledby="contact-titre">
+    <svg class="ligne sweep" aria-hidden="true" viewBox="0 0 1440 150" preserveAspectRatio="xMidYMax slice">
+      <path d="M-20 30 H 1000 L 1080 110 H 1470" fill="none" stroke="#E07A45" stroke-width="1.5" stroke-linejoin="miter" />
+    </svg>
+    <div class="wrap">
+      <h2 id="contact-titre" class="rv">{d.contact.title}</h2>
+      <p class="chapo rv">{d.contact.body}</p>
+      <div class="actions rv">
+        <a class="btn btn-renard" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+          {t.book}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+        </a>
+        <a class="ul mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <a class="ul" href={`${b}/contact`} style="font-size: 0.9375rem; padding: 0.75rem 0;">{d.contact.brief}</a>
+      </div>
+    </div>
+  </section>
+</Maison>

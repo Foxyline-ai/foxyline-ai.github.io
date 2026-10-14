@@ -1,0 +1,190 @@
+---
+import { Image } from 'astro:assets';
+import Maison from '../layouts/Maison.astro';
+import { UI, VOICES, CALENDAR_URL, base, type Lang } from '../i18n/site';
+
+import lacambreHome from '../assets/radiologielacambre/lacambre-home.png';
+import lacambreBooking from '../assets/radiologielacambre/lacambre-booking.png';
+import lacambreGeo from '../assets/radiologielacambre/lacambre-chatgpt-geo.png';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = UI[lang];
+const fr = lang === 'fr';
+const path = '/case-studies/radiologie-la-cambre';
+const altPath = fr ? path : `/fr${path}`;
+
+// Maxime Bersou exerce dans le réseau : son avis complet a sa place ici.
+const voice = VOICES[lang][0];
+
+const c = fr
+  ? {
+      meta: {
+        title: 'Radiologie La Cambre · étude de cas Foxyline',
+        description:
+          'Un cabinet de radiologie bruxellois passé de zéro à la première page en 90 jours : refonte, référencement local et visibilité dans les moteurs IA.',
+      },
+      kicker: 'Étude de cas · Ixelles · 2025',
+      title: 'De zéro à la',
+      titleAccent: 'première page.',
+      sub: 'Un cabinet de radiologie à Ixelles, premier site du réseau à recevoir le traitement complet : architecture, contenu local et présence dans les réponses des moteurs IA.',
+      visit: 'Voir le site',
+      figures: [
+        { value: '+37 %', label: 'clics, en un an' },
+        { value: '11,2', label: 'position moyenne, contre 14,2' },
+        { value: '1 272', label: 'visites sur 90 jours' },
+      ],
+      figNote:
+        'Mesuré dans Search Console sur la Belgique, période de 90 jours au 26 août 2026 comparée à la même période un an plus tôt.',
+      blocks: [
+        {
+          title: 'Une page d’accueil construite autour du patient.',
+          body: 'Prise de rendez-vous accessible dès le premier écran, examens et tarifs lisibles sans chercher, et une version néerlandaise complète, écrite et non traduite automatiquement.',
+          image: lacambreHome,
+          alt: 'Page d’accueil de radiologielacambre.be',
+        },
+        {
+          title: 'Le parcours qui compte vraiment.',
+          body: 'Le reste du site existe pour amener ici. Le tunnel a été raccourci et le suivi installé pendant la construction, pas ajouté après coup.',
+          image: lacambreBooking,
+          alt: 'Parcours de prise de rendez-vous de Radiologie La Cambre',
+        },
+        {
+          title: 'Cité en réponse, pas seulement classé.',
+          body: 'Les patients demandent désormais « un radiologue à Ixelles » à ChatGPT avant d’ouvrir Google. Le contenu a été structuré pour être repris dans ces réponses.',
+          image: lacambreGeo,
+          alt: 'Réponse de ChatGPT citant Radiologie La Cambre',
+        },
+      ],
+      cascadeTitle: 'Un site, puis un socle pour tout le réseau.',
+      cascadeBody:
+        'Ce qui a marché ici est devenu le modèle décliné sur les dix-sept autres cabinets : même architecture, même chaîne de déploiement, contenu et langue réglés localement. Chaque cabinet ressort dans sa ville au lieu de concurrencer les autres.',
+      back: 'Voir les dix-huit cabinets',
+      endTitle: 'Un appel de trente minutes pour commencer.',
+    }
+  : {
+      meta: {
+        title: 'Radiologie La Cambre · Foxyline case study',
+        description:
+          'A Brussels radiology practice from zero to page one in 90 days: rebuild, local search and visibility inside AI answers.',
+      },
+      kicker: 'Case study · Ixelles · 2025',
+      title: 'From zero to',
+      titleAccent: 'page one.',
+      sub: 'A radiology practice in Ixelles, the first site in the network to get the full treatment: architecture, local content and a presence inside AI answers.',
+      visit: 'Visit the site',
+      figures: [
+        { value: '+37%', label: 'clicks, year on year' },
+        { value: '11.2', label: 'average position, from 14.2' },
+        { value: '1,272', label: 'visits over 90 days' },
+      ],
+      figNote:
+        'Measured in Search Console for Belgium, the 90 days to 26 Aug 2026 against the same period a year earlier.',
+      blocks: [
+        {
+          title: 'A homepage built around the patient.',
+          body: 'Booking reachable from the first screen, examinations and pricing legible without hunting, and a full Dutch version, written rather than machine-translated.',
+          image: lacambreHome,
+          alt: 'Homepage of radiologielacambre.be',
+        },
+        {
+          title: 'The journey that actually matters.',
+          body: 'The rest of the site exists to bring people here. The funnel was shortened and tracking was installed during the build rather than added afterwards.',
+          image: lacambreBooking,
+          alt: 'Radiologie La Cambre booking journey',
+        },
+        {
+          title: 'Cited in the answer, not just ranked.',
+          body: 'Patients now ask ChatGPT for “a radiologist in Ixelles” before they open Google. The content was structured to be picked up in those answers.',
+          image: lacambreGeo,
+          alt: 'ChatGPT answer citing Radiologie La Cambre',
+        },
+      ],
+      cascadeTitle: 'One site, then a backbone for the whole network.',
+      cascadeBody:
+        'What worked here became the template for the other seventeen practices: same architecture, same deployment pipeline, content and language set locally. Each practice ranks in its own town instead of competing with the others.',
+      back: 'See all eighteen practices',
+      endTitle: 'A thirty-minute call to start.',
+    };
+---
+
+<Maison lang={lang} title={c.meta.title} description={c.meta.description} altPath={altPath}>
+  <svg slot="ligne" class="ligne" aria-hidden="true" viewBox="0 0 1440 150" preserveAspectRatio="xMidYMax slice">
+    <path d="M-20 135 H 960 L 1040 55 H 1470" fill="none" stroke="#E07A45" stroke-width="1.5" stroke-linejoin="miter" />
+  </svg>
+
+  <div slot="hero" class="hero court">
+    <p class="kicker">
+      <svg aria-hidden="true" width="10" height="8" viewBox="0 0 12 8"><path d="M0 0 H12 L6 8 Z" fill="currentColor" /></svg>
+      {c.kicker}
+    </p>
+    <h1 class="display">{c.title} <span class="accent">{c.titleAccent}</span></h1>
+    <div class="hero-pied">
+      <p class="chapo">{c.sub}</p>
+      <a class="btn btn-renard" href="https://radiologielacambre.be/" target="_blank" rel="noopener noreferrer">
+        {c.visit}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+      </a>
+    </div>
+  </div>
+
+  <section aria-label={fr ? 'En chiffres' : 'In figures'} style="border-bottom: 1px solid var(--lin);">
+    <div class="wrap">
+      <div class="cotes">
+        {c.figures.map((f) => (
+          <div class="cote-bloc rv">
+            <span class="cote-val">{f.value}</span>
+            <span class="cote" aria-hidden="true"><i /><b /></span>
+            <span class="cote-txt">{f.label}</span>
+          </div>
+        ))}
+      </div>
+      <p class="note" style="padding-bottom: 2rem; max-width: 46rem;">{c.figNote}</p>
+    </div>
+  </section>
+
+  {c.blocks.map((b, i) => (
+    <section class:list={['band', { sable: i % 2 === 1 }]}>
+      <div class="wrap">
+        <div class="deux" style="margin-bottom: 3rem;">
+          <h2 class="h2 rv">{b.title}</h2>
+          <p class="texte rv">{b.body}</p>
+        </div>
+        <figure class="capture libre chev">
+          <Image src={b.image} alt={b.alt} widths={[760, 1240, 1800]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+  ))}
+
+  <section class="band" aria-labelledby="suite-titre">
+    <div class="wrap">
+      <div class="deux">
+        <h2 id="suite-titre" class="h2 rv">{c.cascadeTitle}</h2>
+        <div class="texte rv">
+          <p>{c.cascadeBody}</p>
+          <p><a class="lien" href={`${base(lang)}/#reseau`}>{c.back}</a></p>
+        </div>
+      </div>
+
+      <figure class="parole rv" style="margin-top: 5rem; padding-top: 3rem; border-top: 1px solid var(--lin); max-width: 56rem;">
+        <blockquote>{fr ? `« ${voice.quote} »` : `“${voice.quote}”`}</blockquote>
+        <figcaption>
+          <Image src={voice.portrait} alt="" widths={[112]} loading="lazy" />
+          <span><strong>{voice.name}</strong><br />{voice.role}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="fin on-dark band" aria-labelledby="fin-titre">
+    <div class="wrap">
+      <h2 id="fin-titre" class="rv">{c.endTitle}</h2>
+      <a class="btn btn-renard rv" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+        {t.book}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+      </a>
+    </div>
+  </section>
+</Maison>

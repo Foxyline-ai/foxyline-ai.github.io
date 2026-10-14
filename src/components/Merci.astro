@@ -1,0 +1,57 @@
+---
+import Maison from '../layouts/Maison.astro';
+import { EMAIL, base, type Lang } from '../i18n/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const fr = lang === 'fr';
+const altPath = fr ? '/merci' : '/fr/merci';
+
+const c = fr ? {
+  meta: { title: 'Brief reçu · Foxyline', description: 'Votre brief est arrivé. Réponse sous un jour ouvré.' },
+  title: 'Brief', titleAccent: 'bien reçu.',
+  sub: 'Vous recevez une réponse sous un jour ouvré, avec une première lecture du contexte et une prochaine étape.',
+  steps: [
+    { when: 'Aujourd’hui', name: 'Je lis le brief', body: 'C’est moi qui le lis. Rien n’est sous-traité.' },
+    { when: 'Sous un jour ouvré', name: 'Vous avez une réponse', body: 'Un avis franc sur l’adéquation, et la suite proposée.' },
+    { when: 'Ensuite', name: 'Appel de trente minutes', body: 'Si le projet est pour moi, on parle du travail et de l’indicateur.' },
+  ],
+  back: 'Retour à l’accueil', or: 'Urgent ? Écrivez à',
+} : {
+  meta: { title: 'Brief received · Foxyline', description: 'Your brief arrived. Reply within one working day.' },
+  title: 'Brief', titleAccent: 'received.',
+  sub: 'You get a reply within one working day, with a first read on the context and a proposed next step.',
+  steps: [
+    { when: 'Today', name: 'I read the brief', body: 'I read it myself. Nothing is outsourced.' },
+    { when: 'Within one working day', name: 'You hear back', body: 'An honest read on the fit, and the proposed next step.' },
+    { when: 'Then', name: 'Thirty-minute call', body: 'If the project is a fit, we talk about the work and the indicator.' },
+  ],
+  back: 'Back home', or: 'Urgent? Write to',
+};
+---
+
+<Maison lang={lang} title={c.meta.title} description={c.meta.description} altPath={altPath} noindex>
+  <div slot="hero" class="hero court">
+    <h1 class="display">{c.title} <span class="accent">{c.titleAccent}</span></h1>
+    <p class="chapo">{c.sub}</p>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <ol class="etapes">
+        {c.steps.map((s, i) => (
+          <li class="etape">
+            <span class="cote" aria-hidden="true"><i /><b />{i === c.steps.length - 1 && <i />}</span>
+            <span class="repere">{s.when}</span>
+            <h2 style="font-size: 1.625rem;">{s.name}</h2>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="actions" style="margin-top: 4rem;">
+        <a class="btn btn-trait" href={`${base(lang)}/`}>{c.back}</a>
+        <span style="font-size: 0.9375rem; color: var(--encre-2);">{c.or} <a class="lien" href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
+      </div>
+    </div>
+  </section>
+</Maison>

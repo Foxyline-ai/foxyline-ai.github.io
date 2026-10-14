@@ -1,5 +1,5 @@
 ---
-import Vermillon from '../layouts/Vermillon.astro';
+import Maison from '../layouts/Maison.astro';
 
 interface Props {
   lang: 'en' | 'fr';
@@ -11,7 +11,7 @@ const altPath = lang === 'en' ? '/fr/terms' : '/terms';
 const C = {
   en: {
     meta: {
-      title: 'Terms — Foxyline',
+      title: 'Terms · Foxyline',
       description:
         'General Terms and Conditions for Foxyline by Moosly. Belgian law applies.',
     },
@@ -178,7 +178,7 @@ const C = {
 
   fr: {
     meta: {
-      title: 'Conditions générales — Foxyline',
+      title: 'Conditions générales · Foxyline',
       description:
         'Conditions générales de vente de Foxyline by Moosly. Le droit belge est applicable.',
     },
@@ -348,20 +348,19 @@ const C = {
 const t = C[lang];
 ---
 
-<Vermillon
+<Maison
   lang={lang}
   title={t.meta.title}
   description={t.meta.description}
   altPath={altPath}
 >
-  <main id="main" tabindex="-1">
-    <section class="wrap hero">
-      <h1 class="big">{t.hero.title}</h1>
-      <p class="lede" style="margin-top: var(--s6);">{t.hero.sub}</p>
-    </section>
+  <div slot="hero" class="hero court">
+    <h1 class="display" style="font-size: clamp(2.5rem, 6vw, 4.5rem);">{t.hero.title}</h1>
+    <p class="chapo">{t.hero.sub}</p>
+  </div>
 
-    <section class="wrap band">
-      <div class="terms-content">
+    <section class="band">
+      <div class="wrap"><div class="prose">
 
       <section>
         <h2>{lang === 'fr' ? '1. Identification du prestataire' : '1. Service Provider Identification'}</h2>
@@ -489,51 +488,6 @@ const t = C[lang];
         <p>{t.s15.p2}</p>
       </section>
 
-    </div>
-      </div>
+    </div></div>
     </section>
-  </main>
-</Vermillon>
-
-<style is:global>
-  /* Legal prose: one measured column, ruled sections, no cards. */
-  .terms-content { max-width: 74ch; }
-  .terms-content section {
-    padding-top: var(--s10);
-    margin-top: var(--s10);
-    border-top: 1px solid var(--rule);
-  }
-  .terms-content section:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
-  .terms-content h2 {
-    margin: 0 0 var(--s5);
-    font-variation-settings: "wdth" 86, "wght" 700;
-    font-size: clamp(21px, 1.9vw, 27px);
-    line-height: 1.1;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
-  }
-  .terms-content h3 {
-    margin: var(--s8) 0 var(--s3);
-    font-variation-settings: "wght" 600;
-    font-size: 17px;
-    letter-spacing: -0.01em;
-  }
-  .terms-content p { margin: 0 0 1em; font-size: 16px; line-height: 1.62; color: var(--ink-2); }
-  .terms-content ul { margin: 0 0 1em; padding-left: 1.1em; }
-  .terms-content li { font-size: 16px; line-height: 1.62; color: var(--ink-2); margin-bottom: 6px; }
-  .terms-content strong { font-variation-settings: "wght" 600; color: var(--ink); }
-  .terms-content p a, .terms-content li a {
-    color: var(--ink);
-    background-image: linear-gradient(var(--red), var(--red));
-    background-size: 100% 2px; background-repeat: no-repeat; background-position: 0 100%;
-    padding-bottom: 1px;
-  }
-  .terms-content .info-box {
-    background: var(--paper-2);
-    padding: var(--s6);
-    margin: var(--s6) 0;
-    font-family: var(--mono);
-  }
-  .terms-content .info-box p { margin: 0 0 4px; font-family: var(--mono); font-size: 13px; color: var(--ink); }
-  .terms-content .info-box p:last-child { margin: 0; }
-</style>
+</Maison>
