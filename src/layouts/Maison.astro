@@ -13,9 +13,11 @@ interface Props {
   noindex?: boolean;
   /** Joue la séquence d'arrivée du symbole (accueil uniquement). */
   intro?: boolean;
+  /** Fond de l'en-tête : motif de têtes animé (vidéo en boucle) ou son image fixe. */
+  fond?: 'video' | 'image';
 }
 
-const { lang, title, description, altPath, ogAlt = title, noindex = false, intro = false } = Astro.props;
+const { lang, title, description, altPath, ogAlt = title, noindex = false, intro = false, fond = 'image' } = Astro.props;
 
 const t = UI[lang];
 const fr = lang === 'fr';
@@ -83,7 +85,15 @@ const org = {
     <a class="skip" href="#contenu">{t.skip}</a>
 
     <header class="top on-dark">
-      <slot name="ligne" />
+      <div class="fond" aria-hidden="true">
+        <img src="/video/hero-motif.png" alt="" width="1920" height="1014" fetchpriority={fond === 'video' ? 'high' : undefined} />
+        {fond === 'video' && (
+          <video autoplay muted loop playsinline preload="auto" poster="/video/hero-motif.png" disablepictureinpicture>
+            <source src="/video/hero-motif.webm" type="video/webm" />
+            <source src="/video/hero-motif.mp4" type="video/mp4" />
+          </video>
+        )}
+      </div>
       <div class="wrap">
         <nav class="nav" aria-label={fr ? 'Navigation principale' : 'Main navigation'}>
           <a href={home} class="marque" aria-label={t.home}>

@@ -141,8 +141,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* ---------- En-tête ---------- */
 .top { position: relative; overflow: hidden; }
-/* La ligne vit dans une bande au pied de l'en-tête : elle ne croise jamais le texte. */
-.ligne { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 150px; pointer-events: none; }
+/* Fond : le motif de têtes, en vidéo sur l'accueil, en image fixe ailleurs.
+   Calé à droite pour que le texte reste toujours sur la forêt nue. */
+.fond { position: absolute; inset: 0; pointer-events: none; }
+.fond img, .fond video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+@media (max-width: 767px) { .fond { opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) { .fond video { display: none; } }
 .top > .wrap { position: relative; }
 .nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 1rem; padding: 1.25rem 0; }
 .marque { display: flex; align-items: center; gap: 0.75rem; min-height: 3rem; text-decoration: none; }
@@ -152,7 +156,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .nav-liens .langue { font-family: var(--mono); font-size: 0.75rem; color: var(--brume); }
 @media (max-width: 640px) { .nav-liens .hors-mobile { display: none; } .nav-liens { gap: 0 1.25rem; } }
 
-.hero { padding: clamp(4rem, 10vw, 7rem) 0 8.5rem; display: flex; flex-direction: column; gap: 2.5rem; }
+.hero { padding: clamp(4rem, 10vw, 7rem) 0 clamp(4.5rem, 9vw, 7rem); display: flex; flex-direction: column; gap: 2.5rem; }
 .hero-pied { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 2rem; }
 .hero.court { gap: 2rem; }
 .hero.court .display { font-size: clamp(2.75rem, 7vw, 6rem); max-width: 16ch; }
@@ -234,7 +238,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* Contact */
 .fin { position: relative; overflow: hidden; }
-.fin.band { padding-bottom: 9.5rem; }
 .fin > .wrap { position: relative; display: flex; flex-direction: column; gap: 2rem; align-items: flex-start; }
 .fin h2 { font-size: clamp(2.75rem, 6vw, 5.5rem); line-height: 1; letter-spacing: -0.02em; max-width: 16ch; }
 .mail { font-family: var(--mono); font-size: 0.875rem; padding: 0.75rem 0; }
@@ -298,8 +301,6 @@ textarea.saisie { resize: vertical; }
 .b-in { animation: rise-in 0.7s var(--pose) 1.2s both; }
 .mot { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
 .mot > span { display: inline-block; animation: word-in 0.8s var(--pose) both; animation-delay: calc(0.45s + var(--i, 0) * 0.05s); }
-.ligne-trace { stroke-dasharray: 1; animation: trace-in 1.6s var(--trace) 0.9s both; }
-.museau-pose { transform-box: fill-box; animation: snout-in 0.3s var(--pose) 2.4s both; }
 
 @supports (animation-timeline: view()) {
   @keyframes rv { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
@@ -311,13 +312,11 @@ textarea.saisie { resize: vertical; }
   .chev { animation: chev linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
   .chev img { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 55%; }
   .cote b { transform-origin: left; animation: cote linear both; animation-timeline: view(); animation-range: entry 20% entry 100%; }
-  .sweep { animation: sweep linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lg-draw, .lg-fill, .lg-snout, .nav-in, .k-in, .l-in, .b-in, .mot > span, .ligne-trace, .museau-pose,
-  .rv, .chev, .chev img, .cote b, .sweep { animation: none !important; }
-  .ligne-trace { stroke-dasharray: none; }
+  .lg-draw, .lg-fill, .lg-snout, .nav-in, .k-in, .l-in, .b-in, .mot > span,
+  .rv, .chev, .chev img, .cote b { animation: none !important; }
   .lg-draw { display: none; }
   .ul::after, .btn .tri { transition: none; }
 }
