@@ -1,0 +1,65 @@
+---
+import Vermillon from '../layouts/Vermillon.astro';
+import { V, EMAIL, type Lang } from '../i18n/vermillon';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = V[lang];
+const fr = lang === 'fr';
+const altPath = fr ? '/merci' : '/fr/merci';
+
+const c = fr ? {
+  meta: { title: 'Brief reçu — Foxyline', description: 'Votre brief est arrivé. Réponse sous un jour ouvré.' },
+  lineA: 'Brief', lineB: 'bien', lineC: 'reçu.',
+  sub: 'Réponse sous un jour ouvré, avec une première lecture du contexte et une prochaine étape.',
+  steps: [
+    ['01', 'Je lis le brief', 'Dans les heures qui suivent. C’est moi qui le lis — rien n’est sous-traité.'],
+    ['02', 'Vous avez une réponse', 'Sous un jour ouvré. Un avis franc sur l’adéquation, et la suite.'],
+    ['03', 'Appel de trente minutes', 'Si ça correspond, une conversation directe sur le travail et l’indicateur.'],
+  ],
+  back: 'Retour à l’accueil', or: 'Urgent ? Écrivez à',
+} : {
+  meta: { title: 'Brief received — Foxyline', description: 'Your brief arrived. Reply within one working day.' },
+  lineA: 'Brief', lineB: 'well', lineC: 'received.',
+  sub: 'You get a reply within one working day, with a first read on the context and a proposed next step.',
+  steps: [
+    ['01', 'I read the brief', 'Within hours. I read it myself — nothing is outsourced.'],
+    ['02', 'You hear back', 'Within one working day. An honest read on the fit, and what comes next.'],
+    ['03', 'Thirty-minute call', 'If there is a fit, a direct conversation about the work and the indicator.'],
+  ],
+  back: 'Back home', or: 'Urgent? Write to',
+};
+---
+
+<Vermillon lang={lang} title={c.meta.title} description={c.meta.description} altPath={altPath} noindex>
+  <main id="main" tabindex="-1">
+    <section class="wrap hero">
+      <h1 class="mega">
+        <span class="hero-line">{c.lineA}</span>
+        <span class="hero-line">{c.lineB}</span>
+        <span class="hero-line"><span class="flat">{c.lineC}</span></span>
+      </h1>
+      <p class="lede hero-lede">{c.sub}</p>
+    </section>
+
+    <section class="wrap band">
+      <div class="ledger">
+        {c.steps.map(([n, label, desc]) => (
+          <article class="case">
+            <span class="tag case-n">{n}</span>
+            <div class="case-main">
+              <h2 class="row-name">{label}</h2>
+              <p class="case-outcome">{desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p style="margin-top: var(--s10); display:flex; flex-wrap:wrap; gap:var(--s5); align-items:center;">
+        <a class="go-2" href={fr ? '/fr/' : '/'}>{c.back}</a>
+        <span style="font-size:15px;color:var(--ink-2);">
+          {c.or} <a class="ul" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </span>
+      </p>
+    </section>
+  </main>
+</Vermillon>

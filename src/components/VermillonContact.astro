@@ -1,0 +1,180 @@
+---
+import Vermillon from '../layouts/Vermillon.astro';
+import { V, CALENDAR_URL, EMAIL, type Lang } from '../i18n/vermillon';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = V[lang];
+const fr = lang === 'fr';
+const altPath = fr ? '/contact' : '/fr/contact';
+const redirectUrl = fr ? 'https://foxyline.ai/fr/merci' : 'https://foxyline.ai/merci';
+
+const c = fr
+  ? {
+      meta: {
+        title: 'Parler d’un projet — Foxyline',
+        description:
+          'Décrivez le contexte en quelques lignes, ou réservez trente minutes directement. Réponse sous un jour ouvré.',
+      },
+      lineA: 'Dites-moi',
+      lineB: 'ce qui',
+      lineC: 'vous bloque.',
+      sub: 'Deux façons de commencer. Trente minutes dans mon agenda, ou quelques lignes ici. Dans les deux cas, vous avez une réponse sous un jour ouvré.',
+      bookMark: '01 / Le plus rapide',
+      bookTitle: 'Trente minutes, sans deck.',
+      bookBody:
+        'Vous décrivez le contexte, je vous dis si je suis la bonne personne. Si je ne le suis pas, vous l’entendez pendant l’appel.',
+      formMark: '02 / Ou par écrit',
+      formTitle: 'Envoyez le contexte.',
+      f: {
+        name: 'Nom', namePh: 'Prénom et nom',
+        email: 'E-mail', emailPh: 'vous@entreprise.be',
+        org: 'Organisation', orgPh: 'Nom de la société',
+        type: 'Type de projet',
+        types: ['Refonte de site', 'Réseau multi-sites', 'Production de contenu', 'SEO / visibilité IA', 'Autre'],
+        ctx: 'Le contexte',
+        ctxPh: 'Ce que porte votre équipe aujourd’hui, et ce qui coince.',
+        scope: 'Nombre de sites', scopePh: 'ex. 1, ou 12 entités',
+        when: 'Échéance',
+        whens: ['Dès que possible', 'Ce trimestre', 'Le prochain', 'Je me renseigne'],
+        submit: 'Envoyer le brief',
+        legal: 'Ces informations servent uniquement à vous répondre. Elles ne rejoignent aucune liste marketing.',
+      },
+      orCall: 'ou écrivez à',
+    }
+  : {
+      meta: {
+        title: 'Talk about a project — Foxyline',
+        description:
+          'Describe the context in a few lines, or book thirty minutes directly. Reply within one working day.',
+      },
+      lineA: 'Tell me',
+      lineB: 'what is',
+      lineC: 'blocking you.',
+      sub: 'Two ways to start. Thirty minutes in my calendar, or a few lines here. Either way you get a reply within one working day.',
+      bookMark: '01 / Fastest',
+      bookTitle: 'Thirty minutes, no deck.',
+      bookBody:
+        'You describe the context, I tell you whether I am the right person for it. If I am not, you hear it on the call.',
+      formMark: '02 / Or in writing',
+      formTitle: 'Send the context.',
+      f: {
+        name: 'Name', namePh: 'First and last name',
+        email: 'Email', emailPh: 'you@company.com',
+        org: 'Organisation', orgPh: 'Company name',
+        type: 'Project type',
+        types: ['Website rebuild', 'Multi-site network', 'Content production', 'SEO / AI visibility', 'Something else'],
+        ctx: 'The context',
+        ctxPh: 'What your team is carrying right now, and where it jams.',
+        scope: 'Number of sites', scopePh: 'e.g. 1, or 12 entities',
+        when: 'Timing',
+        whens: ['As soon as possible', 'This quarter', 'Next quarter', 'Just looking'],
+        submit: 'Send the brief',
+        legal: 'These details are used only to reply to you. They never join a marketing list.',
+      },
+      orCall: 'or write to',
+    };
+---
+
+<Vermillon
+  lang={lang}
+  title={c.meta.title}
+  description={c.meta.description}
+  altPath={altPath}
+>
+  <main id="main" tabindex="-1">
+    <section class="wrap hero">
+      <p class="tag">{d.hero.kicker}</p>
+      <h1 class="mega" style="margin-top: var(--s8);">
+        <span class="hero-line">{c.lineA}</span>
+        <span class="hero-line">{c.lineB}</span>
+        <span class="hero-line"><span class="flat">{c.lineC}</span></span>
+      </h1>
+      <p class="lede hero-lede">{c.sub}</p>
+    </section>
+
+    <!-- 01 · BOOK -->
+    <section class="wrap band">
+      <div class="band-head">
+        <h2 class="big">{c.bookTitle}</h2>
+        <p class="tag">{c.bookMark}</p>
+      </div>
+      <p class="body" style="margin-bottom: var(--s8);">{c.bookBody}</p>
+      <a class="go" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+        {d.booking.cta}<span class="arw" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <!-- 02 · BRIEF -->
+    <section class="wrap band">
+      <div class="band-head">
+        <h2 class="big">{c.formTitle}</h2>
+        <p class="tag">{c.formMark}</p>
+      </div>
+
+      <form class="brief" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="16cd1d2b-c371-4aa8-ab8f-2cc13604ca99" />
+        <input type="hidden" name="redirect" value={redirectUrl} />
+        <input type="hidden" name="from_name" value="Foxyline · Brief" />
+        <input type="hidden" name="subject" value="New brief from foxyline.ai" />
+        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
+
+        <div class="brief-row">
+          <p class="fld">
+            <label class="tag" for="name">{c.f.name}</label>
+            <input class="in" type="text" name="name" id="name" required placeholder={c.f.namePh} autocomplete="name" />
+          </p>
+          <p class="fld">
+            <label class="tag" for="email">{c.f.email}</label>
+            <input class="in" type="email" name="email" id="email" required placeholder={c.f.emailPh} autocomplete="email" />
+          </p>
+        </div>
+
+        <div class="brief-row">
+          <p class="fld">
+            <label class="tag" for="org">{c.f.org}</label>
+            <input class="in" type="text" name="organization" id="org" placeholder={c.f.orgPh} autocomplete="organization" />
+          </p>
+          <p class="fld">
+            <label class="tag" for="type">{c.f.type}</label>
+            <select class="in" name="project_type" id="type" required>
+              {c.f.types.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </p>
+        </div>
+
+        <p class="fld">
+          <label class="tag" for="ctx">{c.f.ctx}</label>
+          <textarea class="in" name="context" id="ctx" required rows="6" placeholder={c.f.ctxPh}></textarea>
+        </p>
+
+        <div class="brief-row">
+          <p class="fld">
+            <label class="tag" for="count">{c.f.scope}</label>
+            <input class="in" type="text" name="site_count" id="count" placeholder={c.f.scopePh} />
+          </p>
+          <p class="fld">
+            <label class="tag" for="when">{c.f.when}</label>
+            <select class="in" name="timeline" id="when">
+              {c.f.whens.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </p>
+        </div>
+
+        <div class="brief-send">
+          <button class="go" type="submit">
+            {c.f.submit}<span class="arw" aria-hidden="true">→</span>
+          </button>
+          <span class="brief-or">
+            {c.orCall} <a class="ul" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </span>
+        </div>
+
+        <p class="brief-legal tag">{c.f.legal}</p>
+      </form>
+    </section>
+  </main>
+</Vermillon>

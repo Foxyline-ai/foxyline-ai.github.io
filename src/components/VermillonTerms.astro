@@ -1,0 +1,539 @@
+---
+import Vermillon from '../layouts/Vermillon.astro';
+
+interface Props {
+  lang: 'en' | 'fr';
+}
+
+const { lang } = Astro.props;
+const altPath = lang === 'en' ? '/fr/terms' : '/terms';
+
+const C = {
+  en: {
+    meta: {
+      title: 'Terms — Foxyline',
+      description:
+        'General Terms and Conditions for Foxyline by Moosly. Belgian law applies.',
+    },
+    hero: {
+      title: 'General Terms & Conditions',
+      sub: 'Foxyline by Moosly · Last update: 2026.01.03 · Belgian law applies.',
+    },
+    intro:
+      'These General Terms and Conditions (the "Terms") govern the contractual relationship between:',
+    ofWhich: '(hereinafter referred to as "Moosly" or the "Service Provider")',
+    brand:
+      'The services are marketed under the brand name <strong>Foxyline by Moosly</strong>.',
+    s2: {
+      h: '2. Scope of Application',
+      p1: 'These Terms apply to all services provided by Foxyline by Moosly, including but not limited to:',
+      items: [
+        'website creation and redesign',
+        'UX / UI design',
+        'web development',
+        'SEO / GEO structuring',
+        'digital strategy and consulting',
+        'maintenance and support services',
+      ],
+      p2: 'Any order placed implies full and unconditional acceptance of these Terms.',
+      p3: 'These Terms prevail over any conflicting client documentation unless expressly agreed otherwise in writing.',
+    },
+    s3: {
+      h: '3. Quotes and Orders',
+      h1: '3.1 Quotes',
+      p1: 'All services are subject to a written quotation, valid for 30 days, unless stated otherwise.',
+      h2: '3.2 Order Confirmation',
+      p2: 'An order is deemed final upon:',
+      items: [
+        'written approval of the quotation (signature or explicit email confirmation), and',
+        'payment of any required advance payment.',
+      ],
+      p3: 'Any request for changes after approval may result in a revised quotation or additional invoicing.',
+    },
+    s4: {
+      h: '4. Pricing and Financial Conditions',
+      h1: '4.1 Prices',
+      p1: 'All prices are expressed in euros and are exclusive of VAT, unless stated otherwise.',
+      h2: '4.2 Advance Payments',
+      p2: 'Unless otherwise agreed:',
+      items: [
+        'an advance payment of 30% to 50% is required upon order for project-based work,',
+        'the balance is payable upon delivery or according to the agreed payment schedule.',
+      ],
+      h3: '4.3 Recurring Services',
+      p3: 'Recurring services (maintenance, support, hosting, ongoing consulting) are invoiced on a monthly or annual basis, as defined in the applicable agreement.',
+    },
+    s5: {
+      h: '5. Payment Terms',
+      p1: 'Payment term: 14 calendar days from invoice date, unless stated otherwise. Payments are made by bank transfer.',
+      h1: '5.1 Late Payments',
+      p2: 'In the event of late payment:',
+      items: [
+        'statutory late payment interest under Belgian law shall apply automatically,',
+        'a fixed compensation of 10% of the outstanding amount, with a minimum of 75 EUR, may be charged,',
+        'Moosly reserves the right to suspend services without prior notice.',
+      ],
+    },
+    s6: {
+      h: '6. Client Obligations',
+      p1: 'The Client undertakes to:',
+      items: [
+        'provide all necessary content, access credentials, and approvals in a timely manner,',
+        'appoint a single decision-making contact person,',
+        'respect agreed feedback and validation timelines.',
+      ],
+      p2: 'Any delay attributable to the Client may result in:',
+      items2: [
+        'project timeline extensions, and',
+        'additional charges if the workload is materially impacted.',
+      ],
+    },
+    s7: {
+      h: '7. Delivery and Acceptance',
+      p1: 'Deliverables shall be deemed accepted:',
+      items: [
+        'after 10 calendar days without written objections, or',
+        'upon publication, deployment, or use in production.',
+      ],
+      p2: 'Included revisions are strictly limited to what is explicitly defined in the quotation.',
+    },
+    s8: {
+      h: '8. Intellectual Property',
+      h1: '8.1 Ownership Transfer',
+      p1: 'Intellectual property rights related to the deliverables are transferred to the Client only after full payment of all amounts due.',
+      h2: '8.2 Exclusions',
+      p2: 'The following remain the exclusive property of Moosly:',
+      items: [
+        'methodologies, frameworks, templates, and reusable components,',
+        'internal tools, scripts, and technical know-how.',
+      ],
+      h3: '8.3 References',
+      p3: 'Moosly may mention the Client as a commercial reference unless expressly refused in writing.',
+    },
+    s9: {
+      h: '9. Third-Party Tools and Hosting',
+      p1: 'When Moosly intervenes on or integrates with third-party platforms, CMSs, hosting providers, or external tools, Moosly cannot be held liable for:',
+      items: [
+        'service interruptions,',
+        'mandatory updates,',
+        'failures beyond its reasonable control.',
+      ],
+    },
+    s10: {
+      h: '10. Liability',
+      p1: 'Moosly is bound by an obligation of means, not an obligation of results.',
+      p2: "Moosly's total liability, for all damages combined, is limited to the total amount invoiced to the Client over the preceding twelve (12) months.",
+      p3: 'Moosly shall not be liable for:',
+      items: [
+        'indirect or consequential damages (including loss of revenue, loss of data, or reputational damage),',
+        'decisions made by the Client based on the deliverables.',
+      ],
+    },
+    s11: {
+      h: '11. Termination',
+      h1: '11.1 Termination by the Client',
+      p1: 'Any early termination:',
+      items: [
+        'must be notified in writing,',
+        'services already performed remain payable in full,',
+        'advance payments are non-refundable.',
+      ],
+      h2: '11.2 Termination by Moosly',
+      p2: 'Moosly may terminate the agreement with immediate effect in case of:',
+      items2: [
+        'non-payment,',
+        'serious breach of contractual obligations,',
+        'behaviour preventing proper execution of the services.',
+      ],
+    },
+    s12: {
+      h: '12. Confidentiality',
+      p1: 'Each party undertakes to keep confidential all information exchanged in the context of the services, unless disclosure is required by law or expressly authorised in writing.',
+    },
+    s13: {
+      h: '13. Force Majeure',
+      p1: 'Neither party shall be held liable for failure or delay in performance due to a force majeure event as defined under Belgian law.',
+    },
+    sGdpr: {
+      h: '14. Personal data & GDPR',
+      p1: 'This version of the website uses no analytics and no tracking cookies. No behavioural measurement is performed, so no cookie consent banner is required.',
+      p2: 'The only personal data collected is the information a visitor voluntarily submits through the brief form. This data is processed through our form provider (web3forms) and by email, for the sole purpose of replying to the request.',
+      p3: 'This data is never added to a marketing list and is never sold or transferred to third parties for commercial purposes.',
+      p4: 'The data controller is Moosly SRL. You may exercise your rights of access, rectification and erasure by writing to <a href="mailto:hi@foxyline.ai">hi@foxyline.ai</a>.',
+      p5: 'Personal data is processed in accordance with Belgian and EU data-protection law (GDPR — Regulation (EU) 2016/679).',
+    },
+    s15: {
+      h: '15. Governing Law and Jurisdiction',
+      p1: 'These Terms are governed by Belgian law.',
+      p2: "Any dispute shall fall under the exclusive jurisdiction of the courts of the district of Moosly's registered office, unless mandatory legal provisions provide otherwise.",
+    },
+    box: {
+      name: 'Moosly',
+      form: 'SRL (Société à Responsabilité Limitée)',
+      addr: 'Hoevestraat 17, 1640 Sint-Genesius-Rode, Belgium',
+      company: 'Company number: BE 0795.712.081',
+      vat: 'VAT number: BE0795.712.081',
+    },
+  },
+
+  fr: {
+    meta: {
+      title: 'Conditions générales — Foxyline',
+      description:
+        'Conditions générales de vente de Foxyline by Moosly. Le droit belge est applicable.',
+    },
+    hero: {
+      title: 'Conditions générales de vente',
+      sub: 'Foxyline by Moosly · Dernière mise à jour : 2026.01.03 · Le droit belge est applicable.',
+    },
+    intro:
+      'Les présentes conditions générales (les « Conditions ») régissent la relation contractuelle entre :',
+    ofWhich:
+      '(ci-après dénommée « Moosly » ou le « Prestataire »)',
+    brand:
+      'Les services sont commercialisés sous la marque <strong>Foxyline by Moosly</strong>.',
+    s2: {
+      h: '2. Champ d’application',
+      p1: 'Les présentes Conditions s’appliquent à l’ensemble des services fournis par Foxyline by Moosly, en ce compris, sans s’y limiter :',
+      items: [
+        'la création et la refonte de sites web',
+        'le design UX / UI',
+        'le développement web',
+        'la structuration SEO / GEO',
+        'la stratégie et le conseil digital',
+        'les services de maintenance et de support',
+      ],
+      p2: 'Toute commande passée implique l’acceptation pleine et sans réserve des présentes Conditions.',
+      p3: 'Les présentes Conditions prévalent sur toute documentation contradictoire du client, sauf accord écrit exprès contraire.',
+    },
+    s3: {
+      h: '3. Devis et commandes',
+      h1: '3.1 Devis',
+      p1: 'Tout service fait l’objet d’un devis écrit, valable 30 jours, sauf mention contraire.',
+      h2: '3.2 Confirmation de commande',
+      p2: 'Une commande est réputée définitive dès :',
+      items: [
+        'l’approbation écrite du devis (signature ou confirmation explicite par e-mail), et',
+        'le paiement de tout acompte requis.',
+      ],
+      p3: 'Toute demande de modification après approbation peut donner lieu à un devis révisé ou à une facturation complémentaire.',
+    },
+    s4: {
+      h: '4. Tarifs et conditions financières',
+      h1: '4.1 Prix',
+      p1: 'Tous les prix sont exprimés en euros et s’entendent hors TVA, sauf mention contraire.',
+      h2: '4.2 Acomptes',
+      p2: 'Sauf accord contraire :',
+      items: [
+        'un acompte de 30 % à 50 % est exigé à la commande pour les missions au forfait,',
+        'le solde est payable à la livraison ou selon l’échéancier de paiement convenu.',
+      ],
+      h3: '4.3 Services récurrents',
+      p3: 'Les services récurrents (maintenance, support, hébergement, conseil continu) sont facturés sur une base mensuelle ou annuelle, telle que définie dans le contrat applicable.',
+    },
+    s5: {
+      h: '5. Conditions de paiement',
+      p1: 'Délai de paiement : 14 jours calendaires à compter de la date de facture, sauf mention contraire. Les paiements sont effectués par virement bancaire.',
+      h1: '5.1 Retards de paiement',
+      p2: 'En cas de retard de paiement :',
+      items: [
+        'les intérêts de retard légaux prévus par le droit belge s’appliquent de plein droit,',
+        'une indemnité forfaitaire de 10 % du montant dû, avec un minimum de 75 EUR, peut être réclamée,',
+        'Moosly se réserve le droit de suspendre les services sans préavis.',
+      ],
+    },
+    s6: {
+      h: '6. Obligations du client',
+      p1: 'Le client s’engage à :',
+      items: [
+        'fournir en temps utile l’ensemble des contenus, accès et validations nécessaires,',
+        'désigner un interlocuteur unique habilité à prendre les décisions,',
+        'respecter les délais de retour et de validation convenus.',
+      ],
+      p2: 'Tout retard imputable au client peut entraîner :',
+      items2: [
+        'une prolongation des délais du projet, et',
+        'des frais supplémentaires si la charge de travail est sensiblement affectée.',
+      ],
+    },
+    s7: {
+      h: '7. Livraison et réception',
+      p1: 'Les livrables sont réputés acceptés :',
+      items: [
+        'après 10 jours calendaires sans objection écrite, ou',
+        'dès la publication, le déploiement ou l’utilisation en production.',
+      ],
+      p2: 'Les révisions incluses sont strictement limitées à ce qui est explicitement défini dans le devis.',
+    },
+    s8: {
+      h: '8. Propriété intellectuelle',
+      h1: '8.1 Transfert de propriété',
+      p1: 'Les droits de propriété intellectuelle relatifs aux livrables ne sont transférés au client qu’après le paiement intégral de toutes les sommes dues.',
+      h2: '8.2 Exclusions',
+      p2: 'Restent la propriété exclusive de Moosly :',
+      items: [
+        'les méthodologies, frameworks, modèles et composants réutilisables,',
+        'les outils internes, scripts et savoir-faire technique.',
+      ],
+      h3: '8.3 Références',
+      p3: 'Moosly peut mentionner le client à titre de référence commerciale, sauf refus écrit exprès.',
+    },
+    s9: {
+      h: '9. Outils tiers et hébergement',
+      p1: 'Lorsque Moosly intervient sur ou s’intègre à des plateformes tierces, CMS, hébergeurs ou outils externes, Moosly ne peut être tenue responsable de :',
+      items: [
+        'interruptions de service,',
+        'mises à jour obligatoires,',
+        'défaillances échappant à son contrôle raisonnable.',
+      ],
+    },
+    s10: {
+      h: '10. Responsabilité',
+      p1: 'Moosly est tenue à une obligation de moyens, et non à une obligation de résultat.',
+      p2: 'La responsabilité totale de Moosly, tous dommages confondus, est limitée au montant total facturé au client au cours des douze (12) mois précédents.',
+      p3: 'Moosly ne saurait être tenue responsable de :',
+      items: [
+        'dommages indirects ou consécutifs (en ce compris perte de chiffre d’affaires, perte de données ou atteinte à la réputation),',
+        'décisions prises par le client sur la base des livrables.',
+      ],
+    },
+    s11: {
+      h: '11. Résiliation',
+      h1: '11.1 Résiliation par le client',
+      p1: 'Toute résiliation anticipée :',
+      items: [
+        'doit être notifiée par écrit,',
+        'les services déjà exécutés restent dus en totalité,',
+        'les acomptes versés ne sont pas remboursables.',
+      ],
+      h2: '11.2 Résiliation par Moosly',
+      p2: 'Moosly peut résilier le contrat avec effet immédiat en cas de :',
+      items2: [
+        'défaut de paiement,',
+        'manquement grave aux obligations contractuelles,',
+        'comportement empêchant la bonne exécution des services.',
+      ],
+    },
+    s12: {
+      h: '12. Confidentialité',
+      p1: 'Chaque partie s’engage à garder confidentielles toutes les informations échangées dans le cadre des services, sauf divulgation requise par la loi ou expressément autorisée par écrit.',
+    },
+    s13: {
+      h: '13. Force majeure',
+      p1: 'Aucune des parties ne pourra être tenue responsable d’une inexécution ou d’un retard d’exécution dû à un cas de force majeure tel que défini par le droit belge.',
+    },
+    sGdpr: {
+      h: '14. Données personnelles & RGPD',
+      p1: 'Cette version du site web n’utilise aucun outil d’analyse d’audience ni aucun cookie de suivi. Aucune mesure comportementale n’est effectuée ; aucune bannière de consentement aux cookies n’est donc requise.',
+      p2: 'Les seules données personnelles collectées sont les informations qu’un visiteur transmet volontairement via le formulaire de brief. Ces données sont traitées via notre prestataire de formulaire (web3forms) et par e-mail, dans le seul but de répondre à la demande.',
+      p3: 'Ces données ne sont jamais ajoutées à une liste marketing et ne sont jamais revendues ni transmises à des tiers à des fins commerciales.',
+      p4: 'Le responsable du traitement est Moosly SRL. Vous pouvez exercer vos droits d’accès, de rectification et d’effacement en écrivant à <a href="mailto:hi@foxyline.ai">hi@foxyline.ai</a>.',
+      p5: 'Les données personnelles sont traitées conformément au droit belge et européen de la protection des données (RGPD — Règlement (UE) 2016/679).',
+    },
+    s15: {
+      h: '15. Droit applicable et juridiction',
+      p1: 'Les présentes Conditions sont régies par le droit belge.',
+      p2: 'Tout litige relève de la compétence exclusive des tribunaux de l’arrondissement du siège social de Moosly, sauf disposition légale impérative contraire.',
+    },
+    box: {
+      name: 'Moosly',
+      form: 'SRL (Société à Responsabilité Limitée)',
+      addr: 'Hoevestraat 17, 1640 Sint-Genesius-Rode, Belgique',
+      company: 'Numéro d’entreprise : BE 0795.712.081',
+      vat: 'Numéro de TVA : BE0795.712.081',
+    },
+  },
+} as const;
+
+const t = C[lang];
+---
+
+<Vermillon
+  lang={lang}
+  title={t.meta.title}
+  description={t.meta.description}
+  altPath={altPath}
+>
+  <main id="main" tabindex="-1">
+    <section class="wrap hero">
+      <h1 class="big">{t.hero.title}</h1>
+      <p class="lede" style="margin-top: var(--s6);">{t.hero.sub}</p>
+    </section>
+
+    <section class="wrap band">
+      <div class="terms-content">
+
+      <section>
+        <h2>{lang === 'fr' ? '1. Identification du prestataire' : '1. Service Provider Identification'}</h2>
+        <p>{t.intro}</p>
+        <div class="info-box">
+          <p><strong>{t.box.name}</strong></p>
+          <p>{t.box.form}</p>
+          <p>{t.box.addr}</p>
+          <p>{t.box.company}</p>
+          <p>{t.box.vat}</p>
+        </div>
+        <p>{t.ofWhich}</p>
+        <p set:html={t.brand} />
+      </section>
+
+      <section>
+        <h2>{t.s2.h}</h2>
+        <p>{t.s2.p1}</p>
+        <ul>{t.s2.items.map((i) => <li>{i}</li>)}</ul>
+        <p>{t.s2.p2}</p>
+        <p>{t.s2.p3}</p>
+      </section>
+
+      <section>
+        <h2>{t.s3.h}</h2>
+        <h3>{t.s3.h1}</h3>
+        <p>{t.s3.p1}</p>
+        <h3>{t.s3.h2}</h3>
+        <p>{t.s3.p2}</p>
+        <ul>{t.s3.items.map((i) => <li>{i}</li>)}</ul>
+        <p>{t.s3.p3}</p>
+      </section>
+
+      <section>
+        <h2>{t.s4.h}</h2>
+        <h3>{t.s4.h1}</h3>
+        <p>{t.s4.p1}</p>
+        <h3>{t.s4.h2}</h3>
+        <p>{t.s4.p2}</p>
+        <ul>{t.s4.items.map((i) => <li>{i}</li>)}</ul>
+        <h3>{t.s4.h3}</h3>
+        <p>{t.s4.p3}</p>
+      </section>
+
+      <section>
+        <h2>{t.s5.h}</h2>
+        <p>{t.s5.p1}</p>
+        <h3>{t.s5.h1}</h3>
+        <p>{t.s5.p2}</p>
+        <ul>{t.s5.items.map((i) => <li>{i}</li>)}</ul>
+      </section>
+
+      <section>
+        <h2>{t.s6.h}</h2>
+        <p>{t.s6.p1}</p>
+        <ul>{t.s6.items.map((i) => <li>{i}</li>)}</ul>
+        <p>{t.s6.p2}</p>
+        <ul>{t.s6.items2.map((i) => <li>{i}</li>)}</ul>
+      </section>
+
+      <section>
+        <h2>{t.s7.h}</h2>
+        <p>{t.s7.p1}</p>
+        <ul>{t.s7.items.map((i) => <li>{i}</li>)}</ul>
+        <p>{t.s7.p2}</p>
+      </section>
+
+      <section>
+        <h2>{t.s8.h}</h2>
+        <h3>{t.s8.h1}</h3>
+        <p>{t.s8.p1}</p>
+        <h3>{t.s8.h2}</h3>
+        <p>{t.s8.p2}</p>
+        <ul>{t.s8.items.map((i) => <li>{i}</li>)}</ul>
+        <h3>{t.s8.h3}</h3>
+        <p>{t.s8.p3}</p>
+      </section>
+
+      <section>
+        <h2>{t.s9.h}</h2>
+        <p>{t.s9.p1}</p>
+        <ul>{t.s9.items.map((i) => <li>{i}</li>)}</ul>
+      </section>
+
+      <section>
+        <h2>{t.s10.h}</h2>
+        <p>{t.s10.p1}</p>
+        <p>{t.s10.p2}</p>
+        <p>{t.s10.p3}</p>
+        <ul>{t.s10.items.map((i) => <li>{i}</li>)}</ul>
+      </section>
+
+      <section>
+        <h2>{t.s11.h}</h2>
+        <h3>{t.s11.h1}</h3>
+        <p>{t.s11.p1}</p>
+        <ul>{t.s11.items.map((i) => <li>{i}</li>)}</ul>
+        <h3>{t.s11.h2}</h3>
+        <p>{t.s11.p2}</p>
+        <ul>{t.s11.items2.map((i) => <li>{i}</li>)}</ul>
+      </section>
+
+      <section>
+        <h2>{t.s12.h}</h2>
+        <p>{t.s12.p1}</p>
+      </section>
+
+      <section>
+        <h2>{t.s13.h}</h2>
+        <p>{t.s13.p1}</p>
+      </section>
+
+      <section>
+        <h2>{t.sGdpr.h}</h2>
+        <p>{t.sGdpr.p1}</p>
+        <p>{t.sGdpr.p2}</p>
+        <p>{t.sGdpr.p3}</p>
+        <p set:html={t.sGdpr.p4} />
+        <p>{t.sGdpr.p5}</p>
+      </section>
+
+      <section>
+        <h2>{t.s15.h}</h2>
+        <p>{t.s15.p1}</p>
+        <p>{t.s15.p2}</p>
+      </section>
+
+    </div>
+      </div>
+    </section>
+  </main>
+</Vermillon>
+
+<style is:global>
+  /* Legal prose: one measured column, ruled sections, no cards. */
+  .terms-content { max-width: 74ch; }
+  .terms-content section {
+    padding-top: var(--s10);
+    margin-top: var(--s10);
+    border-top: 1px solid var(--rule);
+  }
+  .terms-content section:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+  .terms-content h2 {
+    margin: 0 0 var(--s5);
+    font-variation-settings: "wdth" 86, "wght" 700;
+    font-size: clamp(21px, 1.9vw, 27px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+  }
+  .terms-content h3 {
+    margin: var(--s8) 0 var(--s3);
+    font-variation-settings: "wght" 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  .terms-content p { margin: 0 0 1em; font-size: 16px; line-height: 1.62; color: var(--ink-2); }
+  .terms-content ul { margin: 0 0 1em; padding-left: 1.1em; }
+  .terms-content li { font-size: 16px; line-height: 1.62; color: var(--ink-2); margin-bottom: 6px; }
+  .terms-content strong { font-variation-settings: "wght" 600; color: var(--ink); }
+  .terms-content p a, .terms-content li a {
+    color: var(--ink);
+    background-image: linear-gradient(var(--red), var(--red));
+    background-size: 100% 2px; background-repeat: no-repeat; background-position: 0 100%;
+    padding-bottom: 1px;
+  }
+  .terms-content .info-box {
+    background: var(--paper-2);
+    padding: var(--s6);
+    margin: var(--s6) 0;
+    font-family: var(--mono);
+  }
+  .terms-content .info-box p { margin: 0 0 4px; font-family: var(--mono); font-size: 13px; color: var(--ink); }
+  .terms-content .info-box p:last-child { margin: 0; }
+</style>

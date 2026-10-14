@@ -1,0 +1,195 @@
+---
+import { Image } from 'astro:assets';
+import Vermillon from '../layouts/Vermillon.astro';
+import { V, VOICES, CALENDAR_URL, EMAIL, type Lang } from '../i18n/vermillon';
+import { NETWORK_SITES } from '../i18n/network';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = V[lang];
+const voices = VOICES[lang];
+const fr = lang === 'fr';
+const altPath = fr ? '/' : '/fr/';
+---
+
+<Vermillon
+  lang={lang}
+  title={d.meta.title}
+  description={d.meta.description}
+  altPath={altPath}
+  anchors
+>
+    <main id="main" tabindex="-1">
+      <!-- HERO -->
+      <section class="wrap hero">
+        <p class="tag">{d.hero.kicker}</p>
+        <h1 class="mega" style="margin-top: var(--s8);">
+          <span class="hero-line">{d.hero.lineA}</span>
+          <span class="hero-line">{d.hero.lineB}</span>
+          <span class="hero-line"><span class="flat">{d.hero.lineC}</span></span>
+        </h1>
+
+        <p class="lede hero-lede">{d.hero.sub}</p>
+
+        <div class="hero-foot">
+          <dl class="counts">
+            {d.gaps.map((g) => (
+              <div class="count gap">
+                <dt class="tag">{g.fromLabel}</dt>
+                <dd>
+                  {g.from}
+                  <span class="gap-to" aria-hidden="true">→</span>
+                  <span class="gap-b">{g.to}</span>
+                </dd>
+                <dd class="tag gap-label">{g.toLabel}</dd>
+              </div>
+            ))}
+          </dl>
+          <div style="display:flex;flex-wrap:wrap;gap:var(--s3);">
+            <a class="go" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+              {d.hero.cta}<span class="arw" aria-hidden="true">→</span>
+            </a>
+            <a class="go-2" href="#results">{d.hero.alt}</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 · THE BOTTLENECK — the reader's problem, before any claim -->
+      <section class="wrap band" id="bottleneck">
+        <div class="band-head">
+          <h2 class="big">{d.block.title}</h2>
+          <p class="tag">{d.block.mark}</p>
+        </div>
+        <div class="body body-wide">
+          {d.block.body.map((p) => <p>{p}</p>)}
+        </div>
+      </section>
+
+      <!-- 02 · WHAT THAT PRODUCED -->
+      <section class="wrap band" id="results">
+        <div class="band-head">
+          <h2 class="big">{d.results.title}</h2>
+          <p class="tag">{d.results.mark}</p>
+        </div>
+        <p class="body" style="margin-bottom: var(--s12);">{d.results.lede}</p>
+
+        <div class="ledger">
+          {d.results.items.map((r, i) => (
+            <article class="case">
+              <span class="tag case-n">{String(i + 1).padStart(2, '0')}</span>
+              <div class="case-main">
+                <h3 class="row-name">
+                  {r.href ? (
+                    <a class="ul" href={r.href} target="_blank" rel="noopener noreferrer">{r.client}</a>
+                  ) : r.client}
+                </h3>
+                <p class="tag case-sector">{r.sector}</p>
+                <p class="case-problem">{r.problem}</p>
+                <p class="case-outcome">{r.outcome}</p>
+              </div>
+              <dl class="case-figs">
+                {r.figures.map((f) => (
+                  <div>
+                    <dd>{f.value}</dd>
+                    <dt class="tag">{f.label}</dt>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- PLATES -->
+      <section class="wrap band" id="network">
+        <div class="band-head">
+          <h2 class="big">{d.network.title}</h2>
+          <p class="tag">{d.network.mark}</p>
+        </div>
+        <p class="body" style="margin-bottom: var(--s12);">{d.network.lede}</p>
+
+        <ul class="plates">
+          {NETWORK_SITES.map((s, i) => (
+            <li>
+              <a
+                class="plate"
+                href={s.href}
+                target={s.external ? '_blank' : undefined}
+                rel={s.external ? 'noopener noreferrer' : undefined}
+              >
+                <span class="plate-img">
+                  <Image src={s.image} alt={`${s.name} — homepage`} loading="lazy" widths={[360, 560]} />
+                </span>
+                <span class="plate-cap">
+                  <span class="plate-name">{s.name}</span>
+                  <span class="tag">{String(i + 1).padStart(2, '0')}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- METHOD -->
+      <section class="wrap band" id="method">
+        <div class="band-head">
+          <h2 class="big">{d.method.title}</h2>
+          <p class="tag">{d.method.mark}</p>
+        </div>
+        <div class="body">
+          {d.method.body.map((p) => <p>{p}</p>)}
+        </div>
+      </section>
+
+      <!-- VOICES -->
+      <section class="wrap band" id="voices">
+        <div class="band-head">
+          <h2 class="big">{d.voices.title}</h2>
+          <p class="tag">{d.voices.mark}</p>
+        </div>
+        <div class="says">
+          {voices.map((v) => (
+            <figure class="say">
+              <blockquote>{v.quote}</blockquote>
+              <figcaption class="say-cap">
+                <Image
+                  class="say-face"
+                  src={v.portrait}
+                  alt={v.name}
+                  loading="lazy"
+                  widths={[96, 192]}
+                />
+                <span>
+                  <span class="say-by">{v.name}</span>
+                  <span class="tag say-role">{v.role}</span>
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <!-- END -->
+    <section class="end" id="booking">
+      <div class="wrap end-in">
+        <div>
+          <p class="tag">{d.booking.mark}</p>
+          <h2 class="big" style="margin-top: var(--s5); max-width: 14ch;">{d.booking.title}</h2>
+          <p class="lede" style="margin-top: var(--s6);">{d.booking.body}</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:var(--s4);align-items:flex-start;">
+          <a class="go" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+            {d.booking.cta}<span class="arw" aria-hidden="true">→</span>
+          </a>
+          <span style="font-size:15px;">
+            {d.booking.or} <a class="ul" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </span>
+        </div>
+      </div>
+    </section>
+
+</Vermillon>
