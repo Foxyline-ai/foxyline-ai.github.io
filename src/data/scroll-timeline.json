@@ -1,0 +1,15 @@
+{
+  "fps": 30,
+  "duration": 21.0,
+  "videos": { "landscape": "bg-16x9.mp4", "portrait": "bg-9x16.mp4" },
+  "sections": [
+    { "id": "ouverture", "in": 0.0, "out": 3.0, "scroll": "auto", "poster": 0 },
+    { "id": "hero", "in": 3.0, "out": 6.0, "scrollVh": 120, "poster": 1 },
+    { "id": "chiffres-approche", "in": 6.0, "out": 8.0, "scrollVh": 120, "poster": 2 },
+    { "id": "travaux", "in": 8.0, "out": 10.5, "scrollVh": 220, "poster": 3 },
+    { "id": "methode", "in": 10.5, "out": 12.0, "scrollVh": 100, "poster": 4 },
+    { "id": "studio", "in": 12.0, "out": 15.5, "scrollVh": 140, "poster": 5 },
+    { "id": "paroles", "in": 15.5, "out": 17.0, "scrollVh": 100, "poster": 6 },
+    { "id": "contact", "in": 17.0, "out": 21.0, "scrollVh": 140, "poster": 7 }
+  ]
+}

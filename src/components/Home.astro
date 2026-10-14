@@ -4,6 +4,8 @@ import Maison from '../layouts/Maison.astro';
 import Mark from './Mark.astro';
 import { HOME, VOICES, UI, CALENDAR_URL, EMAIL, base, type Lang } from '../i18n/site';
 import { NETWORK_SITES } from '../i18n/network';
+// Source unique de vérité des segments vidéo (exportée par Remotion avec la vidéo).
+import timeline from '../data/scroll-timeline.json';
 
 import rpe from '../assets/portfolio/rpe.webp';
 import tapio from '../assets/portfolio/tapio.webp';
@@ -27,6 +29,20 @@ const PLACES_FR: Record<string, string> = {
 };
 const place = (p: string) => (fr ? PLACES_FR[p] ?? p : p);
 const siteHref = (href: string, external: boolean) => (external ? href : `${b}${href}`);
+
+/** Attributs d'une section pilotée : son segment vidéo, son poster de repli, sa hauteur de scroll. */
+const seg = (id: string) => {
+  const s = timeline.sections.find((x) => x.id === id)!;
+  return {
+    'data-video-in': s.in,
+    'data-video-out': s.out,
+    style: `--poster-l: url(/fx/poster-16x9-${s.poster}.jpg); --poster-p: url(/fx/poster-9x16-${s.poster}.jpg); min-height: ${'scrollVh' in s ? s.scrollVh : 100}vh;`,
+  };
+};
+const hero = timeline.sections.find((x) => x.id === 'hero')!;
+
+/** Un titre dont chaque mot sort de sa ligne. */
+const mots = (s: string) => s.split(' ');
 ---
 
 <Maison
@@ -36,8 +52,21 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
   ogAlt={d.meta.ogAlt}
   altPath={fr ? '/' : '/fr/'}
   intro
-  fond="video"
+  fond="none"
+  fx={{ in: hero.in, out: hero.out, poster: hero.poster }}
 >
+  <!-- Couche vidéo : fixe, plein écran, sans aucun texte. La source est choisie par le script
+       selon l'orientation ; sans JS, rien n'est téléchargé et les posters suffisent. -->
+  <div slot="fx" class="fx-bg" aria-hidden="true">
+    <video
+      muted
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+      data-landscape={`/fx/${timeline.videos.landscape}`}
+      data-portrait={`/fx/${timeline.videos.portrait}`}
+    ></video>
+  </div>
 
   <div slot="hero" class="hero">
     <p class="kicker k-in">
@@ -63,49 +92,45 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
     </div>
   </div>
 
-  <!-- Chiffres : chacun est coté -->
-  <section aria-label={fr ? 'En chiffres' : 'In figures'} style="border-bottom: 1px solid var(--lin);">
-    <div class="wrap cotes">
-      {d.figures.map((f) => (
-        <div class="cote-bloc rv">
-          <span class="cote-val">{f.value}</span>
-          <span class="cote" aria-hidden="true"><i /><b />{'end' in f && <i />}</span>
-          <span class="cote-txt">{f.label}</span>
+  <!-- 2 · Chiffres + Approche — papier -->
+  <section class="fx-section etire" aria-labelledby="approche-titre" {...seg('chiffres-approche')}>
+    <div class="wrap cotes" style="border-bottom: 1px solid var(--lin);">
+      {d.figures.map((f, i) => (
+        <div class="cote-bloc">
+          <span class="cote-val" data-count>{f.value}</span>
+          <span class="cote" aria-hidden="true" style={`--d:${i}`}><i /><b />{'end' in f && <i />}</span>
+          <span class="cote-txt rv" style={`--d:${i}`}>{f.label}</span>
         </div>
       ))}
     </div>
-  </section>
-
-  <!-- Approche -->
-  <section class="band" aria-labelledby="approche-titre">
-    <div class="wrap deux">
-      <h2 id="approche-titre" class="h2 rv">{d.approach.title}</h2>
-      <div class="texte rv">
-        {d.approach.body.map((p) => <p>{p}</p>)}
+    <div class="wrap deux band">
+      <h2 id="approche-titre" class="h2 titre">{mots(d.approach.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
+      <div class="texte">
+        {d.approach.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}
       </div>
     </div>
   </section>
 
-  <!-- Travaux -->
-  <section id="travaux" class="band sable" aria-labelledby="travaux-titre">
+  <!-- 3 · Travaux + réseau — sable -->
+  <section id="travaux" class="fx-section sable band" aria-labelledby="travaux-titre" {...seg('travaux')}>
     <div class="wrap">
-      <div class="tete rv">
-        <h2 id="travaux-titre" class="h2">{d.work.title}</h2>
-        <p class="note">{d.work.note}</p>
+      <div class="tete">
+        <h2 id="travaux-titre" class="h2 titre">{mots(d.work.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
+        <p class="note rv">{d.work.note}</p>
       </div>
 
       <article class="travail">
         <figure class="capture chev">
           <Image src={rpe} alt={d.work.rpe.alt} widths={[640, 1040, 1600]} sizes="(min-width: 1280px) 720px, 100vw" loading="lazy" />
         </figure>
-        <div class="fiche rv">
-          <p class="repere">{d.work.rpe.meta}</p>
-          <h3 class="h3">{d.work.rpe.title}</h3>
-          <p class="texte">{d.work.rpe.body}</p>
-          <div class="chiffres">
+        <div class="fiche">
+          <p class="repere rv">{d.work.rpe.meta}</p>
+          <h3 class="h3 rv" style="--d:1">{d.work.rpe.title}</h3>
+          <p class="texte rv" style="--d:2">{d.work.rpe.body}</p>
+          <div class="chiffres rv" style="--d:3">
             {d.work.rpe.figures.map((f) => <div><strong>{f.value}</strong><span>{f.label}</span></div>)}
           </div>
-          <a class="lien" href="https://radiologypartnerseurope.com/" target="_blank" rel="noopener noreferrer">{d.work.rpe.link}</a>
+          <a class="lien rv" style="--d:4" href="https://radiologypartnerseurope.com/" target="_blank" rel="noopener noreferrer">{d.work.rpe.link}</a>
         </div>
       </article>
 
@@ -114,15 +139,15 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
           <figure class="capture chev">
             <Image src={tapio} alt={d.work.tapio.alt} widths={[560, 880, 1200]} sizes="(min-width: 1280px) 600px, 100vw" loading="lazy" />
           </figure>
-          <div class="fiche rv">
-            <p class="repere">{d.work.tapio.meta}</p>
-            <h3 class="h3">{d.work.tapio.title}</h3>
-            <p class="texte">{d.work.tapio.body}</p>
-            <a class="lien" href="https://www.tapio.eco/" target="_blank" rel="noopener noreferrer">{d.work.tapio.link}</a>
+          <div class="fiche">
+            <p class="repere rv">{d.work.tapio.meta}</p>
+            <h3 class="h3 rv" style="--d:1">{d.work.tapio.title}</h3>
+            <p class="texte rv" style="--d:2">{d.work.tapio.body}</p>
+            <a class="lien rv" style="--d:3" href="https://www.tapio.eco/" target="_blank" rel="noopener noreferrer">{d.work.tapio.link}</a>
           </div>
         </article>
         <article>
-          <div class="panneau chev" aria-hidden="true">
+          <div class="panneau chev" style="--d:1" aria-hidden="true">
             <span class="repere">{d.work.fintech.panelNote}</span>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               <span class="cote-val">79</span>
@@ -130,25 +155,20 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
               <span class="cote-txt">{d.work.fintech.panel}</span>
             </div>
           </div>
-          <div class="fiche rv">
-            <p class="repere">{d.work.fintech.meta}</p>
-            <h3 class="h3">{d.work.fintech.title}</h3>
-            <p class="texte">{d.work.fintech.body}</p>
+          <div class="fiche">
+            <p class="repere rv">{d.work.fintech.meta}</p>
+            <h3 class="h3 rv" style="--d:1">{d.work.fintech.title}</h3>
+            <p class="texte rv" style="--d:2">{d.work.fintech.body}</p>
           </div>
         </article>
       </div>
-    </div>
-  </section>
 
-  <!-- Réseau -->
-  <section id="reseau" class="band" aria-labelledby="reseau-titre">
-    <div class="wrap">
-      <div class="deux" style="margin-bottom: 3.5rem;">
-        <h2 id="reseau-titre" class="h2 rv">{d.network.title}</h2>
+      <div id="reseau" class="deux" style="margin: 7rem 0 3.5rem;">
+        <h2 class="h2 titre">{mots(d.network.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
         <p class="texte rv">{d.network.body}</p>
       </div>
       <ul class="planches">
-        {NETWORK_SITES.map((s) => (
+        {NETWORK_SITES.map((s, i) => (
           <li>
             <a
               class="planche"
@@ -156,7 +176,7 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
               target={s.external ? '_blank' : undefined}
               rel={s.external ? 'noopener noreferrer' : undefined}
             >
-              <span class="capture chev">
+              <span class="capture chev" style={`--d:${i % 4}`}>
                 <Image src={s.image} alt={fr ? `Page d’accueil de ${s.name}` : `${s.name} homepage`} widths={[360, 560]} sizes="(min-width: 768px) 25vw, 100vw" loading="lazy" />
               </span>
               <span class="planche-nom">
@@ -170,17 +190,17 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
     </div>
   </section>
 
-  <!-- Méthode : une seule cote, quatre repères -->
-  <section id="methode" class="band" aria-labelledby="methode-titre" style="padding-top: 0;">
+  <!-- 4 · Méthode — papier : une seule cote, quatre repères -->
+  <section id="methode" class="fx-section etire band" aria-labelledby="methode-titre" {...seg('methode')}>
     <div class="wrap">
-      <h2 id="methode-titre" class="h2 rv" style="max-width: 46rem; margin-bottom: 3.5rem;">{d.method.title}</h2>
+      <h2 id="methode-titre" class="h2 titre" style="max-width: 46rem; margin-bottom: 3.5rem;">{mots(d.method.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <ol class="etapes">
         {d.method.steps.map((s, i) => (
           <li class="etape">
-            <span class="cote" aria-hidden="true"><i /><b />{i === d.method.steps.length - 1 && <i />}</span>
-            <span class="repere rv">{s.when}</span>
-            <h3 class="rv">{s.name}</h3>
-            <p class="rv">{s.body}</p>
+            <span class="cote" aria-hidden="true" style={`--d:${i}`}><i /><b />{i === d.method.steps.length - 1 && <i />}</span>
+            <span class="repere rv" style={`--d:${i * 2.5}`}>{s.when}</span>
+            <h3 class="rv" style={`--d:${i * 2.5 + 1}`}>{s.name}</h3>
+            <p class="rv" style={`--d:${i * 2.5 + 2}`}>{s.body}</p>
           </li>
         ))}
       </ol>
@@ -188,29 +208,29 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
     </div>
   </section>
 
-  <!-- Le studio -->
-  <section id="studio" class="on-dark" aria-labelledby="studio-titre">
+  <!-- 5 · Studio — forêt, renard en filigrane derrière le portrait -->
+  <section id="studio" class="fx-section on-dark etire" aria-labelledby="studio-titre" {...seg('studio')}>
     <div class="wrap studio">
       <div class="studio-portrait rv">
         <Image src={portrait} alt={d.studio.alt} widths={[400, 800]} sizes="(min-width: 768px) 26rem, 80vw" loading="lazy" />
       </div>
       <div class="studio-texte">
-        <h2 id="studio-titre" class="h2 rv">{d.studio.title}</h2>
-        <div class="texte rv" style="font-size: 1.125rem;">
-          {d.studio.body.map((p) => <p>{p}</p>)}
+        <h2 id="studio-titre" class="h2 titre">{mots(d.studio.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
+        <div class="texte" style="font-size: 1.125rem;">
+          {d.studio.body.map((p, i) => <p class="rv" style={`--d:${i + 1}`}>{p}</p>)}
         </div>
-        <p class="signature rv"><Mark size={22} color="#E07A45" snout="#E07A45" />Ludovic Laffineur</p>
+        <p class="signature rv" style="--d:3"><Mark size={22} color="#E07A45" snout="#E07A45" />Ludovic Laffineur</p>
       </div>
     </div>
   </section>
 
-  <!-- Paroles -->
-  <section class="band" aria-labelledby="paroles-titre">
+  <!-- 6 · Paroles — papier -->
+  <section class="fx-section etire band" aria-labelledby="paroles-titre" {...seg('paroles')}>
     <div class="wrap">
-      <h2 id="paroles-titre" class="h2 rv" style="margin-bottom: 3rem;">{d.voices.title}</h2>
+      <h2 id="paroles-titre" class="h2 titre" style="margin-bottom: 3rem;">{mots(d.voices.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <div class="paroles">
-        {voices.map((v) => (
-          <figure class="parole rv">
+        {voices.map((v, i) => (
+          <figure class="parole rv" style={`--d:${i}`}>
             <blockquote>{fr ? `« ${v.excerpt} »` : `“${v.excerpt}”`}</blockquote>
             <figcaption>
               <Image src={v.portrait} alt="" widths={[112]} loading="lazy" />
@@ -222,13 +242,12 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
     </div>
   </section>
 
-  <!-- Contact : le motif revient, fixe -->
-  <section id="contact" class="fin on-dark band" aria-labelledby="contact-titre">
-    <div class="fond" aria-hidden="true"><img src="/video/hero-motif.png" alt="" width="1920" height="1014" loading="lazy" /></div>
+  <!-- 7 · Contact — forêt ; la ligne de la vidéo se trace et finit sur le museau -->
+  <section id="contact" class="fx-section fin on-dark etire band" aria-labelledby="contact-titre" {...seg('contact')}>
     <div class="wrap">
-      <h2 id="contact-titre" class="rv">{d.contact.title}</h2>
+      <h2 id="contact-titre" class="titre">{mots(d.contact.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
       <p class="chapo rv">{d.contact.body}</p>
-      <div class="actions rv">
+      <div class="actions rv" style="--d:1">
         <a class="btn btn-renard" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
           {t.book}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
         </a>
@@ -238,3 +257,119 @@ const siteHref = (href: string, external: boolean) => (external ? href : `${b}${
     </div>
   </section>
 </Maison>
+
+<script>
+  // =========================================================
+  // Fond vidéo piloté au scroll (brief v1, 14 octobre 2026).
+  // Chaque section porte data-video-in / data-video-out ; on mesure sa plage
+  // de scroll et on y fait correspondre son segment de vidéo. La vidéo ne se
+  // lit jamais seule, sauf l'ouverture.
+  // =========================================================
+  const video = document.querySelector<HTMLVideoElement>('.fx-bg video');
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // L'ouverture se joue seule jusqu'ici : symbole construit, puis motif posé.
+  // Le scroll prend la main ensuite, pour la vague du motif.
+  const INTRO_FIN = 4.5;
+  // Une section prend la main quand son haut atteint 15 % de la hauteur de l'écran :
+  // le texte de la section précédente est alors sorti, son rideau peut balayer l'écran.
+  const BASCULE = 0.15;
+  // Le texte d'une section ne se révèle qu'une fois son rideau joué (part du segment).
+  const PRET = 0.6;
+  const LISSAGE = 0.15;
+  const FRAME = 1 / 30;
+
+  if (video && !reduit) demarre(video);
+
+  function demarre(video: HTMLVideoElement) {
+    const root = document.documentElement;
+    const portrait = matchMedia('(orientation: portrait)');
+    const source = () => (portrait.matches ? video.dataset.portrait : video.dataset.landscape) ?? '';
+
+    type Plage = { el: HTMLElement; start: number; end: number; tin: number; tout: number };
+    let plages: Plage[] = [];
+
+    function mesure() {
+      const vh = innerHeight;
+      const els = [...document.querySelectorAll<HTMLElement>('[data-video-in]')];
+      const tops = els.map((el) => el.getBoundingClientRect().top + scrollY);
+      const max = document.documentElement.scrollHeight - vh;
+      const starts = els.map((_, i) => (i === 0 ? 0 : Math.max(0, tops[i] - BASCULE * vh)));
+      plages = els.map((el, i) => {
+        const start = starts[i];
+        const suivante = i < els.length - 1 ? starts[i + 1] : max;
+        // Le segment s'achève (image stable) quand le contenu de la section est centré à l'écran :
+        // les gestes centraux (logo, rideau) se jouent pendant que le texte monte encore,
+        // puis le fond reste posé jusqu'à la section suivante. Le hero garde toute sa plage.
+        const centre = tops[i] + el.offsetHeight / 2 - vh / 2;
+        const end = i === 0 ? Math.max(start + 1, suivante) : Math.min(Math.max(suivante, start + 1), Math.max(start + 0.5 * vh, centre));
+        const tin = Number(el.dataset.videoIn);
+        return { el, start, end, tin: i === 0 ? Math.max(tin, INTRO_FIN) : tin, tout: Number(el.dataset.videoOut) };
+      });
+      plages[0]?.el.classList.add('fx-pret');
+    }
+
+    function cible(y: number) {
+      let p = plages[0];
+      for (const x of plages) {
+        if (y < x.start) break;
+        if (x !== p) p.el.classList.add('fx-pret');
+        p = x;
+      }
+      const k = Math.min(1, Math.max(0, (y - p.start) / (p.end - p.start)));
+      if (k >= PRET) p.el.classList.add('fx-pret');
+      // On s'arrête une image avant la sortie : la dernière image stable du segment.
+      return p.tin + k * (p.tout - FRAME - p.tin);
+    }
+
+    let mode: 'intro' | 'scroll' = scrollY > 10 ? 'scroll' : 'intro';
+    let t = 0;
+
+    video.src = source();
+    portrait.addEventListener('change', () => {
+      const garde = video.currentTime;
+      video.src = source();
+      video.addEventListener('loadedmetadata', () => (video.currentTime = garde), { once: true });
+    });
+
+    video.addEventListener(
+      'loadeddata',
+      () => {
+        mesure();
+        root.classList.add('fx-on');
+        if (mode === 'intro') {
+          video.currentTime = 0;
+          video.play().catch(() => passeAuScroll());
+        } else {
+          passeAuScroll();
+        }
+      },
+      { once: true },
+    );
+
+    function passeAuScroll() {
+      video.pause();
+      mode = 'scroll';
+      t = video.currentTime;
+    }
+
+    function image() {
+      if (plages.length) {
+        if (mode === 'intro') {
+          if (video.currentTime >= INTRO_FIN || video.ended) passeAuScroll();
+        } else {
+          const vise = cible(scrollY);
+          t += (vise - t) * LISSAGE;
+          if (Math.abs(vise - t) < 0.002) t = vise;
+          if (!video.seeking && Math.abs(video.currentTime - t) > 1 / 60) video.currentTime = t;
+        }
+      }
+      requestAnimationFrame(image);
+    }
+    requestAnimationFrame(image);
+
+    // Les hauteurs changent avec les polices, les images et le redimensionnement.
+    new ResizeObserver(() => mesure()).observe(document.body);
+    addEventListener('resize', mesure);
+  }
+</script>

@@ -13,11 +13,21 @@ interface Props {
   noindex?: boolean;
   /** Joue la séquence d'arrivée du symbole (accueil uniquement). */
   intro?: boolean;
-  /** Fond de l'en-tête : motif de têtes animé (vidéo en boucle) ou son image fixe. */
-  fond?: 'video' | 'image';
+  /** Fond de l'en-tête : motif de têtes animé (vidéo en boucle), son image fixe, ou rien. */
+  fond?: 'video' | 'image' | 'none';
+  /** Accueil piloté au scroll : segment de la vidéo de fond joué par l'en-tête. */
+  fx?: { in: number; out: number; poster: number };
 }
 
-const { lang, title, description, altPath, ogAlt = title, noindex = false, intro = false, fond = 'image' } = Astro.props;
+const { lang, title, description, altPath, ogAlt = title, noindex = false, intro = false, fond = 'image', fx } = Astro.props;
+
+const fxAttrs = fx
+  ? {
+      'data-video-in': fx.in,
+      'data-video-out': fx.out,
+      style: `--poster-l: url(/fx/poster-16x9-${fx.poster}.jpg); --poster-p: url(/fx/poster-9x16-${fx.poster}.jpg)`,
+    }
+  : {};
 
 const t = UI[lang];
 const fr = lang === 'fr';
@@ -78,14 +88,23 @@ const org = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet" />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <!-- Avant le premier rendu : « js » arme les révélations au scroll ; « fx-intro » retarde
+         le texte du hero le temps que la vidéo construise le symbole. -->
+    <script is:inline define:vars={{ fxPage: Boolean(fx) }}>
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (fxPage && !matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('fx-intro');
+    </script>
     <slot name="head" />
   </head>
 
-  <body>
+  <body class:list={[{ 'fx-page': fx }]}>
     <a class="skip" href="#contenu">{t.skip}</a>
 
-    <header class="top on-dark">
-      <div class="fond" aria-hidden="true">
+    <slot name="fx" />
+
+    <header class:list={['top on-dark', { 'fx-section': fx }]} {...fxAttrs}>
+      {fond !== 'none' && <div class="fond" aria-hidden="true">
         <img src="/video/hero-motif.png" alt="" width="1920" height="1014" fetchpriority={fond === 'video' ? 'high' : undefined} />
         {fond === 'video' && (
           <video autoplay muted loop playsinline preload="auto" poster="/video/hero-motif.png" disablepictureinpicture>
@@ -93,7 +112,7 @@ const org = {
             <source src="/video/hero-motif.mp4" type="video/mp4" />
           </video>
         )}
-      </div>
+      </div>}
       <div class="wrap">
         <nav class="nav" aria-label={fr ? 'Navigation principale' : 'Main navigation'}>
           <a href={home} class="marque" aria-label={t.home}>
@@ -128,5 +147,41 @@ const org = {
         </span>
       </div>
     </footer>
+
+    <script>
+      // Révélations : déclenchées quand l'élément atteint 75 % de la hauteur de l'écran,
+      // jouées dans le temps, une seule fois. On ne rejoue pas en remontant.
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+            if (e.target instanceof HTMLElement && e.target.dataset.count !== undefined) compte(e.target);
+          }
+        },
+        { rootMargin: '0px 0px -25% 0px' },
+      );
+      document.querySelectorAll('.rv, .titre, .cote, .chev, [data-count]').forEach((el) => io.observe(el));
+
+      // Chiffre qui se compte : 1,4 s, courbe « tracé ». Le texte final est déjà dans le HTML.
+      const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function compte(el: HTMLElement) {
+        const m = (el.textContent ?? '').match(/^(\D*)(\d[\d\s  ]*)(\D*)$/);
+        if (!m || reduit) return;
+        const [, avant, nombre, apres] = m;
+        const fin = parseInt(nombre.replace(/\D/g, ''), 10);
+        const sep = nombre.match(/[\s  ]/)?.[0] ?? '';
+        const format = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep || '');
+        const trace = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+        const t0 = performance.now();
+        const pas = (now: number) => {
+          const t = Math.min(1, (now - t0) / 1400);
+          el.textContent = avant + format(Math.round(fin * trace(t))) + apres;
+          if (t < 1) requestAnimationFrame(pas);
+        };
+        requestAnimationFrame(pas);
+      }
+    </script>
   </body>
 </html>
