@@ -289,6 +289,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .temoin-texte blockquote { margin: 0; font-family: var(--serif); font-size: clamp(1.625rem, 2.6vw, 2.25rem); line-height: 1.2; }
 .temoin-texte strong { font-weight: 500; }
 
+/* Fiche technique (étude anonymisée, à la place d'une capture) */
+.fiche-cas { background: var(--foret); color: var(--papier); border-radius: 4px; padding: clamp(1.5rem, 3vw, 2.5rem); }
+.fiche-cas dl { margin: 0; }
+.fiche-ligne { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; align-items: baseline; padding: 1rem 0; border-top: 1px solid rgba(245, 242, 236, 0.16); }
+.fiche-ligne:first-child { border-top: 0; padding-top: 0; }
+.fiche-ligne .repere { color: var(--brume); }
+.fiche-ligne dd { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; }
+.fiche-ligne strong { font-family: var(--serif); font-weight: 400; font-size: clamp(1.75rem, 2.6vw, 2.25rem); line-height: 1.1; }
+.fiche-ligne span { font-size: 0.875rem; color: var(--brume-claire); }
+
+/* Chaîne de production : qui fait quoi, l'IA en renard */
+.chaine { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--encre); }
+.chaine-pas { display: grid; grid-template-columns: 2.5rem 7.5rem 1fr auto; gap: 1rem; align-items: baseline; padding: 1.125rem 0; border-bottom: 1px solid var(--lin-fonce); }
+.chaine-k { font-family: var(--serif); font-size: 1.5rem; line-height: 1.1; }
+.chaine-v { font-size: 0.9375rem; color: var(--encre-2); }
+.chaine-qui { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.5rem; border: 1px solid var(--lin-fonce); border-radius: 2px; color: var(--sauge); }
+.chaine-pas.ia .chaine-qui { background: var(--renard); border-color: var(--renard); color: var(--encre); }
+@media (max-width: 640px) {
+  .chaine-pas { grid-template-columns: 2rem 1fr auto; }
+  .chaine-v { grid-column: 2 / -1; }
+}
+
+/* Schéma de centralisation */
+.schema { margin: 0; overflow-x: auto; }
+.schema svg { display: block; width: 100%; min-width: 40rem; height: auto; }
+
 .cas-reseau { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 1.5rem 1rem; }
 
 /* Méthode : une seule cote continue */

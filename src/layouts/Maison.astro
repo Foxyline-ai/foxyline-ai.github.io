@@ -230,7 +230,8 @@ const org = {
       // Chiffre qui se compte : 1,4 s, courbe « tracé ». Le texte final est déjà dans le HTML.
       function compte(el: HTMLElement) {
         const m = (el.textContent ?? '').match(/^(\D*)(\d[\d\s  ]*)(\D*)$/);
-        if (!m || reduit) return;
+        // Les décimales (« 5,4 ») ne se comptent pas : elles restent affichées telles quelles.
+        if (!m || reduit || /\d[.,]\d/.test(el.textContent ?? '')) return;
         const [, avant, nombre, apres] = m;
         const fin = parseInt(nombre.replace(/\D/g, ''), 10);
         const sep = nombre.match(/[\s  ]/)?.[0] ?? '';

@@ -89,8 +89,9 @@ export const HOME = {
       },
       fintech: {
         meta: 'Avantages salariés · Fintech belge',
-        title: 'Dix fois plus de contenu, sans recruter.',
-        body: 'Une chaîne de production IA branchée sur les outils de l’équipe, et une refonte complète. 79 pages sectorielles, une par commission paritaire, en français et en néerlandais ; l’accueil est passé de la position 10,8 à 5,4.',
+        title: 'Un site, une chaîne de contenu, un seul tableau de bord.',
+        body: 'Une refonte en trois langues, une équipe marketing qui publie elle-même avec l’IA, et sept sources de données réunies. Une page par commission paritaire ; l’accueil est passé de la position 10,8 à 5,4.',
+        link: 'Lire l’étude de cas',
         panel: 'pages sectorielles, parties de zéro',
         panelNote: 'Client anonymisé à sa demande',
       },
@@ -186,8 +187,9 @@ export const HOME = {
       },
       fintech: {
         meta: 'Employee benefits · Belgian fintech',
-        title: 'Ten times the content, no new hires.',
-        body: 'An AI content pipeline wired into the team’s own tools, and a full rebuild. 79 sector pages, one per joint committee, in French and Dutch; the homepage moved from position 10.8 to 5.4.',
+        title: 'One site, one content line, one dashboard.',
+        body: 'A rebuild in three languages, a marketing team that publishes on its own with AI, and seven data sources brought together. A page per joint committee; the homepage moved from position 10.8 to 5.4.',
+        link: 'Read the case study',
         panel: 'sector pages, from zero',
         panelNote: 'Client anonymised at their request',
       },
