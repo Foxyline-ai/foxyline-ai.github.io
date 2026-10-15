@@ -4,8 +4,10 @@ import { UI, CALENDAR_URL, base, type Lang } from '../i18n/site';
 
 // Étude de cas anonymisée à la demande du client : ni nom, ni produit, ni domaine,
 // ni capture du site. Les visuels sont des schémas.
-// Sources : dépôt du site, système MKT (docs/mtkt), dépôt d'automatisation analytics,
+// Sources : dépôt du site, système MKT, dépôt d'automatisation analytics (Windmill),
 // Search Console (glissement annuel au 26 août 2026).
+// Volontairement absent : aucune mesure de temps gagné n'existe ; le « 8 fois mieux » des
+// assistants IA n'a ni période ni échantillon ; le funnel n'a pas de totaux publiables.
 
 interface Props {
   lang: Lang;
@@ -22,70 +24,107 @@ const c = fr
       meta: {
         title: 'Fintech belge des avantages salariés · étude de cas Foxyline',
         description:
-          'Refonte en trois langues, chaîne de production marketing où l’IA rédige et l’équipe valide, et toutes les données marketing réunies dans un seul tableau de bord.',
+          'Sept outils, sept versions des chiffres. Un site refondu, toutes les sources réunies dans un seul moteur, un funnel lisible, un verdict sur chaque campagne et des corrections SEO appliquées automatiquement.',
       },
       kicker: 'Étude de cas · Fintech belge · 2026',
-      title: 'Un site, une chaîne de contenu,',
-      titleAccent: 'un seul tableau de bord.',
-      sub: 'Un acteur belge des avantages salariés : un site refondu en trois langues, une équipe marketing qui publie elle-même avec l’IA, et des données jusque-là éparpillées dans sept outils, enfin réunies.',
+      title: 'Sept outils, sept versions des chiffres.',
+      titleAccent: 'Puis une seule.',
+      sub: 'Un acteur belge des avantages salariés investissait en campagnes sans pouvoir dire lesquelles lui amenaient des clients. On a refait le site, branché toutes les sources sur un seul moteur, et donné à l’équipe une lecture commune du funnel, des campagnes et du référencement.',
       anon: 'Client anonymisé à sa demande',
-      figures: [
-        { value: '5,4', label: 'position de l’accueil français, contre 10,8' },
-        { value: '1 900', label: 'visites par trimestre sur les pages sectorielles' },
-        { value: '3', label: 'langues, avec des adresses traduites' },
-        { value: '0', label: 'export Excel pour suivre le marketing' },
-      ],
-      figNote: 'Search Console, en glissement annuel au 26 août 2026. Les pages de connexion sont remontées aux positions 2,1 et 2,2 sur des adresses entièrement neuves.',
-      site: {
-        n: '01',
-        title: 'Un site que le marketing fait vivre.',
+
+      avant: {
+        n: 'Avant',
+        title: 'Personne ne parlait des mêmes chiffres.',
         body: [
-          'L’ancien site WordPress et un sous-site séparé ont été réunis dans un site statique unique, en français, néerlandais et anglais, avec des adresses traduites dans chaque langue.',
-          'Une famille de pages est générée à partir de données : une page par commission paritaire, en français et en néerlandais. Chaque page porte un seul graphe de données structurées, et une copie en Markdown est servie aux assistants IA.',
-          'La plupart des personnes qui modifient le site sont des marketeurs, pas des développeurs. Chaque changement passe par trois environnements et deux relectures avant la mise en ligne.',
+          'Chaque outil comptait à sa façon. La régie publicitaire s’attribuait des prospects qui n’avaient jamais cliqué. Google Analytics ne voyait pas une partie des visites. Le CRM recevait des prospects sans origine, et ne les reliait jamais aux contrats signés.',
+          'Les noms de campagne différaient d’un outil à l’autre, et le plan média vivait dans un tableur tenu à la main. Rien ne permettait de relier une dépense à un client signé.',
         ],
-        rows: [
-          { k: 'Langues', v: 'FR · NL · EN' },
-          { k: 'Pages', v: '≈ 130' },
-          { k: 'Articles', v: '271', d: '108 FR · 118 NL · 45 EN' },
-          { k: 'Redirections 301', v: '107', d: 'depuis les adresses WordPress' },
-          { k: 'Sous-site', v: '1', d: 'fusionné dans le site principal' },
-          { k: 'Mise en ligne', v: '3 étapes', d: 'développement, recette, production' },
+        constats: [
+          { v: '99 / 105', l: 'prospects revendiqués par la régie sans un seul clic' },
+          { v: '1 / 3', l: 'clics jamais vus par Google Analytics (cookies refusés, bloqueurs)' },
+          { v: '1 / 10', l: 'prospects du CRM dont la campagne d’origine est renseignée' },
+          { v: '0', l: 'lien entre un prospect et le contrat qu’il a signé' },
         ],
       },
-      mkt: {
-        n: '02',
-        title: 'L’IA rédige, l’équipe valide.',
+
+      socle: {
+        n: '01 · Le socle',
+        title: 'Un site propre, un seul moteur de données.',
         body: [
-          'La production marketing suit une boucle en six temps, de l’insight au bilan à trente jours. Une règle la tient : pas d’insight validé, pas de brief ; pas de brief, pas de travail.',
-          'L’IA rédige les brouillons dans les trois langues et prépare la page. L’équipe apporte ce qu’elle seule sait : la preuve belge, la nuance fiscale, la voix de la marque. Un partenaire technique relit le code, l’équipe marketing relit la page, en parallèle.',
-          'L’objectif affiché : qu’une équipe de six à dix personnes passe de dix à cent contenus par trimestre, sans recruter.',
-        ],
-        steps: [
-          { k: 'Insight', v: 'Validé dans la base de connaissance', who: 'Équipe' },
-          { k: 'Brief', v: 'Rattaché à un insight, sinon rien', who: 'Équipe' },
-          { k: 'Brouillon', v: 'Rédigé en FR, NL et EN', who: 'IA' },
-          { k: 'Page', v: 'Construite, avec un aperçu à relire', who: 'IA' },
-          { k: 'Relecture', v: 'Code et page, en parallèle', who: 'Équipe' },
-          { k: 'Bilan', v: 'Mesuré trente jours après', who: 'Équipe' },
-        ],
-      },
-      data: {
-        n: '03',
-        title: 'Sept sources, un tableau de bord.',
-        body: [
-          'Analytics, campagnes payantes, Search Console, comportement des visiteurs, CRM et suivi SEO vivaient chacun dans leur outil, et se recoupaient dans des tableurs. Ils alimentent désormais un seul moteur et une seule base.',
-          'Le tableau de bord reconstruit en direct le plan média que l’équipe tenait à la main. Les mêmes données sont interrogeables par un assistant IA, et deux tâches automatiques tournent chaque nuit.',
-          'En chemin, la mesure a été corrigée : sur 105 prospects attribués à une régie, 99 n’avaient jamais cliqué. Seuls les clics comptent désormais.',
+          'L’ancien site WordPress et un sous-site ont été réunis dans un site statique en français, néerlandais et anglais, avec une page par commission paritaire et 107 redirections depuis les anciennes adresses. Chaque page porte ses données structurées et une copie lisible par les assistants IA.',
+          'Derrière, sept sources alimentent un seul moteur et une seule base : publicités, analytics, Search Console, comportement des visiteurs, CRM et suivi SEO. La règle de mesure est fixée une fois pour toutes : un prospect publicitaire ne compte que s’il a cliqué.',
         ],
         sources: ['GA4', 'Google Ads', 'Meta Ads', 'Search Console', 'Clarity', 'Salesforce · Pardot', 'Suivi SEO et GEO'],
         engine: ['Un moteur d’automatisation', 'Une base de données'],
-        outputs: ['Tableau de bord', 'Assistant IA', 'Contrôles chaque nuit'],
-        schemaLabel: 'Schéma : sept sources de données alimentent un moteur et une base, qui servent un tableau de bord, un assistant IA et des contrôles automatiques.',
+        outputs: ['Funnel', 'Campagnes', 'SEO et GEO'],
+        schemaLabel: 'Schéma : sept sources de données alimentent un moteur et une base, qui servent le funnel, l’analyse des campagnes et le SEO/GEO.',
       },
+
+      funnel: {
+        n: '02 · Le funnel',
+        title: 'De la première impression au chiffre d’affaires.',
+        body: 'Six étapes, chacune mesurée par rapport à celle du dessus. Les parcours de contact ne s’additionnent jamais entre eux, et la dernière étape suit les deux types de clients : les petites entreprises qui commandent seules, les plus grandes qui passent par un commercial.',
+        note: 'Schéma : largeurs indicatives, sans données du client.',
+        etapes: [
+          { k: 'Toucher', v: 'Impressions, personnes atteintes, clics', s: 'Google Ads · Meta' },
+          { k: 'Attirer', v: 'Visiteurs uniques, part venue des campagnes', s: 'GA4' },
+          { k: 'Reconnaître', v: 'Visiteurs qui agissent, clients connus ou nouveaux', s: 'GA4 · CRM' },
+          { k: 'Engager', v: 'Inscription, rendez-vous, démo, formulaire partenaire', s: 'Parcours parallèles' },
+          { k: 'Qualifier', v: 'Prospects qualifiés, opportunités', s: 'CRM' },
+          { k: 'Valeur', v: 'Clients actifs, revenu récurrent, retour sur la dépense', s: 'CRM' },
+        ],
+      },
+
+      campagnes: {
+        n: '03 · Les campagnes',
+        title: 'Chaque campagne reçoit un verdict.',
+        body: [
+          'Le taux de conversion de chaque campagne est comparé à la moyenne avec un intervalle de confiance à 95 %. Une campagne trop jeune est marquée « volume faible » plutôt que jugée trop tôt. Les variantes d’annonces sont départagées par un test statistique, à partir de 300 impressions de chaque côté.',
+          'Un seul indicateur pilote tout : le coût par prospect qualifié. Chaque semaine, les chiffres sont comparés aux treize semaines précédentes ; ce qui s’écarte est signalé, avec l’action à mener. La dépense est suivie mois par mois face au plan, avec une alerte au-delà de 10 % d’écart.',
+        ],
+        verdicts: [
+          { k: 'Au-dessus', d: 'convertit mieux que la moyenne, au seuil de 95 %', ton: 'haut' },
+          { k: 'Dans la moyenne', d: 'pas d’écart significatif', ton: 'moyen' },
+          { k: 'En dessous', d: 'convertit moins bien que la moyenne, au seuil de 95 %', ton: 'bas' },
+          { k: 'Aucune conversion', d: 'de la dépense, pas un seul résultat', ton: 'bas' },
+          { k: 'Volume faible', d: 'moins de 30 visites : trop tôt pour juger', ton: 'neutre' },
+        ],
+        exemple: '« Un canal qui dépense quatre semaines sans produire un prospect qualifié : des prospects qui ne se qualifient jamais coûtent autant que pas de prospects. »',
+        exempleNote: 'Exemple de recommandation produite par la revue hebdomadaire',
+      },
+
+      seo: {
+        n: '04 · SEO et GEO',
+        title: 'Les recommandations deviennent des corrections.',
+        body: [
+          'Chaque semaine, les recommandations de l’outil de suivi SEO et GEO sont regroupées par sujet et par page, puis transformées en instructions prêtes pour l’IA. Les corrections simples (titres, descriptions, intertitres, textes alternatifs, liens internes, données structurées) sont appliquées directement. Le travail éditorial passe d’abord par un plan, puis par un accord.',
+          'Une règle protège le référencement acquis : aucune adresse n’est jamais modifiée. Côté moteurs IA, le trafic venu de ChatGPT, Perplexity, Gemini, Copilot, Claude ou Mistral est isolé, et sa conversion comparée à celle du site.',
+        ],
+        pas: [
+          { k: 'Recommandation', v: 'Relevée chaque semaine', who: 'Outil' },
+          { k: 'Lot', v: 'Groupé par sujet et par page', who: 'Moteur' },
+          { k: 'Correction', v: 'Appliquée, ou plan soumis', who: 'IA' },
+          { k: 'Aperçu', v: 'Une version à relire', who: 'IA' },
+          { k: 'Relecture', v: 'Code et contenu', who: 'Équipe' },
+          { k: 'En ligne', v: 'Sans changer une adresse', who: 'Équipe' },
+        ],
+        lots: '15 descriptions, 12 intertitres, 15 textes alternatifs, 8 liens internes ou 6 blocs de données structurées par lot',
+      },
+
+      resultats: {
+        title: 'Ce que ça a donné.',
+        figures: [
+          { value: '5,4', label: 'position de l’accueil français, contre 10,8' },
+          { value: '2,1', label: 'position des pages de connexion, sur des adresses neuves' },
+          { value: '1 900', label: 'visites par trimestre sur les pages sectorielles' },
+          { value: '0', label: 'prospect publicitaire compté sans clic' },
+        ],
+        note: 'Search Console, en glissement annuel au 26 août 2026.',
+      },
+
       next: {
         title: 'Ce qui reste à faire.',
-        body: 'Le chiffre d’affaires n’est pas encore attribuable campagne par campagne : les prospects ne sont pas convertis dans le CRM et les paramètres de campagne ne sont renseignés qu’une fois sur dix. C’est le prochain chantier, et le tableau de bord le montre plutôt que de le cacher.',
+        body: 'Le dernier maillon manque encore : relier chaque contrat à la campagne qui l’a amené. Il faut pour cela que le formulaire d’inscription transmette son origine au CRM, et que les prospects y soient convertis. Le tableau de bord le montre noir sur blanc, au lieu de le combler avec une estimation.',
       },
       back: 'Voir les autres travaux',
       endTitle: 'Un appel de trente minutes pour commencer.',
@@ -94,78 +133,116 @@ const c = fr
       meta: {
         title: 'Belgian employee-benefits fintech · Foxyline case study',
         description:
-          'A rebuild in three languages, a marketing production line where AI drafts and the team signs off, and every marketing data source in a single dashboard.',
+          'Seven tools, seven versions of the numbers. A rebuilt site, every source in one engine, a readable funnel, a verdict on every campaign and SEO fixes applied automatically.',
       },
       kicker: 'Case study · Belgian fintech · 2026',
-      title: 'One site, one content line,',
-      titleAccent: 'one dashboard.',
-      sub: 'A Belgian employee-benefits provider: a site rebuilt in three languages, a marketing team that publishes on its own with AI, and data that used to sit in seven tools, finally brought together.',
+      title: 'Seven tools, seven versions of the numbers.',
+      titleAccent: 'Then one.',
+      sub: 'A Belgian employee-benefits provider was spending on campaigns without being able to say which ones brought customers. We rebuilt the site, wired every source into one engine, and gave the team a shared reading of the funnel, the campaigns and search.',
       anon: 'Client anonymised at their request',
-      figures: [
-        { value: '5.4', label: 'French homepage position, from 10.8' },
-        { value: '1,900', label: 'visits a quarter on the sector pages' },
-        { value: '3', label: 'languages, with translated URLs' },
-        { value: '0', label: 'Excel exports to track marketing' },
-      ],
-      figNote: 'Search Console, year on year to 26 Aug 2026. The login pages climbed to positions 2.1 and 2.2 on brand-new URLs.',
-      site: {
-        n: '01',
-        title: 'A site that marketing runs.',
+
+      avant: {
+        n: 'Before',
+        title: 'Nobody was talking about the same numbers.',
         body: [
-          'The old WordPress site and a separate sub-site were merged into one static site, in French, Dutch and English, with URLs translated in each language.',
-          'One family of pages is generated from data: a page per joint committee, in French and Dutch. Every page carries a single structured-data graph, and a Markdown copy is served to AI assistants.',
-          'Most of the people who change the site are marketers, not developers. Every change goes through three environments and two reviews before it goes live.',
+          'Every tool counted its own way. The ad network claimed leads that had never clicked. Google Analytics missed part of the visits. The CRM received leads with no origin, and never linked them to signed contracts.',
+          'Campaign names differed from one tool to the next, and the media plan lived in a spreadsheet kept by hand. Nothing tied a euro spent to a signed customer.',
         ],
-        rows: [
-          { k: 'Languages', v: 'FR · NL · EN' },
-          { k: 'Pages', v: '≈ 130' },
-          { k: 'Articles', v: '271', d: '108 FR · 118 NL · 45 EN' },
-          { k: '301 redirects', v: '107', d: 'from the WordPress URLs' },
-          { k: 'Sub-site', v: '1', d: 'merged into the main site' },
-          { k: 'Release', v: '3 stages', d: 'development, staging, production' },
+        constats: [
+          { v: '99 / 105', l: 'leads claimed by the ad network without a single click' },
+          { v: '1 / 3', l: 'clicks never seen by Google Analytics (refused cookies, blockers)' },
+          { v: '1 / 10', l: 'CRM leads with their source campaign filled in' },
+          { v: '0', l: 'link between a lead and the contract it signed' },
         ],
       },
-      mkt: {
-        n: '02',
-        title: 'AI drafts, the team signs off.',
+
+      socle: {
+        n: '01 · The foundation',
+        title: 'A clean site, one data engine.',
         body: [
-          'Marketing production follows a six-step loop, from insight to a thirty-day review. One rule holds it together: no validated insight, no brief; no brief, no work.',
-          'AI drafts in all three languages and prepares the page. The team adds what only it knows: Belgian proof, tax nuance, the brand’s voice. A technical partner reviews the code and the marketing team reviews the page, in parallel.',
-          'The stated goal: for a team of six to ten people to go from ten to a hundred pieces of content a quarter, without hiring.',
-        ],
-        steps: [
-          { k: 'Insight', v: 'Validated in the knowledge base', who: 'Team' },
-          { k: 'Brief', v: 'Tied to an insight, or nothing', who: 'Team' },
-          { k: 'Draft', v: 'Written in FR, NL and EN', who: 'AI' },
-          { k: 'Page', v: 'Built, with a preview to review', who: 'AI' },
-          { k: 'Review', v: 'Code and page, in parallel', who: 'Team' },
-          { k: 'Review at 30 days', v: 'Measured a month later', who: 'Team' },
-        ],
-      },
-      data: {
-        n: '03',
-        title: 'Seven sources, one dashboard.',
-        body: [
-          'Analytics, paid campaigns, Search Console, visitor behaviour, CRM and SEO tracking each lived in their own tool and were reconciled in spreadsheets. They now feed a single engine and a single database.',
-          'The dashboard rebuilds, live, the media plan the team used to keep by hand. The same data can be queried by an AI assistant, and two automated jobs run every night.',
-          'Along the way the measurement was fixed: of 105 leads credited to one ad network, 99 had never clicked. Only clicks count now.',
+          'The old WordPress site and a sub-site were merged into one static site in French, Dutch and English, with a page per joint committee and 107 redirects from the old URLs. Every page carries its structured data and a copy readable by AI assistants.',
+          'Behind it, seven sources feed a single engine and a single database: ads, analytics, Search Console, visitor behaviour, CRM and SEO tracking. The measurement rule is set once and for all: an ad lead only counts if it clicked.',
         ],
         sources: ['GA4', 'Google Ads', 'Meta Ads', 'Search Console', 'Clarity', 'Salesforce · Pardot', 'SEO and GEO tracking'],
         engine: ['An automation engine', 'A database'],
-        outputs: ['Dashboard', 'AI assistant', 'Nightly checks'],
-        schemaLabel: 'Diagram: seven data sources feed one engine and one database, which serve a dashboard, an AI assistant and automated checks.',
+        outputs: ['Funnel', 'Campaigns', 'SEO and GEO'],
+        schemaLabel: 'Diagram: seven data sources feed one engine and one database, which serve the funnel, campaign analysis and SEO/GEO.',
       },
+
+      funnel: {
+        n: '02 · The funnel',
+        title: 'From the first impression to revenue.',
+        body: 'Six stages, each measured against the one above. Contact routes are never added together, and the last stage follows both kinds of customer: small companies that order on their own, larger ones that go through sales.',
+        note: 'Diagram: indicative widths, no client data.',
+        etapes: [
+          { k: 'Reach', v: 'Impressions, people reached, clicks', s: 'Google Ads · Meta' },
+          { k: 'Attract', v: 'Unique visitors, share from campaigns', s: 'GA4' },
+          { k: 'Recognise', v: 'Visitors who act, known or new customers', s: 'GA4 · CRM' },
+          { k: 'Engage', v: 'Sign-up, meeting, demo, partner form', s: 'Parallel routes' },
+          { k: 'Qualify', v: 'Qualified leads, opportunities', s: 'CRM' },
+          { k: 'Value', v: 'Live customers, recurring revenue, return on spend', s: 'CRM' },
+        ],
+      },
+
+      campagnes: {
+        n: '03 · Campaigns',
+        title: 'Every campaign gets a verdict.',
+        body: [
+          'Each campaign’s conversion rate is compared with the average using a 95% confidence interval. A campaign that is too young is marked “low volume” instead of being judged too early. Ad variants are settled by a statistical test, from 300 impressions on each side.',
+          'One indicator drives everything: cost per qualified lead. Every week the numbers are compared with the previous thirteen weeks; whatever drifts is flagged, with the action to take. Spend is tracked month by month against the plan, with an alert beyond a 10% gap.',
+        ],
+        verdicts: [
+          { k: 'Above', d: 'converts better than average, at 95%', ton: 'haut' },
+          { k: 'Average', d: 'no significant gap', ton: 'moyen' },
+          { k: 'Below', d: 'converts worse than average, at 95%', ton: 'bas' },
+          { k: 'No conversion', d: 'spend, not a single result', ton: 'bas' },
+          { k: 'Low volume', d: 'fewer than 30 visits: too early to judge', ton: 'neutre' },
+        ],
+        exemple: '“A channel that spends four weeks without producing a qualified lead: leads that never qualify cost as much as no leads.”',
+        exempleNote: 'Example of a recommendation from the weekly review',
+      },
+
+      seo: {
+        n: '04 · SEO and GEO',
+        title: 'Recommendations become fixes.',
+        body: [
+          'Every week, the recommendations from the SEO and GEO tracking tool are grouped by topic and page, then turned into instructions ready for AI. Simple fixes (titles, descriptions, headings, alt text, internal links, structured data) are applied directly. Editorial work goes through a plan first, then a sign-off.',
+          'One rule protects the rankings already earned: no URL is ever changed. On the AI side, traffic from ChatGPT, Perplexity, Gemini, Copilot, Claude or Mistral is isolated, and its conversion compared with the site’s.',
+        ],
+        pas: [
+          { k: 'Recommendation', v: 'Collected every week', who: 'Tool' },
+          { k: 'Batch', v: 'Grouped by topic and page', who: 'Engine' },
+          { k: 'Fix', v: 'Applied, or a plan submitted', who: 'AI' },
+          { k: 'Preview', v: 'A version to review', who: 'AI' },
+          { k: 'Review', v: 'Code and content', who: 'Team' },
+          { k: 'Live', v: 'Without changing a URL', who: 'Team' },
+        ],
+        lots: '15 descriptions, 12 headings, 15 alt texts, 8 internal links or 6 structured-data blocks per batch',
+      },
+
+      resultats: {
+        title: 'What it produced.',
+        figures: [
+          { value: '5.4', label: 'French homepage position, from 10.8' },
+          { value: '2.1', label: 'login page position, on brand-new URLs' },
+          { value: '1,900', label: 'visits a quarter on the sector pages' },
+          { value: '0', label: 'ad leads counted without a click' },
+        ],
+        note: 'Search Console, year on year to 26 Aug 2026.',
+      },
+
       next: {
         title: 'What is left to do.',
-        body: 'Revenue cannot yet be attributed campaign by campaign: leads are not converted in the CRM and campaign parameters are filled in only one time in ten. That is the next piece of work, and the dashboard shows it rather than hiding it.',
+        body: 'The last link is still missing: tying each contract to the campaign that brought it. That needs the sign-up form to pass its origin to the CRM, and leads to be converted there. The dashboard shows it in black and white instead of filling the gap with an estimate.',
       },
       back: 'See the other work',
       endTitle: 'A thirty-minute call to start.',
     };
 
-// Schéma de centralisation : positions dans un repère 900 × 470.
-const srcY = c.data.sources.map((_, i) => 40 + i * 64);
+const srcY = c.socle.sources.map((_, i) => 40 + i * 64);
 const outY = [120, 235, 350];
+const largeurs = [100, 84, 68, 54, 41, 30];
+const ia = (who: string) => who === 'IA' || who === 'AI';
 ---
 
 <Maison lang={lang} title={c.meta.title} description={c.meta.description} altPath={altPath}>
@@ -174,84 +251,47 @@ const outY = [120, 235, 350];
       <svg aria-hidden="true" width="10" height="8" viewBox="0 0 12 8"><path d="M0 0 H12 L6 8 Z" fill="currentColor" /></svg>
       {c.kicker}
     </p>
-    <h1 class="display">{c.title} <span class="accent">{c.titleAccent}</span></h1>
+    <h1 class="display" style="max-width: 18ch;">{c.title} <span class="accent">{c.titleAccent}</span></h1>
     <div class="hero-pied">
       <p class="chapo l-in">{c.sub}</p>
       <p class="repere b-in">{c.anon}</p>
     </div>
   </div>
 
-  <!-- Chiffres -->
-  <section aria-label={fr ? 'En chiffres' : 'In figures'}>
-    <div class="wrap">
-      <div class="cotes">
-        {c.figures.map((f, i) => (
-          <div class="cote-bloc">
-            <span class="cote-val" data-count>{f.value}</span>
-            <span class="cote" aria-hidden="true" style={`--d:${i}`}><i /><b />{i === c.figures.length - 1 && <i />}</span>
-            <span class="cote-txt rv" style={`--d:${i}`}>{f.label}</span>
-          </div>
-        ))}
-      </div>
-      <p class="note rv" style="padding-bottom: 1rem; max-width: 46rem;">{c.figNote}</p>
-    </div>
-  </section>
-
-  <!-- 01 · Le site -->
-  <section class="band sable" aria-labelledby="site-titre">
-    <div class="wrap cas-bloc">
-      <div class="cas-texte">
-        <span class="repere rv">{c.site.n}</span>
-        <h2 id="site-titre" class="h2 rv">{c.site.title}</h2>
-        <div class="texte">{c.site.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
-      </div>
-      <div class="fiche-cas chev">
-        <dl>
-          {c.site.rows.map((r) => (
-            <div class="fiche-ligne">
-              <dt class="repere">{r.k}</dt>
-              <dd><strong>{r.v}</strong>{'d' in r && <span>{r.d}</span>}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 · Le marketing -->
-  <section class="band" aria-labelledby="mkt-titre">
-    <div class="wrap cas-bloc inverse">
-      <div class="cas-texte">
-        <span class="repere rv">{c.mkt.n}</span>
-        <h2 id="mkt-titre" class="h2 rv">{c.mkt.title}</h2>
-        <div class="texte">{c.mkt.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
-      </div>
-      <ol class="chaine">
-        {c.mkt.steps.map((s, i) => (
-          <li class:list={['chaine-pas rv', { ia: s.who === 'IA' || s.who === 'AI' }]} style={`--d:${i}`}>
-            <span class="chaine-n repere">{String(i + 1).padStart(2, '0')}</span>
-            <span class="chaine-k">{s.k}</span>
-            <span class="chaine-v">{s.v}</span>
-            <span class="chaine-qui">{s.who}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- 03 · La centralisation -->
-  <section class="band on-dark" aria-labelledby="data-titre">
+  <!-- Avant : le problème -->
+  <section class="band" aria-labelledby="avant-titre">
     <div class="wrap">
       <div class="deux" style="margin-bottom: 3.5rem;">
         <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-          <span class="repere rv" style="color: var(--renard-clair);">{c.data.n}</span>
-          <h2 id="data-titre" class="h2 rv">{c.data.title}</h2>
+          <span class="repere rv" style="color: var(--renard-texte);">{c.avant.n}</span>
+          <h2 id="avant-titre" class="h2 rv">{c.avant.title}</h2>
         </div>
-        <div class="texte">{c.data.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
+        <div class="texte">{c.avant.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
       </div>
+      <ul class="constats">
+        {c.avant.constats.map((k, i) => (
+          <li class="rv" style={`--d:${i}`}>
+            <strong>{k.v}</strong>
+            <span class="cote" aria-hidden="true" style={`--d:${i}`}><i /><b /></span>
+            <span>{k.l}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
+  <!-- 01 · Le socle -->
+  <section class="band on-dark" aria-labelledby="socle-titre">
+    <div class="wrap">
+      <div class="deux" style="margin-bottom: 3.5rem;">
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <span class="repere rv" style="color: var(--renard-clair);">{c.socle.n}</span>
+          <h2 id="socle-titre" class="h2 rv">{c.socle.title}</h2>
+        </div>
+        <div class="texte">{c.socle.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
+      </div>
       <figure class="schema chev">
-        <svg viewBox="0 0 900 470" role="img" aria-label={c.data.schemaLabel}>
+        <svg viewBox="0 0 900 470" role="img" aria-label={c.socle.schemaLabel}>
           <g fill="none" stroke="rgba(245,242,236,0.28)" stroke-width="1">
             {srcY.map((y) => <path d={`M190 ${y} H 260 L 330 235 H 360`} />)}
             {outY.map((y) => <path d={`M560 235 H 600 L 650 ${y} H 690`} />)}
@@ -259,17 +299,17 @@ const outY = [120, 235, 350];
           {srcY.map((y, i) => (
             <g>
               <rect x="10" y={y - 20} width="180" height="40" rx="2" fill="none" stroke="rgba(245,242,236,0.35)" />
-              <text x="24" y={y + 5} fill="#E4E8E3" font-family="Switzer, sans-serif" font-size="14">{c.data.sources[i]}</text>
+              <text x="24" y={y + 5} fill="#E4E8E3" font-family="Switzer, sans-serif" font-size="14">{c.socle.sources[i]}</text>
             </g>
           ))}
           <rect x="360" y="165" width="200" height="140" rx="2" fill="#E07A45" />
           <path d="M452 186 H468 L460 197 Z" fill="#121A16" />
-          <text x="460" y="232" text-anchor="middle" fill="#121A16" font-family="Switzer, sans-serif" font-size="15" font-weight="500">{c.data.engine[0]}</text>
-          <text x="460" y="258" text-anchor="middle" fill="#121A16" font-family="Switzer, sans-serif" font-size="15">{c.data.engine[1]}</text>
+          <text x="460" y="232" text-anchor="middle" fill="#121A16" font-family="Switzer, sans-serif" font-size="15" font-weight="500">{c.socle.engine[0]}</text>
+          <text x="460" y="258" text-anchor="middle" fill="#121A16" font-family="Switzer, sans-serif" font-size="15">{c.socle.engine[1]}</text>
           {outY.map((y, i) => (
             <g>
               <rect x="690" y={y - 24} width="200" height="48" rx="2" fill="#F5F2EC" />
-              <text x="706" y={y + 5} fill="#121A16" font-family="Boska, serif" font-size="20">{c.data.outputs[i]}</text>
+              <text x="706" y={y + 6} fill="#121A16" font-family="Boska, serif" font-size="21">{c.socle.outputs[i]}</text>
             </g>
           ))}
         </svg>
@@ -277,8 +317,99 @@ const outY = [120, 235, 350];
     </div>
   </section>
 
-  <!-- La suite -->
-  <section class="band" aria-labelledby="suite-titre">
+  <!-- 02 · Le funnel -->
+  <section class="band sable" aria-labelledby="funnel-titre">
+    <div class="wrap">
+      <div class="deux" style="margin-bottom: 3.5rem;">
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <span class="repere rv" style="color: var(--renard-texte);">{c.funnel.n}</span>
+          <h2 id="funnel-titre" class="h2 rv">{c.funnel.title}</h2>
+        </div>
+        <p class="texte rv">{c.funnel.body}</p>
+      </div>
+      <ol class="entonnoir">
+        {c.funnel.etapes.map((e, i) => (
+          <li class="rv" style={`--d:${i}`}>
+            <span class="entonnoir-n repere">{String(i + 1).padStart(2, '0')}</span>
+            <span class="entonnoir-barre" style={`--l:${largeurs[i]}%`} data-dernier={i === c.funnel.etapes.length - 1 ? '' : undefined}>
+              <span class="entonnoir-k">{e.k}</span>
+            </span>
+            <span class="entonnoir-v">{e.v}<span class="repere">{e.s}</span></span>
+          </li>
+        ))}
+      </ol>
+      <p class="note rv" style="margin-top: 1.5rem;">{c.funnel.note}</p>
+    </div>
+  </section>
+
+  <!-- 03 · Les campagnes -->
+  <section class="band" aria-labelledby="camp-titre">
+    <div class="wrap cas-bloc">
+      <div class="cas-texte">
+        <span class="repere rv">{c.campagnes.n}</span>
+        <h2 id="camp-titre" class="h2 rv">{c.campagnes.title}</h2>
+        <div class="texte">{c.campagnes.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
+      </div>
+      <div class="verdicts-bloc">
+        <ul class="verdicts">
+          {c.campagnes.verdicts.map((v, i) => (
+            <li class="rv" style={`--d:${i}`}>
+              <span class:list={['verdict', `verdict-${v.ton}`]}>{v.k}</span>
+              <span>{v.d}</span>
+            </li>
+          ))}
+        </ul>
+        <figure class="parole verdict-exemple rv">
+          <blockquote>{c.campagnes.exemple}</blockquote>
+          <figcaption class="note">{c.campagnes.exempleNote}</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · SEO et GEO -->
+  <section class="band sable" aria-labelledby="seo-titre">
+    <div class="wrap cas-bloc inverse">
+      <div class="cas-texte">
+        <span class="repere rv">{c.seo.n}</span>
+        <h2 id="seo-titre" class="h2 rv">{c.seo.title}</h2>
+        <div class="texte">{c.seo.body.map((p, i) => <p class="rv" style={`--d:${i}`}>{p}</p>)}</div>
+      </div>
+      <div>
+        <ol class="chaine">
+          {c.seo.pas.map((s, i) => (
+            <li class:list={['chaine-pas rv', { ia: ia(s.who) }]} style={`--d:${i}`}>
+              <span class="chaine-n repere">{String(i + 1).padStart(2, '0')}</span>
+              <span class="chaine-k">{s.k}</span>
+              <span class="chaine-v">{s.v}</span>
+              <span class="chaine-qui">{s.who}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="note rv" style="margin-top: 1.25rem;">{c.seo.lots}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ce que ça a donné -->
+  <section class="band" aria-labelledby="res-titre">
+    <div class="wrap">
+      <h2 id="res-titre" class="h2 rv" style="margin-bottom: 1rem;">{c.resultats.title}</h2>
+      <div class="cotes">
+        {c.resultats.figures.map((f, i) => (
+          <div class="cote-bloc">
+            <span class="cote-val" data-count>{f.value}</span>
+            <span class="cote" aria-hidden="true" style={`--d:${i}`}><i /><b />{i === c.resultats.figures.length - 1 && <i />}</span>
+            <span class="cote-txt rv" style={`--d:${i}`}>{f.label}</span>
+          </div>
+        ))}
+      </div>
+      <p class="note rv">{c.resultats.note}</p>
+    </div>
+  </section>
+
+  <!-- Ce qui reste à faire -->
+  <section class="band sable" aria-labelledby="suite-titre">
     <div class="wrap deux">
       <h2 id="suite-titre" class="h2 rv">{c.next.title}</h2>
       <div class="texte">
