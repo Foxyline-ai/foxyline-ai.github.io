@@ -1,0 +1,164 @@
+---
+import Maison from '../layouts/Maison.astro';
+import { UI, CALENDAR_URL, EMAIL, type Lang } from '../i18n/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = UI[lang];
+const fr = lang === 'fr';
+const altPath = fr ? '/contact' : '/fr/contact';
+const redirectUrl = fr ? 'https://foxyline.ai/fr/merci' : 'https://foxyline.ai/merci';
+
+const c = fr
+  ? {
+      meta: {
+        title: 'Contact · Foxyline',
+        description:
+          'Réservez trente minutes ou décrivez le projet en quelques lignes. Réponse sous un jour ouvré.',
+      },
+      kicker: 'Contact · Réponse sous un jour ouvré',
+      title: 'Décrivez le projet,',
+      titleAccent: 'je vous réponds.',
+      sub: 'Deux façons de commencer : trente minutes dans mon agenda, ou quelques lignes ici. Dans les deux cas, c’est moi qui vous réponds, sous un jour ouvré.',
+      bookTitle: 'Trente minutes au téléphone.',
+      bookBody:
+        'Vous décrivez le contexte, je vous dis si je suis la bonne personne. Si je ne le suis pas, vous l’entendez pendant l’appel plutôt que dans une proposition trois semaines plus tard.',
+      formTitle: 'Ou par écrit.',
+      f: {
+        name: 'Nom', namePh: 'Prénom et nom',
+        email: 'E-mail', emailPh: 'vous@entreprise.be',
+        org: 'Organisation', orgPh: 'Nom de la société',
+        type: 'Type de projet',
+        types: ['Refonte de site', 'Réseau multi-sites', 'Production de contenu', 'SEO et visibilité IA', 'Autre'],
+        ctx: 'Le contexte',
+        ctxPh: 'Le site actuel, ce qui doit changer, et pour quand.',
+        scope: 'Nombre de sites', scopePh: 'Par exemple 1, ou 12 entités',
+        when: 'Échéance',
+        whens: ['Dès que possible', 'Ce trimestre', 'Le prochain', 'Je me renseigne'],
+        submit: 'Envoyer le brief',
+        legal: 'Ces informations servent uniquement à vous répondre. Elles ne rejoignent aucune liste marketing.',
+      },
+      orWrite: 'ou écrivez à',
+    }
+  : {
+      meta: {
+        title: 'Contact · Foxyline',
+        description:
+          'Book thirty minutes or describe the project in a few lines. Reply within one working day.',
+      },
+      kicker: 'Contact · Reply within one working day',
+      title: 'Describe the project,',
+      titleAccent: 'I will reply.',
+      sub: 'Two ways to start: thirty minutes in my calendar, or a few lines here. Either way, I reply myself, within one working day.',
+      bookTitle: 'Thirty minutes on the phone.',
+      bookBody:
+        'You describe the context, I tell you whether I am the right person. If I am not, you hear it on the call rather than in a proposal three weeks later.',
+      formTitle: 'Or in writing.',
+      f: {
+        name: 'Name', namePh: 'First and last name',
+        email: 'Email', emailPh: 'you@company.com',
+        org: 'Organisation', orgPh: 'Company name',
+        type: 'Project type',
+        types: ['Website rebuild', 'Multi-site network', 'Content production', 'SEO and AI visibility', 'Something else'],
+        ctx: 'The context',
+        ctxPh: 'The current site, what needs to change, and by when.',
+        scope: 'Number of sites', scopePh: 'For example 1, or 12 entities',
+        when: 'Timing',
+        whens: ['As soon as possible', 'This quarter', 'Next quarter', 'Just looking'],
+        submit: 'Send the brief',
+        legal: 'These details are used only to reply to you. They never join a marketing list.',
+      },
+      orWrite: 'or write to',
+    };
+---
+
+<Maison lang={lang} title={c.meta.title} description={c.meta.description} altPath={altPath}>
+  <div slot="hero" class="hero court">
+    <p class="kicker">
+      <svg aria-hidden="true" width="10" height="8" viewBox="0 0 12 8"><path d="M0 0 H12 L6 8 Z" fill="currentColor" /></svg>
+      {c.kicker}
+    </p>
+    <h1 class="display">{c.title} <span class="accent">{c.titleAccent}</span></h1>
+    <p class="chapo">{c.sub}</p>
+  </div>
+
+  <section class="band" aria-labelledby="appel-titre">
+    <div class="wrap deux">
+      <h2 id="appel-titre" class="h2">{c.bookTitle}</h2>
+      <div class="texte" style="display: flex; flex-direction: column; gap: 2rem; align-items: flex-start;">
+        <p>{c.bookBody}</p>
+        <a class="btn btn-plein" href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+          {t.book}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band sable" aria-labelledby="brief-titre">
+    <div class="wrap deux">
+      <h2 id="brief-titre" class="h2">{c.formTitle}</h2>
+
+      <form class="brief" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="16cd1d2b-c371-4aa8-ab8f-2cc13604ca99" />
+        <input type="hidden" name="redirect" value={redirectUrl} />
+        <input type="hidden" name="from_name" value="Foxyline · Brief" />
+        <input type="hidden" name="subject" value="New brief from foxyline.ai" />
+        <input type="checkbox" name="botcheck" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="brief-ligne">
+          <p class="champ">
+            <label for="name">{c.f.name}</label>
+            <input class="saisie" type="text" name="name" id="name" required placeholder={c.f.namePh} autocomplete="name" />
+          </p>
+          <p class="champ">
+            <label for="email">{c.f.email}</label>
+            <input class="saisie" type="email" name="email" id="email" required placeholder={c.f.emailPh} autocomplete="email" />
+          </p>
+        </div>
+
+        <div class="brief-ligne">
+          <p class="champ">
+            <label for="org">{c.f.org}</label>
+            <input class="saisie" type="text" name="organization" id="org" placeholder={c.f.orgPh} autocomplete="organization" />
+          </p>
+          <p class="champ">
+            <label for="type">{c.f.type}</label>
+            <select class="saisie" name="project_type" id="type" required>
+              {c.f.types.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </p>
+        </div>
+
+        <p class="champ">
+          <label for="ctx">{c.f.ctx}</label>
+          <textarea class="saisie" name="context" id="ctx" required rows="6" placeholder={c.f.ctxPh}></textarea>
+        </p>
+
+        <div class="brief-ligne">
+          <p class="champ">
+            <label for="count">{c.f.scope}</label>
+            <input class="saisie" type="text" name="site_count" id="count" placeholder={c.f.scopePh} />
+          </p>
+          <p class="champ">
+            <label for="when">{c.f.when}</label>
+            <select class="saisie" name="timeline" id="when">
+              {c.f.whens.map((o) => <option value={o}>{o}</option>)}
+            </select>
+          </p>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-plein" type="submit">
+            {c.f.submit}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+          </button>
+          <span style="font-size: 0.9375rem;">{c.orWrite} <a class="lien" href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
+        </div>
+
+        <p class="note">{c.f.legal}</p>
+      </form>
+    </div>
+  </section>
+</Maison>

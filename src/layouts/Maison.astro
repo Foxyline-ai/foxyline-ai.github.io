@@ -1,0 +1,249 @@
+---
+import '../styles/maison.css';
+import Mark from '../components/Mark.astro';
+import { UI, EMAIL, base, type Lang } from '../i18n/site';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Chemin de cette page dans l'autre langue, pour le sélecteur. */
+  altPath: string;
+  ogAlt?: string;
+  noindex?: boolean;
+  /** Joue la séquence d'arrivée du symbole (accueil uniquement). */
+  intro?: boolean;
+  /** Fond de l'en-tête : motif de têtes animé (vidéo en boucle), son image fixe, ou rien. */
+  fond?: 'video' | 'image' | 'none';
+  /** Accueil piloté au scroll : segment de la vidéo de fond joué par l'en-tête. */
+  fx?: { in: number; out: number; poster: number };
+}
+
+const { lang, title, description, altPath, ogAlt = title, noindex = false, intro = false, fond = 'image', fx } = Astro.props;
+
+const fxAttrs = fx
+  ? {
+      'data-video-in': fx.in,
+      'data-video-out': fx.out,
+      style: `--poster-l: url(/fx/poster-16x9-${fx.poster}.jpg); --poster-p: url(/fx/poster-9x16-${fx.poster}.jpg)`,
+    }
+  : {};
+
+const t = UI[lang];
+const fr = lang === 'fr';
+const home = `${base(lang)}/`;
+const siteUrl = 'https://foxyline.ai';
+const canonical = new URL(Astro.url.pathname, siteUrl);
+const altURL = new URL(altPath, siteUrl).href;
+const ogImage = fr ? '/og-image-fr.png' : '/og-image.png';
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Foxyline',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  email: EMAIL,
+  founder: { '@type': 'Person', name: 'Ludovic Laffineur' },
+  parentOrganization: { '@type': 'Organization', name: 'Moosly SRL' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Bruxelles', addressCountry: 'BE' },
+  areaServed: ['BE', 'FR'],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical.href} />
+    <link rel="alternate" hreflang={fr ? 'en' : 'fr'} href={altURL} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:site_name" content="Foxyline" />
+    <meta property="og:locale" content={fr ? 'fr_BE' : 'en_BE'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#142B24" />
+
+    <link rel="preload" href="/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <!-- Avant le premier rendu : « js » arme les révélations au scroll ; « fx-intro » retarde
+         le texte du hero le temps que la vidéo construise le symbole. -->
+    <script is:inline define:vars={{ fxPage: Boolean(fx) }}>
+      var r = document.documentElement;
+      r.classList.add('js');
+      if (fxPage && !matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('fx-intro');
+    </script>
+    <slot name="head" />
+  </head>
+
+  <body class:list={[{ 'fx-page': fx }]}>
+    <a class="skip" href="#contenu">{t.skip}</a>
+
+    <slot name="fx" />
+
+    <header class:list={['top on-dark', { 'fx-section tient': fx }]} {...fxAttrs}>
+      {fond !== 'none' && <div class="fond" aria-hidden="true">
+        <img src="/video/hero-motif.png" alt="" width="1920" height="1014" fetchpriority={fond === 'video' ? 'high' : undefined} />
+        {fond === 'video' && (
+          <video autoplay muted loop playsinline preload="auto" poster="/video/hero-motif.png" disablepictureinpicture>
+            <source src="/video/hero-motif.webm" type="video/webm" />
+            <source src="/video/hero-motif.mp4" type="video/mp4" />
+          </video>
+        )}
+      </div>}
+      <div class="wrap">
+        <nav class="nav" aria-label={fr ? 'Navigation principale' : 'Main navigation'}>
+          <a href={home} class="marque" aria-label={t.home}>
+            <Mark size={24} color="#F5F2EC" snout="#E07A45" animate={intro} />
+            <span class={intro ? 'nav-in' : undefined}>Foxyline</span>
+          </a>
+          <div class:list={['nav-liens', { 'nav-in': intro }]}>
+            <a class="ul hors-mobile" href={`${home}#travaux`}>{t.nav.work}</a>
+            <a class="ul hors-mobile" href={`${home}#methode`}>{t.nav.method}</a>
+            <a class="ul hors-mobile" href={`${home}#studio`}>{t.nav.studio}</a>
+            <a class="ul" href={`${base(lang)}/contact`}>{t.nav.contact}</a>
+            <a class="ul langue" href={altPath} lang={fr ? 'en' : 'fr'} hreflang={fr ? 'en' : 'fr'} aria-label={t.nav.altLabel}>{t.nav.alt}</a>
+          </div>
+        </nav>
+        <slot name="hero" />
+      </div>
+    </header>
+
+    <main id="contenu" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="pied">
+      <div class="wrap">
+        <span><Mark size={20} color="#B9C2BC" snout="#E07A45" />{t.footer.legal}</span>
+        <span>
+          <a class="ul" href={`${base(lang)}/terms`}>{t.footer.terms}</a>
+          <span aria-hidden="true">·</span>
+          <a class="ul" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          <span aria-hidden="true">·</span>
+          {t.footer.place}
+        </span>
+      </div>
+    </footer>
+
+    <script>
+      // Révélations : déclenchées quand l'élément atteint 75 % de la hauteur de l'écran,
+      // jouées dans le temps, une seule fois. On ne rejoue pas en remontant.
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+            if (e.target instanceof HTMLElement && e.target.dataset.count !== undefined) compte(e.target);
+          }
+        },
+        { rootMargin: '0px 0px -25% 0px' },
+      );
+      document.querySelectorAll('.rv, .titre, .cote, .chev, [data-count]').forEach((el) => io.observe(el));
+
+      const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Défilement lissé à la molette : un cran de molette saute d'environ 100 px, ce qui rend
+      // saccadés les gestes liés au scroll (fond vidéo, mur). Chaque cran fixe une cible que la
+      // page rejoint en douceur. Clavier, barre de défilement et tactile restent natifs.
+      if (!reduit && matchMedia('(pointer: fine)').matches) {
+        const root = document.documentElement;
+        root.classList.add('lisse');
+        const max = () => root.scrollHeight - innerHeight;
+        const borne = (v: number) => Math.min(max(), Math.max(0, v));
+        let cible = scrollY;
+        let actuel = scrollY;
+        let enCours = false;
+        let avant = 0;
+
+        const pas = (now: number) => {
+          const dt = Math.min(64, now - avant || 16.7);
+          avant = now;
+          actuel += (cible - actuel) * (1 - Math.pow(1 - 0.12, dt / 16.7));
+          if (Math.abs(cible - actuel) < 0.5) {
+            actuel = cible;
+            enCours = false;
+          }
+          scrollTo(0, actuel);
+          if (enCours) requestAnimationFrame(pas);
+        };
+        const vers = (y: number) => {
+          cible = borne(y);
+          if (!enCours) {
+            enCours = true;
+            actuel = scrollY;
+            avant = performance.now();
+            requestAnimationFrame(pas);
+          }
+        };
+
+        addEventListener(
+          'wheel',
+          (e) => {
+            if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // zoom, défilement horizontal
+            if ((e.target as Element).closest?.('textarea, select, [data-scroll-natif]')) return;
+            e.preventDefault();
+            const k = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1;
+            vers((enCours ? cible : scrollY) + e.deltaY * k);
+          },
+          { passive: false },
+        );
+        // Un défilement natif (clavier, barre, ancre du navigateur) reprend la main.
+        addEventListener('scroll', () => { if (!enCours) cible = actuel = scrollY; }, { passive: true });
+        addEventListener('keydown', () => { enCours = false; });
+
+        // Liens d'ancre de la page : même glissé.
+        document.addEventListener('click', (e) => {
+          const a = (e.target as Element).closest?.('a[href*="#"]') as HTMLAnchorElement | null;
+          if (!a || a.pathname !== location.pathname || !a.hash) return;
+          const el = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+          if (!el) return;
+          e.preventDefault();
+          history.pushState(null, '', a.hash);
+          vers(el.getBoundingClientRect().top + scrollY - 24);
+        });
+      }
+
+      // Chiffre qui se compte : 1,4 s, courbe « tracé ». Le texte final est déjà dans le HTML.
+      function compte(el: HTMLElement) {
+        const m = (el.textContent ?? '').match(/^(\D*)(\d[\d\s  ]*)(\D*)$/);
+        if (!m || reduit) return;
+        const [, avant, nombre, apres] = m;
+        const fin = parseInt(nombre.replace(/\D/g, ''), 10);
+        const sep = nombre.match(/[\s  ]/)?.[0] ?? '';
+        const format = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep || '');
+        const trace = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+        const t0 = performance.now();
+        const pas = (now: number) => {
+          const t = Math.min(1, (now - t0) / 1400);
+          el.textContent = avant + format(Math.round(fin * trace(t))) + apres;
+          if (t < 1) requestAnimationFrame(pas);
+        };
+        requestAnimationFrame(pas);
+      }
+    </script>
+  </body>
+</html>
