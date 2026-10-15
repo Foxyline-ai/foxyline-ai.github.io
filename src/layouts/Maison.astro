@@ -164,8 +164,70 @@ const org = {
       );
       document.querySelectorAll('.rv, .titre, .cote, .chev, [data-count]').forEach((el) => io.observe(el));
 
-      // Chiffre qui se compte : 1,4 s, courbe « tracé ». Le texte final est déjà dans le HTML.
       const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Défilement lissé à la molette : un cran de molette saute d'environ 100 px, ce qui rend
+      // saccadés les gestes liés au scroll (fond vidéo, mur). Chaque cran fixe une cible que la
+      // page rejoint en douceur. Clavier, barre de défilement et tactile restent natifs.
+      if (!reduit && matchMedia('(pointer: fine)').matches) {
+        const root = document.documentElement;
+        root.classList.add('lisse');
+        const max = () => root.scrollHeight - innerHeight;
+        const borne = (v: number) => Math.min(max(), Math.max(0, v));
+        let cible = scrollY;
+        let actuel = scrollY;
+        let enCours = false;
+        let avant = 0;
+
+        const pas = (now: number) => {
+          const dt = Math.min(64, now - avant || 16.7);
+          avant = now;
+          actuel += (cible - actuel) * (1 - Math.pow(1 - 0.12, dt / 16.7));
+          if (Math.abs(cible - actuel) < 0.5) {
+            actuel = cible;
+            enCours = false;
+          }
+          scrollTo(0, actuel);
+          if (enCours) requestAnimationFrame(pas);
+        };
+        const vers = (y: number) => {
+          cible = borne(y);
+          if (!enCours) {
+            enCours = true;
+            actuel = scrollY;
+            avant = performance.now();
+            requestAnimationFrame(pas);
+          }
+        };
+
+        addEventListener(
+          'wheel',
+          (e) => {
+            if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // zoom, défilement horizontal
+            if ((e.target as Element).closest?.('textarea, select, [data-scroll-natif]')) return;
+            e.preventDefault();
+            const k = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1;
+            vers((enCours ? cible : scrollY) + e.deltaY * k);
+          },
+          { passive: false },
+        );
+        // Un défilement natif (clavier, barre, ancre du navigateur) reprend la main.
+        addEventListener('scroll', () => { if (!enCours) cible = actuel = scrollY; }, { passive: true });
+        addEventListener('keydown', () => { enCours = false; });
+
+        // Liens d'ancre de la page : même glissé.
+        document.addEventListener('click', (e) => {
+          const a = (e.target as Element).closest?.('a[href*="#"]') as HTMLAnchorElement | null;
+          if (!a || a.pathname !== location.pathname || !a.hash) return;
+          const el = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+          if (!el) return;
+          e.preventDefault();
+          history.pushState(null, '', a.hash);
+          vers(el.getBoundingClientRect().top + scrollY - 24);
+        });
+      }
+
+      // Chiffre qui se compte : 1,4 s, courbe « tracé ». Le texte final est déjà dans le HTML.
       function compte(el: HTMLElement) {
         const m = (el.textContent ?? '').match(/^(\D*)(\d[\d\s  ]*)(\D*)$/);
         if (!m || reduit) return;

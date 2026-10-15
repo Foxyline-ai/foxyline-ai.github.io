@@ -41,6 +41,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Le défilement lissé pilote lui-même la position : pas de glissé CSS par-dessus. */
+html.lisse { scroll-behavior: auto; }
 
 body {
   margin: 0;

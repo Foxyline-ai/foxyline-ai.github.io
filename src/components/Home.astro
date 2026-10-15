@@ -352,7 +352,8 @@ const mots = (s: string) => s.split(' ');
   // qu'une fois son rideau joué (part du segment). Entre deux fonds clairs (papier, sable),
   // data-pret="0" : le texte se révèle dès qu'il entre à l'écran.
   const PRET = 0.6;
-  const LISSAGE = 0.15;
+  // Le défilement est déjà lissé à la molette (layout) : la vidéo le suit de près.
+  const LISSAGE = 0.35;
   const FRAME = 1 / 30;
 
   // Sections tenues : le contenu colle à l'écran pendant la tenue. S'il est plus haut que
