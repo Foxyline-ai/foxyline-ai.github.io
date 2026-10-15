@@ -10,6 +10,8 @@ import timeline from '../data/scroll-timeline.json';
 import rpe from '../assets/portfolio/rpe.webp';
 import tapio from '../assets/portfolio/tapio.webp';
 import portrait from '../assets/ludovic_laffineur.png';
+import cambrePhoto from '../assets/radiologielacambre/lacambre-center-1.jpg';
+import cambreEcran from '../assets/radiologielacambre/lacambre-home.png';
 
 interface Props {
   lang: Lang;
@@ -29,6 +31,14 @@ const PLACES_FR: Record<string, string> = {
 };
 const place = (p: string) => (fr ? PLACES_FR[p] ?? p : p);
 const siteHref = (href: string, external: boolean) => (external ? href : `${b}${href}`);
+
+// Le mur : tous les sites en production, le groupe et Tapio en tête, sur trois rangées.
+const SITES = [
+  { name: 'Radiology Partners Europe', place: fr ? 'Groupe' : 'Group', image: rpe, href: 'https://radiologypartnerseurope.com/', external: true },
+  { name: 'Tapio', place: 'SaaS B2B', image: tapio, href: 'https://www.tapio.eco/', external: true },
+  ...NETWORK_SITES,
+];
+const rangs = [0, 1, 2].map((r) => SITES.filter((_, i) => i % 3 === r));
 
 /** Attributs d'une section pilotée : son segment vidéo, son poster de repli, sa hauteur de scroll. */
 const seg = (id: string, o: { tenue?: boolean; pret?: number } = {}) => {
@@ -168,30 +178,81 @@ const mots = (s: string) => s.split(' ');
         </article>
       </div>
 
-      <div id="reseau" class="deux" style="margin: 7rem 0 3.5rem;">
-        <h2 class="h2 titre">{mots(d.network.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
-        <p class="texte rv">{d.network.body}</p>
+    </div>
+
+    <!-- Mur : les vingt sites, épinglés à l'écran ; les rangées glissent en sens opposés au scroll -->
+    <div id="reseau" class="mur">
+      <div class="mur-in">
+        <div class="wrap mur-tete">
+          <h2 class="h2 titre">{mots(d.network.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
+          <p class="texte rv">{d.network.body}</p>
+        </div>
+        <div class="mur-rangs">
+          {rangs.map((rang, r) => (
+            <ul class="mur-rang" data-sens={r % 2 ? 1 : -1}>
+              {rang.map((s) => (
+                <li>
+                  <a
+                    class="planche"
+                    href={siteHref(s.href, s.external)}
+                    target={s.external ? '_blank' : undefined}
+                    rel={s.external ? 'noopener noreferrer' : undefined}
+                  >
+                    <span class="capture">
+                      <Image src={s.image} alt={fr ? `Page d’accueil de ${s.name}` : `${s.name} homepage`} widths={[400, 640]} sizes="24rem" loading="lazy" />
+                    </span>
+                    <span class="planche-nom">
+                      <span>{s.name}</span>
+                      <span class="repere">{place(s.place)}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
       </div>
-      <ul class="planches">
-        {NETWORK_SITES.map((s, i) => (
-          <li>
-            <a
-              class="planche"
-              href={siteHref(s.href, s.external)}
-              target={s.external ? '_blank' : undefined}
-              rel={s.external ? 'noopener noreferrer' : undefined}
-            >
-              <span class="capture chev" style={`--d:${i % 4}`}>
-                <Image src={s.image} alt={fr ? `Page d’accueil de ${s.name}` : `${s.name} homepage`} widths={[360, 560]} sizes="(min-width: 768px) 25vw, 100vw" loading="lazy" />
-              </span>
-              <span class="planche-nom">
-                <span>{s.name}</span>
-                <span class="repere">{place(s.place)}</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
+    </div>
+
+    <!-- Radiologie La Cambre : l'étude de cas, mise en avant -->
+    <div class="wrap">
+      <article class="cambre" aria-labelledby="cambre-titre">
+        <div class="cambre-visuel">
+          <figure class="cambre-photo chev">
+            <Image src={cambrePhoto} alt={d.lacambre.photoAlt} widths={[640, 960, 1400]} sizes="(min-width: 1024px) 50vw, 100vw" loading="lazy" />
+          </figure>
+          <figure class="capture cambre-ecran chev" style="--d:3">
+            <Image src={cambreEcran} alt={d.lacambre.shotAlt} widths={[480, 800]} sizes="(min-width: 1024px) 26vw, 60vw" loading="lazy" />
+          </figure>
+        </div>
+        <div class="cambre-texte">
+          <p class="kicker rv">
+            <svg aria-hidden="true" width="10" height="8" viewBox="0 0 12 8"><path d="M0 0 H12 L6 8 Z" fill="currentColor" /></svg>
+            {d.lacambre.kicker}
+          </p>
+          <h2 id="cambre-titre" class="h2 titre">{mots(d.lacambre.title).map((w, i) => <><span class="mot" style={`--i:${i}`}><span>{w}</span></span>{' '}</>)}</h2>
+          <p class="texte rv">{d.lacambre.body}</p>
+          <div class="cambre-cotes">
+            {d.lacambre.figures.map((f, i) => (
+              <div class="cote-bloc">
+                <span class="cote-val">{f.value}</span>
+                <span class="cote" aria-hidden="true" style={`--d:${i}`}><i /><b /></span>
+                <span class="cote-txt rv" style={`--d:${i}`}>{f.label}</span>
+              </div>
+            ))}
+          </div>
+          <figure class="parole cambre-parole rv">
+            <blockquote>{fr ? `« ${voices[0].excerpt} »` : `“${voices[0].excerpt}”`}</blockquote>
+            <figcaption>
+              <Image src={voices[0].portrait} alt="" widths={[112]} loading="lazy" />
+              <span><strong>{voices[0].name}</strong><br />{voices[0].role}</span>
+            </figcaption>
+          </figure>
+          <a class="btn btn-plein rv" href={`${b}/case-studies/radiologie-la-cambre`}>
+            {d.lacambre.link}<svg class="tri" aria-hidden="true" width="8" height="10" viewBox="0 0 8 12"><path d="M0 0 V12 L8 6 Z" fill="currentColor" /></svg>
+          </a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -307,6 +368,27 @@ const mots = (s: string) => s.split(' ');
   colle();
   new ResizeObserver(colle).observe(document.body);
 
+  // Le mur des vingt sites : épinglé le temps de sa hauteur, ses rangées glissent en sens
+  // opposés selon la progression du scroll. Rien ne bouge quand on ne scrolle pas.
+  const mur = document.querySelector<HTMLElement>('.mur');
+  if (mur && !reduit) {
+    const rangs = [...mur.querySelectorAll<HTMLElement>('.mur-rang')];
+    let courses: number[] = [];
+    const mesureMur = () => (courses = rangs.map((r) => Math.max(0, r.scrollWidth - innerWidth)));
+    const glisse = () => {
+      const haut = mur.getBoundingClientRect().top;
+      const p = Math.min(1, Math.max(0, -haut / Math.max(1, mur.offsetHeight - innerHeight)));
+      rangs.forEach((r, i) => {
+        const k = r.dataset.sens === '1' ? 1 - p : p;
+        r.style.transform = `translate3d(${-k * courses[i]}px, 0, 0)`;
+      });
+    };
+    mesureMur();
+    glisse();
+    addEventListener('scroll', () => requestAnimationFrame(glisse), { passive: true });
+    addEventListener('resize', () => { mesureMur(); glisse(); });
+  }
+
   if (video && !reduit) demarre(video);
 
   function demarre(video: HTMLVideoElement) {
@@ -326,12 +408,10 @@ const mots = (s: string) => s.split(' ');
       plages = els.map((el, i) => {
         const start = starts[i];
         const suivante = i < els.length - 1 ? starts[i + 1] : max;
-        // Le segment s'achève (image stable) tôt : à l'arrivée pour une section tenue (un peu
-        // après le début de la tenue), au centrage du contenu sinon. Les gestes (rideau, logo)
-        // se jouent pendant que le texte attend, puis le fond reste posé pendant la tenue.
+        // Le segment s'achève (image stable) peu après l'arrivée de la section. Les gestes
+        // (rideau, logo) se jouent pendant que le texte attend, puis le fond reste posé.
         // Le hero garde toute sa plage, pour la vague du motif.
-        const tenue = el.classList.contains('tient');
-        const pose = tenue ? tops[i] + 0.45 * vh : tops[i] + el.offsetHeight / 2 - vh / 2;
+        const pose = tops[i] + 0.45 * vh;
         const end = i === 0 ? Math.max(start + 1, suivante) : Math.min(Math.max(suivante, start + 1), Math.max(start + 0.3 * vh, pose));
         const tin = Number(el.dataset.videoIn);
         return {

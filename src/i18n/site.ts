@@ -96,9 +96,22 @@ export const HOME = {
       },
     },
     network: {
-      title: 'Dix-huit cabinets, un seul socle.',
-      body: 'Langue, marque et contenu sont réglés cabinet par cabinet, pour que chacun ressorte dans sa ville au lieu de concurrencer les autres. Captures prises en production en août 2026.',
+      title: 'Vingt sites en production.',
+      body: 'Les dix-huit cabinets du réseau Radiology Partners Europe, Tapio et le site du groupe. Langue, marque et contenu réglés site par site. Captures prises en production en août 2026.',
       caseLabel: 'Étude de cas',
+    },
+    lacambre: {
+      kicker: 'Étude de cas · Ixelles · 2025',
+      title: 'Radiologie La Cambre, de zéro à la première page.',
+      body: 'Premier site du réseau à recevoir le traitement complet : architecture, contenu local et présence dans les réponses des moteurs IA. Ce qui a marché ici est devenu le modèle des dix-sept autres cabinets.',
+      figures: [
+        { value: '+37 %', label: 'clics, en un an' },
+        { value: '11,2', label: 'position moyenne, contre 14,2' },
+        { value: '1 272', label: 'visites sur 90 jours' },
+      ],
+      link: 'Lire l’étude de cas',
+      photoAlt: 'Salle d’attente vitrée de Radiologie La Cambre, avenue Louise, ouverte sur la verdure',
+      shotAlt: 'Page d’accueil de radiologielacambre.be',
     },
     method: {
       title: 'Quatre semaines, de l’audit à la mise en ligne.',
@@ -180,9 +193,22 @@ export const HOME = {
       },
     },
     network: {
-      title: 'Eighteen practices, one backbone.',
-      body: 'Language, brand and content are set practice by practice, so each one ranks in its own town instead of competing with the others. Captured in production in August 2026.',
+      title: 'Twenty sites in production.',
+      body: 'The eighteen practices of the Radiology Partners Europe network, Tapio and the group site. Language, brand and content set site by site. Captured in production in August 2026.',
       caseLabel: 'Case study',
+    },
+    lacambre: {
+      kicker: 'Case study · Ixelles · 2025',
+      title: 'Radiologie La Cambre, from zero to page one.',
+      body: 'The first site in the network to get the full treatment: architecture, local content and a presence inside AI answers. What worked here became the template for the other seventeen practices.',
+      figures: [
+        { value: '+37%', label: 'clicks, year on year' },
+        { value: '11.2', label: 'average position, from 14.2' },
+        { value: '1,272', label: 'visits over 90 days' },
+      ],
+      link: 'Read the case study',
+      photoAlt: 'Glass-walled waiting room at Radiologie La Cambre, avenue Louise, opening onto greenery',
+      shotAlt: 'Homepage of radiologielacambre.be',
     },
     method: {
       title: 'Four weeks, from audit to launch.',
