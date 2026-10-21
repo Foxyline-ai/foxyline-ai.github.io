@@ -1,7 +1,7 @@
 ---
 import '../styles/maison.css';
 import Mark from '../components/Mark.astro';
-import { UI, EMAIL, base, type Lang } from '../i18n/site';
+import { UI, EMAIL, SUPPORT_EMAIL, base, type Lang } from '../i18n/site';
 
 interface Props {
   lang: Lang;
@@ -142,6 +142,8 @@ const org = {
           <a class="ul" href={`${base(lang)}/terms`}>{t.footer.terms}</a>
           <span aria-hidden="true">·</span>
           <a class="ul" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          <span aria-hidden="true">·</span>
+          {t.footer.support} <a class="ul" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
           <span aria-hidden="true">·</span>
           {t.footer.place}
         </span>

@@ -19,6 +19,7 @@ export const CALENDAR_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2_bpA8BrPJisRUneWkbe3GbPBXSW4CNeiupI5iDeR61Sa2WCVmkD_VdzinkNYfxZYZwN6GzUpC?gv=true';
 
 export const EMAIL = 'hi@foxyline.ai';
+export const SUPPORT_EMAIL = 'support@moosly.be';
 
 /** Préfixe de chemin par langue : l'anglais à la racine, le français sous /fr. */
 export const base = (lang: Lang) => (lang === 'fr' ? '/fr' : '');
@@ -29,14 +30,14 @@ export const UI = {
     skip: 'Aller au contenu',
     home: 'Foxyline, accueil',
     book: 'Prendre rendez-vous',
-    footer: { legal: 'Foxyline est une marque de Moosly SRL', terms: 'Conditions', place: 'Bruxelles · Belgique' },
+    footer: { legal: 'Foxyline est une marque de Moosly SRL', terms: 'Conditions', support: 'Support :', place: 'Bruxelles · Belgique' },
   },
   en: {
     nav: { work: 'Work', method: 'Method', studio: 'Studio', contact: 'Contact', alt: 'FR', altLabel: 'Version française' },
     skip: 'Skip to content',
     home: 'Foxyline, home',
     book: 'Book a call',
-    footer: { legal: 'Foxyline is a brand of Moosly SRL', terms: 'Terms', place: 'Brussels · Belgium' },
+    footer: { legal: 'Foxyline is a brand of Moosly SRL', terms: 'Terms', support: 'Support:', place: 'Brussels · Belgium' },
   },
 } as const;
 
